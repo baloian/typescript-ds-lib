@@ -1,6 +1,8 @@
 # TypeScript Data Structure Library
 Native TypeScript data structure implementations without external dependencies.
 
+- Fast, Light and Tested
+
 ## Install
 ```
 npm install typescript-ds-lib
@@ -24,8 +26,8 @@ console.log(stack.size());  // 2
 ## Data Structures
 - Slack
 - Queue
-- PriorityQueue
-- BinarySearchTree
+- Priority Queue
+- Binary Search Tree
 
 
 ## Contributions

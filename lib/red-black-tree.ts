@@ -5,14 +5,16 @@ enum Color {
   BLACK
 }
 
-class RBNode<T> {
-  value: T;
+class RBNode<K, V> {
+  key: K;
+  value: V;
   color: Color;
-  left: RBNode<T> | null;
-  right: RBNode<T> | null;
-  parent: RBNode<T> | null;
+  left: RBNode<K, V> | null;
+  right: RBNode<K, V> | null;
+  parent: RBNode<K, V> | null;
 
-  constructor(value: T) {
+  constructor(key: K, value: V) {
+    this.key = key;
     this.value = value;
     this.color = Color.RED;
     this.left = null;
@@ -21,8 +23,8 @@ class RBNode<T> {
   }
 }
 
-export class RedBlackTree<T> implements RedBlackTreeTy<T> {
-  private root: RBNode<T> | null;
+export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
+  private root: RBNode<K, V> | null;
   private nodeCount: number;
 
   constructor() {
@@ -30,7 +32,7 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     this.nodeCount = 0;
   }
 
-  private rotateLeft(node: RBNode<T>): void {
+  private rotateLeft(node: RBNode<K, V>): void {
     const rightChild = node.right!;
     node.right = rightChild.left;
     
@@ -52,7 +54,7 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     node.parent = rightChild;
   }
 
-  private rotateRight(node: RBNode<T>): void {
+  private rotateRight(node: RBNode<K, V>): void {
     const leftChild = node.left!;
     node.left = leftChild.right;
     
@@ -74,7 +76,7 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     node.parent = leftChild;
   }
 
-  private fixInsert(node: RBNode<T>): void {
+  private fixInsert(node: RBNode<K, V>): void {
     while (node !== this.root && node.parent?.color === Color.RED) {
       if (node.parent === node.parent.parent?.left) {
         const uncle = node.parent.parent.right;
@@ -114,18 +116,19 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     this.root!.color = Color.BLACK;
   }
 
-  insert(value: T): void {
-    const newNode = new RBNode(value);
-    let parent: RBNode<T> | null = null;
+  insert(key: K, value: V): void {
+    const newNode = new RBNode(key, value);
+    let parent: RBNode<K, V> | null = null;
     let current = this.root;
     while (current !== null) {
       parent = current;
-      if (value < current.value) {
+      if (key < current.key) {
         current = current.left;
-      } else if (value > current.value) {
+      } else if (key > current.key) {
         current = current.right;
       } else {
-        // Value already exists, don't insert duplicate
+        // Key already exists, update value
+        current.value = value;
         return;
       }
     }
@@ -134,7 +137,7 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     
     if (parent === null) {
       this.root = newNode;
-    } else if (value < parent.value) {
+    } else if (key < parent.key) {
       parent.left = newNode;
     } else {
       parent.right = newNode;
@@ -144,23 +147,23 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     this.fixInsert(newNode);
   }
 
-  private findNode(value: T): RBNode<T> | null {
+  private findNode(key: K): RBNode<K, V> | null {
     let current = this.root;
     while (current !== null) {
-      if (value === current.value) {
+      if (key === current.key) {
         return current;
       }
-      current = value < current.value ? current.left : current.right;
+      current = key < current.key ? current.left : current.right;
     }
     return null;
   }
 
-  find(value: T): T | undefined {
-    const node = this.findNode(value);
+  find(key: K): V | undefined {
+    const node = this.findNode(key);
     return node ? node.value : undefined;
   }
 
-  private findMinNode(node: RBNode<T>): RBNode<T> {
+  private findMinNode(node: RBNode<K, V>): RBNode<K, V> {
     let current = node;
     while (current.left !== null) {
       current = current.left;
@@ -168,12 +171,12 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     return current;
   }
 
-  min(): T | undefined {
+  min(): V | undefined {
     if (!this.root) return undefined;
     return this.findMinNode(this.root).value;
   }
 
-  private findMaxNode(node: RBNode<T>): RBNode<T> {
+  private findMaxNode(node: RBNode<K, V>): RBNode<K, V> {
     let current = node;
     while (current.right !== null) {
       current = current.right;
@@ -181,21 +184,21 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     return current;
   }
 
-  max(): T | undefined {
+  max(): V | undefined {
     if (!this.root) return undefined;
     return this.findMaxNode(this.root).value;
   }
 
-  remove(value: T): void {
-    const node = this.findNode(value);
+  remove(key: K): void {
+    const node = this.findNode(key);
     if (node) {
       this.nodeCount--;
       this.deleteNode(node);
     }
   }
 
-  private deleteNode(node: RBNode<T>): void {
-    let x: RBNode<T> | null;
+  private deleteNode(node: RBNode<K, V>): void {
+    let x: RBNode<K, V> | null;
     let y = node;
     let originalColor = y.color;
 
@@ -229,7 +232,7 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     }
   }
 
-  private transplant(u: RBNode<T>, v: RBNode<T> | null): void {
+  private transplant(u: RBNode<K, V>, v: RBNode<K, V> | null): void {
     if (u.parent === null) {
       this.root = v;
     } else if (u === u.parent.left) {
@@ -242,7 +245,7 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     }
   }
 
-  private fixDelete(x: RBNode<T>): void {
+  private fixDelete(x: RBNode<K, V>): void {
     while (x !== this.root && x.color === Color.BLACK) {
       if (x === x.parent!.left) {
         let w = x.parent!.right!;

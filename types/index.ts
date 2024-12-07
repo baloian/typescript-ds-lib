@@ -78,12 +78,12 @@ export interface MapTy<K, V> {
   size(): number;
 }
 
-export interface RedBlackTreeTy<T> {
-  insert(value: T): void;
-  remove(value: T): void;
-  find(value: T): T | undefined;
-  min(): T | undefined;
-  max(): T | undefined;
+export interface RedBlackTreeTy<K, V> {
+  insert(key: K, value: V): void;
+  remove(key: K): void;
+  find(key: K): V | undefined;
+  min(): V | undefined;
+  max(): V | undefined;
   empty(): boolean;
   size(): number;
   clear(): void;

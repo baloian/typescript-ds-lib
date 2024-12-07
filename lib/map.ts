@@ -1,30 +1,24 @@
 import { MapTy } from '../types';
 import { RedBlackTree } from './red-black-tree';
 
-interface Entry<K, V> {
-  key: K;
-  value: V;
-}
 
 export class Map<K, V> implements MapTy<K, V> {
-  private rbTree: RedBlackTree<Entry<K, V>>;
+  private rbTree: RedBlackTree<K, V>;
 
   constructor() {
-    this.rbTree = new RedBlackTree<Entry<K, V>>();
+    this.rbTree = new RedBlackTree<K, V>();
   }
 
   insert(key: K, value: V): void {
-    const entry: Entry<K, V> = { key, value };
-    this.rbTree.insert(entry);
+    this.rbTree.insert(key, value);
   }
 
   find(key: K): V | undefined {
-    const current = this.rbTree.find({ key } as Entry<K, V>);
-    return current ? current.value : undefined;
+    return this.rbTree.find(key);
   }
 
   delete(key: K): void {
-    this.rbTree.remove({ key } as Entry<K, V>);
+    this.rbTree.remove(key);
   }
 
   clear(): void {

@@ -33,6 +33,7 @@ export interface BinarySearchTreeTy<T> {
   max(): T | undefined;
   empty(): boolean;
   clear(): void;
+  count(): number;
 }
 
 export interface DequeTy<T> {
@@ -54,6 +55,15 @@ export interface LinkedListTy<T> {
   removeIf(condition: (element: T) => boolean): boolean;
   removeAt(position: number): T | undefined;
   get(position: number): T | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
+
+export interface SetTy<T> {
+  insert(element: T): void;
+  remove(element: T): void;
+  find(element: T): boolean;
   empty(): boolean;
   size(): number;
   clear(): void;

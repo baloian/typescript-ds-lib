@@ -32,6 +32,7 @@ console.log(stack.size());  // 2
 - Linked List
 - Binary Search Tree
 - Deque
+- Set
 
 
 ## Contributions

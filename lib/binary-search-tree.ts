@@ -144,4 +144,16 @@ export class BinarySearchTree<T> implements BinarySearchTreeTy<T> {
   clear(): void {
     this.root = null;
   }
+
+  /**
+   * Returns the number of nodes in the BST
+   */
+  count(): number {
+    return this.countNodes(this.root);
+  }
+
+  private countNodes(node: TreeNode<T> | null): number {
+    if (node === null) return 0;
+    return 1 + this.countNodes(node.left) + this.countNodes(node.right);
+  }
 }

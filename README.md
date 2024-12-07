@@ -6,9 +6,18 @@ Native TypeScript data structure implementations without external dependencies.
 npm install typescript-ds-lib
 ```
 
+## Usage
+```
+import { Stack } from 'typescript-ds-lib';
+
+const stack = new Stack<number>();
+```
+
 ## Data Structures
 - Slack
 - Queue
+- PriorityQueue
+- BinarySearchTree
 
 
 ## Contributions

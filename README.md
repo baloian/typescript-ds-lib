@@ -17,8 +17,8 @@ stack.push(2);
 stack.push(3);
 
 console.log(stack.top());   // 3
-console.log(stack.pop()); // 3
-console.log(stack.size()); // 2
+console.log(stack.pop());   // 3
+console.log(stack.size());  // 2
 ```
 
 ## Data Structures

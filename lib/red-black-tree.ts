@@ -155,8 +155,9 @@ export class RedBlackTree<T> implements RedBlackTreeTy<T> {
     return null;
   }
 
-  find(value: T): boolean {
-    return this.findNode(value) !== null;
+  find(value: T): T | undefined {
+    const node = this.findNode(value);
+    return node ? node.value : undefined;
   }
 
   private findMinNode(node: RBNode<T>): RBNode<T> {

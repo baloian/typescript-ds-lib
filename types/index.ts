@@ -70,10 +70,9 @@ export interface SetTy<T> {
 }
 
 export interface MapTy<K, V> {
-  set(key: K, value: V): void;
-  get(key: K): V | undefined;
-  find(key: K): boolean;
-  delete(key: K): boolean;
+  insert(key: K, value: V): void;
+  find(key: K): V | undefined;
+  delete(key: K): void;
   clear(): void;
   empty(): boolean;
   size(): number;
@@ -82,7 +81,7 @@ export interface MapTy<K, V> {
 export interface RedBlackTreeTy<T> {
   insert(value: T): void;
   remove(value: T): void;
-  find(value: T): boolean;
+  find(value: T): T | undefined;
   min(): T | undefined;
   max(): T | undefined;
   empty(): boolean;

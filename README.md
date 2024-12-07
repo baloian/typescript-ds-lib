@@ -27,6 +27,7 @@ console.log(stack.size());  // 2
 - Stack
 - Queue
 - Priority Queue
+- Linked List
 - Binary Search Tree
 - Deque
 

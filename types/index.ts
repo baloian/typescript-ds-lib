@@ -47,3 +47,15 @@ export interface DequeTy<T> {
   clear(): void;
 }
 
+export interface LinkedListTy<T> {
+  pushBack(element: T): void;
+  pushFront(element: T): void;
+  insert(element: T, position: number): boolean;
+  removeIf(condition: (element: T) => boolean): boolean;
+  removeAt(position: number): T | undefined;
+  get(position: number): T | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
+

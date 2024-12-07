@@ -18,10 +18,8 @@
     "type": "git",
     "url": "https://github.com/baloian/typescript-ds.git"
   },
-  "dependencies": {
-    "ts-node": "^10.9.2"
-  },
   "devDependencies": {
+    "ts-node": "^10.9.2",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.1",
     "ts-jest": "^29.2.5",

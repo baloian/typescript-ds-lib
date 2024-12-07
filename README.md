@@ -1,6 +1,15 @@
 # TypeScript Data Structure Library
 Native TypeScript data structure implementations without external dependencies.
 
+## Install
+```
+npm install typescript-ds-lib
+```
+
+## Data Structures
+- Slack
+- Queue
+
 
 ## Contributions
 Contributions are welcome and can be made by submitting GitHub pull requests

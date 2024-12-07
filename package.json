@@ -1,0 +1,30 @@
+{
+  "name": "@baloian/typescript-ds",
+  "version": "0.0.1",
+  "description": "A collection of TypeScript data structure implementations",
+  "author": "Artiom Baloian <artiom.baloian@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "prepare": "npm run build",
+    "test": "rm -rf dist && tsc && jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baloian/typescript-ds.git"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.1",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.2"
+  }
+}

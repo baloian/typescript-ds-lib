@@ -1,4 +1,7 @@
-export class PriorityQueue<T> {
+import { PriorityQueueTy } from '../types';
+
+
+export class PriorityQueue<T> implements PriorityQueueTy<T> {
   private items: { element: T; priority: number }[];
 
   constructor() {

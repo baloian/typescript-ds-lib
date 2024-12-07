@@ -1,3 +1,6 @@
+import { BinarySearchTreeTy } from '../types';
+
+
 class TreeNode<T> {
   value: T;
   left: TreeNode<T> | null;
@@ -10,7 +13,7 @@ class TreeNode<T> {
   }
 }
 
-export class BinarySearchTree<T> {
+export class BinarySearchTree<T> implements BinarySearchTreeTy<T> {
   private root: TreeNode<T> | null;
 
   constructor() {

@@ -1,4 +1,7 @@
-export class Stack<T> {
+import { StackTy } from '../types/';
+
+
+export class Stack<T> implements StackTy<T> {
   private items: T[];
 
   constructor() {

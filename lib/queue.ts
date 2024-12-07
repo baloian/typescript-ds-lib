@@ -1,4 +1,7 @@
-export class Queue<T> {
+import { QueueTy } from '../types';
+
+
+export class Queue<T> implements QueueTy<T> {
   private items: T[];
 
   constructor() {

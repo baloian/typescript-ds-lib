@@ -1,4 +1,7 @@
-export class Deque<T> {
+import { DequeTy } from '../types';
+
+
+export class Deque<T> implements DequeTy<T> {
   private items: T[];
 
   constructor() {

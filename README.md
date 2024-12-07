@@ -31,8 +31,10 @@ console.log(stack.size());  // 2
 - Priority Queue
 - Linked List
 - Binary Search Tree
+- Red-Black Tree
 - Deque
 - Set
+- Map
 
 
 ## Contributions

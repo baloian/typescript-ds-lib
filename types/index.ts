@@ -69,3 +69,24 @@ export interface SetTy<T> {
   clear(): void;
 }
 
+export interface MapTy<K, V> {
+  set(key: K, value: V): void;
+  get(key: K): V | undefined;
+  find(key: K): boolean;
+  delete(key: K): boolean;
+  clear(): void;
+  empty(): boolean;
+  size(): number;
+}
+
+export interface RedBlackTreeTy<T> {
+  insert(value: T): void;
+  remove(value: T): void;
+  find(value: T): boolean;
+  min(): T | undefined;
+  max(): T | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
+

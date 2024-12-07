@@ -6,3 +6,4 @@ export { BinarySearchTree } from './lib/binary-search-tree';
 export { Deque } from './lib/deque';
 export { LinkedList } from './lib/linked-list';
 export { Set } from './lib/set';
+export { RedBlackTree } from './lib/red-black-tree';

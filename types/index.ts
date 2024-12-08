@@ -89,3 +89,11 @@ export interface RedBlackTreeTy<K, V> {
   clear(): void;
 }
 
+export interface HashTableTy<K, V> {
+  insert(key: K, value: V): void;
+  get(key: K): V | undefined;
+  remove(key: K): boolean;
+  size(): number;
+  empty(): boolean;
+  clear(): void;
+}

@@ -8,3 +8,4 @@ export { LinkedList } from './lib/linked-list';
 export { Set } from './lib/set';
 export { Map } from './lib/map';
 export { RedBlackTree } from './lib/red-black-tree';
+export { HashTable } from './lib/hash-table';

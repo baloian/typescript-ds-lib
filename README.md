@@ -38,6 +38,7 @@ console.log(stack.size());  // 2
 - Deque
 - Set
 - Map
+- Hash Table
 
 
 ## Contributions

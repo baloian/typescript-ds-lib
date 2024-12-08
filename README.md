@@ -1,5 +1,5 @@
 # TypeScript Data Structure Library
-[![NPM](https://img.shields.io/npm/v/marcal.svg?label=npm%20package&color=limegreen)](https://www.npmjs.com/package/typescript-ds-lib)
+[![NPM](https://img.shields.io/npm/v/typescript-ds-lib?label=npm%20package&color=limegreen)](https://www.npmjs.com/package/typescript-ds-lib)
 
 Native TypeScript data structure implementations without external dependencies.
 

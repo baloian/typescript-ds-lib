@@ -23,7 +23,8 @@ stack.push(2);
 stack.push(3);
 
 console.log(stack.top());   // 3
-console.log(stack.pop());   // 3
+stack.pop();
+console.log(stack.top());   // 2
 console.log(stack.size());  // 2
 ```
 

@@ -2,10 +2,13 @@
 This library provides a collection of commonly used data structures implemented in TypeScript. Each data structure is designed to be type-safe and efficient.
 - [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#binary-search-tree)
 - [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#deque)
+- [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#hash-table)
+- [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#linked-list)
 
 
 # Binary Search Tree
 A binary search tree (BST) implementation in TypeScript that stores values in an ordered tree structure, with smaller values to the left and larger values to the right.
+
 
 ## Methods
 `insert(value: T)` - Inserts a new value into the binary search tree.   
@@ -64,3 +67,65 @@ console.log(deque.size());   // 3
 deque.popFront();     // deque: [1,3]
 deque.popBack();      // deque: [1]
 ```
+
+
+# Hash Table
+A hash table implementation in TypeScript that provides efficient key-value pair storage and retrieval using a hash function for indexing.
+
+## Methods
+`insert(key: K, value: V)` - Inserts or updates a key-value pair in the hash table.  
+`get(key: K)` - Retrieves the value associated with the given key.  
+`remove(key: K)` - Removes a key-value pair from the hash table.  
+`clear()` - Removes all key-value pairs from the hash table.  
+`size()` - Returns the number of key-value pairs in the hash table.  
+`empty()` - Checks if the hash table is empty. 
+
+### Example Usage
+```typescript
+import { HashTable, HashTableTy } from 'typescript-ds-lib';
+
+const hashTable: HashTableTy<string, number> = new HashTable<string, number>();
+
+hashTable.set("one", 1);
+hashTable.set("two", 2);
+hashTable.set("three", 3);
+
+console.log(hashTable.get("two"));     // 2
+console.log(hashTable.empty());        // false
+console.log(hashTable.size());         // 3
+
+hashTable.remove("one");
+```
+
+
+# Linked List
+A singly linked list implementation in TypeScript that stores elements in a sequence of nodes, where each node points to the next node in the sequence.
+
+## Methods
+`pushBack(value: T)` - Adds a new element to the end of the linked list.  
+`pushFront(value: T)` - Adds a new element to the beginning of the linked list.  
+`insert(value: T, position: number)` - Inserts a new element at the specified position.  
+`removeIf(condition: (element: T) => boolean)` - Removes all elements that satisfy the condition.  
+`removeAt(position: number)` - Removes the element at the specified position.  
+`get(position: number)` - Returns the element at the specified position.  
+`empty()` - Checks if the linked list is empty.  
+`clear()` - Removes all elements from the linked list.  
+`size()` - Returns the total number of elements in the linked list.  
+
+### Example Usage
+```typescript
+import { LinkedList, LinkedListTy } from 'typescript-ds-lib';
+
+const list: LinkedListTy<number> = new LinkedList<number>();
+
+list.pushBack(1);     // list: [1]
+list.pushBack(2);     // list: [1,2]
+list.pushFront(0);    // list: [0,1,2]
+
+console.log(list.get(1));      // 1
+console.log(list.size());      // 3
+
+list.removeAt(0);   // list: [1,2]
+list.removeAt(1);   // list: [1]
+```
+

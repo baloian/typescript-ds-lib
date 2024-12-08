@@ -5,7 +5,7 @@ This library provides a collection of commonly used data structures implemented 
 - [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#hash-table)
 - [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#linked-list)
 - [Map](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#map)
-
+- [Priority Queue](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#priority-queue)
 
 # Binary Search Tree
 A binary search tree (BST) implementation in TypeScript that stores values in an ordered tree structure, with smaller values to the left and larger values to the right.
@@ -87,11 +87,11 @@ import { HashTable, HashTableTy } from 'typescript-ds-lib';
 
 const hashTable: HashTableTy<string, number> = new HashTable<string, number>();
 
-hashTable.set("one", 1);
-hashTable.set("two", 2);
-hashTable.set("three", 3);
+hashTable.insert('one', 1);
+hashTable.insert('two', 2);
+hashTable.insert('three', 3);
 
-console.log(hashTable.get("two"));     // 2
+console.log(hashTable.get('two'));     // 2
 console.log(hashTable.empty());        // false
 console.log(hashTable.size());         // 3
 
@@ -149,15 +149,44 @@ import { Map, MapTy } from 'typescript-ds-lib';
 
 const map: MapTy<string, number> = new Map<string, number>();
 
-map.insert("apple", 1);
-map.insert("banana", 2);
-map.insert("cherry", 3);
+map.insert('apple', 1);
+map.insert('banana', 2);
+map.insert('cherry', 3);
 
-console.log(map.find("banana"));   // 2
-console.log(map.find("apple"));    // 1
+console.log(map.find('banana'));   // 2
+console.log(map.find('apple'));    // 1
 console.log(map.size());           // 3
 
-map.delete("apple");
+map.delete('apple');
 console.log(map.size());           // 2
+```
+
+
+# Priority Queue
+A priority queue implementation in TypeScript that maintains elements in a heap structure, where each element has a priority value determining its position in the queue.
+
+## Methods
+`push(value: T, priority: number)` - Adds an element with the specified priority to the queue.  
+`pop()` - Removes and returns the element with the highest priority.  
+`front()` - Returns the highest priority element without removing it.  
+`empty()` - Checks if the priority queue is empty.  
+`clear()` - Removes all elements from the priority queue.  
+`size()` - Returns the number of elements in the priority queue.  
+
+### Example Usage
+```typescript
+import { PriorityQueue, PriorityQueueTy } from 'typescript-ds-lib';
+
+const pq: PriorityQueueTy<string> = new PriorityQueue<string>();
+
+pq.push('Task 1', 2);    // Normal priority
+pq.push('Task 2', 3);    // High priority
+pq.push('Task 3', 1);    // Low priority
+
+console.log(pq.front()); // "Task 2" (highest priority)
+console.log(pq.size());  // 3
+
+pq.pop();                // Removes "Task 2"
+console.log(pq.front()); // "Task 1" (next highest priority)
 ```
 

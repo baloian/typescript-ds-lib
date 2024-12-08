@@ -1,7 +1,7 @@
 # TypeScript Data Structure Library Documentation
 This library provides a collection of commonly used data structures implemented in TypeScript. Each data structure is designed to be type-safe and efficient.
-- [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/edit/master/DOCUMENTATION.md#binary-search-tree)
-- [Deque](https://github.com/baloian/typescript-ds-lib/edit/master/DOCUMENTATION.md#deque)
+- [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#binary-search-tree)
+- [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#deque)
 
 
 # Binary Search Tree

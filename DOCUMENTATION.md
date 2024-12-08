@@ -4,6 +4,7 @@ This library provides a collection of commonly used data structures implemented 
 - [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#deque)
 - [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#hash-table)
 - [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#linked-list)
+- [Map](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#map)
 
 
 # Binary Search Tree
@@ -127,5 +128,36 @@ console.log(list.size());      // 3
 
 list.removeAt(0);   // list: [1,2]
 list.removeAt(1);   // list: [1]
+```
+
+
+# Map
+A map implementation in TypeScript that maintains key-value pairs in sorted order based on the keys, implemented as a red-black tree.
+
+## Methods
+`insert(key: K, value: V)` - Inserts or updates a key-value pair in the map.  
+`find(key: K)` - Retrieves the value associated with the given key.  
+`delete(key: K)` - Removes a key-value pair from the map.  
+`clear()` - Removes all key-value pairs from the map.  
+`size()` - Returns the number of key-value pairs in the map.  
+`empty()` - Checks if the map is empty.  
+
+
+### Example Usage
+```typescript
+import { Map, MapTy } from 'typescript-ds-lib';
+
+const map: MapTy<string, number> = new Map<string, number>();
+
+map.insert("apple", 1);
+map.insert("banana", 2);
+map.insert("cherry", 3);
+
+console.log(map.find("banana"));   // 2
+console.log(map.find("apple"));    // 1
+console.log(map.size());           // 3
+
+map.delete("apple");
+console.log(map.size());           // 2
 ```
 

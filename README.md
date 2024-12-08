@@ -3,7 +3,9 @@
 
 Native TypeScript data structure implementations without external dependencies.
 
-- Fast, Light and Tested
+1. Fast
+2. Native & Light
+3. Fully Tested
 
 ## Install
 ```

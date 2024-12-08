@@ -41,6 +41,9 @@ console.log(stack.size());  // 2
 - Hash Table
 
 
+## Documentation and Examples
+See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md) for more details and examples.
+
 ## Contributions
 Contributions are welcome and can be made by submitting GitHub pull requests
 to this repository. In general, the source code follows

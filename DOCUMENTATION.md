@@ -6,6 +6,9 @@ This library provides a collection of commonly used data structures implemented 
 - [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#linked-list)
 - [Map](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#map)
 - [Priority Queue](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#priority-queue)
+- [Queue](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#queue)
+- [Set](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#set)
+- [Stack](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#stack)
 
 # Binary Search Tree
 A binary search tree (BST) implementation in TypeScript that stores values in an ordered tree structure, with smaller values to the left and larger values to the right.
@@ -188,5 +191,93 @@ console.log(pq.size());  // 3
 
 pq.pop();                // Removes "Task 2"
 console.log(pq.front()); // "Task 1" (next highest priority)
+```
+
+
+# Queue
+A queue implementation in TypeScript that follows the First-In-First-Out (FIFO) principle, where elements are added to the back and removed from the front of the queue.
+
+## Methods
+`push(value: T)` - Adds an element to the back of the queue.  
+`pop()` - Removes and returns the element from the front of the queue.  
+`front()` - Returns the front element without removing it.  
+`empty()` - Checks if the queue is empty.  
+`clear()` - Removes all elements from the queue.  
+`size()` - Returns the number of elements in the queue.  
+
+### Example Usage
+```typescript
+import { Queue, QueueTy } from 'typescript-ds-lib';
+
+const queue: QueueTy<number> = new Queue<number>();
+
+queue.push(1);    // queue: [1]
+queue.push(2);    // queue: [1,2]
+queue.push(3);    // queue: [1,2,3]
+
+console.log(queue.front());  // 1
+console.log(queue.size());   // 3
+
+queue.pop();                 // queue: [2,3]
+console.log(queue.front());  // 2
+```
+
+
+# Set
+A set implementation in TypeScript that maintains a collection of unique elements, implemented as a red-black tree for efficient operations.
+
+## Methods
+`insert(value: T)` - Adds a new element to the set if it doesn't already exist.  
+`remove(value: T)` - Removes an element from the set if it exists.  
+`find(value: T)` - Checks if an element exists in the set.  
+`empty()` - Checks if the set is empty.  
+`clear()` - Removes all elements from the set.  
+`size()` - Returns the number of elements in the set.  
+
+### Example Usage
+```typescript
+import { Set, SetTy } from 'typescript-ds-lib';
+
+const set: SetTy<number> = new Set<number>();
+
+set.insert(1);    // set: {1}
+set.insert(2);    // set: {1,2}
+set.insert(2);    // set: {1,2} (no duplicate added)
+set.insert(3);    // set: {1,2,3}
+
+console.log(set.find(2));  // true
+console.log(set.size());   // 3
+
+set.remove(1);             // set: {2,3}
+console.log(set.find(1));  // false
+```
+
+
+# Stack
+A stack implementation in TypeScript that follows the Last-In-First-Out (LIFO) principle, where elements are added and removed from the same end of the stack.
+
+## Methods
+`push(value: T)` - Adds an element to the top of the stack.  
+`pop()` - Removes and returns the element from the top of the stack.  
+`top()` - Returns the top element without removing it.  
+`empty()` - Checks if the stack is empty.  
+`clear()` - Removes all elements from the stack.  
+`size()` - Returns the number of elements in the stack.  
+
+### Example Usage
+```typescript
+import { Stack, StackTy } from 'typescript-ds-lib';
+
+const stack: StackTy<number> = new Stack<number>();
+
+stack.push(1);    // stack: [1]
+stack.push(2);    // stack: [1,2]
+stack.push(3);    // stack: [1,2,3]
+
+console.log(stack.top());   // 3
+console.log(stack.size());  // 3
+
+stack.pop();              // stack: [1,2]
+console.log(stack.top()); // 2
 ```
 

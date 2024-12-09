@@ -23,7 +23,7 @@ A binary search tree (BST) implementation in TypeScript that stores values in an
 `min()` - Returns the minimum value stored in the tree.  
 `max()` - Returns the maximum value stored in the tree.  
 `remove(value: T)` - Removes a value from the binary search tree if it exists.  
-`empty()` - Checks if the binary search tree is empty.  
+`isEmpty()` - Checks if the binary search tree is empty.  
 `clear()` - Removes all nodes from the binary search tree.  
 `count()` - Returns the total number of nodes in the binary search tree.  
 
@@ -53,7 +53,7 @@ A double-ended queue (Deque) implementation in TypeScript that allows insertion 
 `popBack()` - Removes and returns the back element of the deque.  
 `front()` - Returns the front element without removing it.  
 `back()` - Returns the back element without removing it.  
-`empty()` - Checks if the deque is empty.  
+`isEmpty()` - Checks if the deque is empty.  
 `clear()` - Removes all elements from the deque.  
 `size()` - Returns the total number of elements in the deque.  
 
@@ -85,7 +85,7 @@ A hash table implementation in TypeScript that provides efficient key-value pair
 `remove(key: K)` - Removes a key-value pair from the hash table.  
 `clear()` - Removes all key-value pairs from the hash table.  
 `size()` - Returns the number of key-value pairs in the hash table.  
-`empty()` - Checks if the hash table is empty. 
+`isEmpty()` - Checks if the hash table is empty. 
 
 ### Example Usage
 ```typescript
@@ -98,7 +98,7 @@ hashTable.insert('two', 2);
 hashTable.insert('three', 3);
 
 console.log(hashTable.get('two'));     // 2
-console.log(hashTable.empty());        // false
+console.log(hashTable.isEmpty());        // false
 console.log(hashTable.size());         // 3
 
 hashTable.remove("one");
@@ -115,7 +115,7 @@ A singly linked list implementation in TypeScript that stores elements in a sequ
 `removeIf(condition: (element: T) => boolean)` - Removes all elements that satisfy the condition.  
 `removeAt(position: number)` - Removes the element at the specified position.  
 `get(position: number)` - Returns the element at the specified position.  
-`empty()` - Checks if the linked list is empty.  
+`isEmpty()` - Checks if the linked list is empty.  
 `clear()` - Removes all elements from the linked list.  
 `size()` - Returns the total number of elements in the linked list.  
 
@@ -149,7 +149,7 @@ A map implementation in TypeScript that maintains key-value pairs in sorted orde
 `delete(key: K)` - Removes a key-value pair from the map.  
 `clear()` - Removes all key-value pairs from the map.  
 `size()` - Returns the number of key-value pairs in the map.  
-`empty()` - Checks if the map is empty.  
+`isEmpty()` - Checks if the map is empty.  
 
 
 ### Example Usage
@@ -178,7 +178,7 @@ A priority queue implementation in TypeScript that maintains elements in a heap 
 `push(value: T, priority: number)` - Adds an element with the specified priority to the queue.  
 `pop()` - Removes and returns the element with the highest priority.  
 `front()` - Returns the highest priority element without removing it.  
-`empty()` - Checks if the priority queue is empty.  
+`isEmpty()` - Checks if the priority queue is empty.  
 `clear()` - Removes all elements from the priority queue.  
 `size()` - Returns the number of elements in the priority queue.  
 
@@ -207,7 +207,7 @@ A queue implementation in TypeScript that follows the First-In-First-Out (FIFO) 
 `push(value: T)` - Adds an element to the back of the queue.  
 `pop()` - Removes and returns the element from the front of the queue.  
 `front()` - Returns the front element without removing it.  
-`empty()` - Checks if the queue is empty.  
+`isEmpty()` - Checks if the queue is empty.  
 `clear()` - Removes all elements from the queue.  
 `size()` - Returns the number of elements in the queue.  
 
@@ -239,7 +239,7 @@ A set implementation in TypeScript that maintains a collection of unique element
 `insert(value: T)` - Adds a new element to the set if it doesn't already exist.  
 `remove(value: T)` - Removes an element from the set if it exists.  
 `find(value: T)` - Checks if an element exists in the set.  
-`empty()` - Checks if the set is empty.  
+`isEmpty()` - Checks if the set is empty.  
 `clear()` - Removes all elements from the set.  
 `size()` - Returns the number of elements in the set.  
 
@@ -269,7 +269,7 @@ A stack implementation in TypeScript that follows the Last-In-First-Out (LIFO) p
 `push(value: T)` - Adds an element to the top of the stack.  
 `pop()` - Removes and returns the element from the top of the stack.  
 `top()` - Returns the top element without removing it.  
-`empty()` - Checks if the stack is empty.  
+`isEmpty()` - Checks if the stack is empty.  
 `clear()` - Removes all elements from the stack.  
 `size()` - Returns the number of elements in the stack.  
 

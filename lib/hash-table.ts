@@ -25,7 +25,7 @@ export class HashTable<K, V> implements HashTable<K, V> {
   private count: number;
   private readonly capacity: number;
 
-  constructor(capacity: number = 16) {
+  constructor(capacity: number = 32) {
     this.table = new Array(capacity).fill(null);
     this.count = 0;
     this.capacity = capacity;

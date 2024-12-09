@@ -2,7 +2,7 @@ export interface PriorityQueue<T> {
   push(element: T, priority: number): void;
   pop(): T | undefined;
   front(): T | undefined;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
   clear(): void;
 }
@@ -52,7 +52,7 @@ export class PriorityQueue<T> implements PriorityQueue<T> {
   /**
    * Checks if the queue is empty. Returns true if empty, false otherwise.
    */
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.items.length === 0;
   }
 

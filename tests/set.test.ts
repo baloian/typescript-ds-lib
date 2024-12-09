@@ -8,7 +8,7 @@ describe('Set', () => {
   });
 
   test('should start empty', () => {
-    expect(set.empty()).toBe(true);
+    expect(set.isEmpty()).toBe(true);
     expect(set.size()).toBe(0);
   });
 
@@ -48,7 +48,7 @@ describe('Set', () => {
     set.insert(3);
 
     set.clear();
-    expect(set.empty()).toBe(true);
+    expect(set.isEmpty()).toBe(true);
     expect(set.size()).toBe(0);
     expect(set.find(1)).toBe(false);
   });

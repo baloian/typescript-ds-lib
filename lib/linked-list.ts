@@ -5,7 +5,7 @@ export interface LinkedList<T> {
   removeIf(condition: (element: T) => boolean): boolean;
   removeAt(position: number): T | undefined;
   get(position: number): T | undefined;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
   clear(): void;
 }
@@ -172,7 +172,7 @@ export class LinkedList<T> implements LinkedList<T> {
   /**
    * Returns true if the list is empty, false otherwise
    */
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.length === 0;
   }
 

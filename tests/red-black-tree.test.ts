@@ -8,7 +8,7 @@ describe('RedBlackTree', () => {
   });
 
   test('should start empty', () => {
-    expect(tree.empty()).toBe(true);
+    expect(tree.isEmpty()).toBe(true);
     expect(tree.size()).toBe(0);
   });
 
@@ -17,7 +17,7 @@ describe('RedBlackTree', () => {
     tree.insert(3, 3);
     tree.insert(7, 7);
 
-    expect(tree.empty()).toBe(false);
+    expect(tree.isEmpty()).toBe(false);
     expect(tree.size()).toBe(3);
     expect(tree.find(5)).toBe(5);
     expect(tree.find(3)).toBe(3);
@@ -67,11 +67,11 @@ describe('RedBlackTree', () => {
     tree.insert(3, 3);
     tree.insert(7, 7);
 
-    expect(tree.empty()).toBe(false);
+    expect(tree.isEmpty()).toBe(false);
     
     tree.clear();
     
-    expect(tree.empty()).toBe(true);
+    expect(tree.isEmpty()).toBe(true);
     expect(tree.size()).toBe(0);
   });
 

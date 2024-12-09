@@ -7,7 +7,7 @@ export interface RedBlackTree<K, V> {
   find(key: K): V | undefined;
   min(): V | undefined;
   max(): V | undefined;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
   clear(): void;
 }
@@ -317,7 +317,7 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
     x.color = Color.BLACK;
   }
 
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.root === null;
   }
 

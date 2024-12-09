@@ -88,12 +88,12 @@ describe('LinkedList', () => {
   });
 
   test('should return true for empty list', () => {
-    expect(list.empty()).toBe(true);
+    expect(list.isEmpty()).toBe(true);
   });
 
   test('should return false for non-empty list', () => {
     list.pushBack(1);
-    expect(list.empty()).toBe(false);
+    expect(list.isEmpty()).toBe(false);
   });
 
   test('should return correct size', () => {
@@ -108,7 +108,7 @@ describe('LinkedList', () => {
     list.pushBack(1);
     list.pushBack(2);
     list.clear();
-    expect(list.empty()).toBe(true);
+    expect(list.isEmpty()).toBe(true);
     expect(list.size()).toBe(0);
   });
 });

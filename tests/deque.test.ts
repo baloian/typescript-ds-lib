@@ -8,7 +8,7 @@ describe('Deque', () => {
   });
 
   test('should create empty deque', () => {
-    expect(deque.empty()).toBe(true);
+    expect(deque.isEmpty()).toBe(true);
     expect(deque.size()).toBe(0);
   });
 
@@ -34,7 +34,7 @@ describe('Deque', () => {
     expect(deque.popFront()).toBe(1);
     expect(deque.size()).toBe(1);
     expect(deque.popFront()).toBe(2);
-    expect(deque.empty()).toBe(true);
+    expect(deque.isEmpty()).toBe(true);
   });
 
   test('should pop elements from back', () => {
@@ -43,7 +43,7 @@ describe('Deque', () => {
     expect(deque.popBack()).toBe(2);
     expect(deque.size()).toBe(1);
     expect(deque.popBack()).toBe(1);
-    expect(deque.empty()).toBe(true);
+    expect(deque.isEmpty()).toBe(true);
   });
 
   test('should return undefined when popping empty deque', () => {
@@ -69,7 +69,7 @@ describe('Deque', () => {
     deque.pushBack(2);
     deque.pushBack(3);
     deque.clear();
-    expect(deque.empty()).toBe(true);
+    expect(deque.isEmpty()).toBe(true);
     expect(deque.size()).toBe(0);
   });
 
@@ -85,4 +85,3 @@ describe('Deque', () => {
     expect(deque.size()).toBe(0);
   });
 });
-

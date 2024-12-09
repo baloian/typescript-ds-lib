@@ -5,7 +5,7 @@ export interface Deque<T> {
   popBack(): T | undefined;
   front(): T | undefined;
   back(): T | undefined;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
   clear(): void;
 }
@@ -63,7 +63,7 @@ export class Deque<T> implements Deque<T> {
   /**
    * Returns true if the deque is empty, false otherwise
    */
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.items.length === 0;
   }
 

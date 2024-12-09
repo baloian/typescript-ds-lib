@@ -2,7 +2,7 @@ export interface QueueTy<T> {
   push(element: T): void;
   pop(): T | undefined;
   front(): T | undefined;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
   clear(): void;
 }
@@ -39,7 +39,7 @@ export class Queue<T> implements QueueTy<T> {
   /**
    * Checks if the queue is empty. Returns true if the queue is empty, false otherwise.
    */
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.items.length === 0;
   }
 

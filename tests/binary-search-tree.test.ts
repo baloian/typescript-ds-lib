@@ -8,7 +8,7 @@ describe('BinarySearchTree', () => {
   });
 
   test('should create empty tree', () => {
-    expect(bst.empty()).toBe(true);
+    expect(bst.isEmpty()).toBe(true);
   });
 
   test('should insert and search values', () => {
@@ -80,7 +80,7 @@ describe('BinarySearchTree', () => {
     bst.insert(7);
     
     bst.clear();
-    expect(bst.empty()).toBe(true);
+    expect(bst.isEmpty()).toBe(true);
     expect(bst.find(5)).toBe(false);
     expect(bst.min()).toBeUndefined();
     expect(bst.max()).toBeUndefined();

@@ -8,7 +8,7 @@ describe('Map', () => {
   });
 
   test('should start empty', () => {
-    expect(map.empty()).toBe(true);
+    expect(map.isEmpty()).toBe(true);
     expect(map.size()).toBe(0);
   });
 
@@ -17,7 +17,7 @@ describe('Map', () => {
     map.insert('two', 2);
     map.insert('three', 3);
 
-    expect(map.empty()).toBe(false);
+    expect(map.isEmpty()).toBe(false);
     expect(map.size()).toBe(3);
     expect(map.find('one')).toBe(1);
     expect(map.find('two')).toBe(2);
@@ -65,11 +65,11 @@ describe('Map', () => {
     map.insert('two', 2);
     map.insert('three', 3);
 
-    expect(map.empty()).toBe(false);
+    expect(map.isEmpty()).toBe(false);
     
     map.clear();
     
-    expect(map.empty()).toBe(true);
+    expect(map.isEmpty()).toBe(true);
     expect(map.size()).toBe(0);
   });
 });

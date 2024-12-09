@@ -8,7 +8,7 @@ describe('PriorityQueue', () => {
   });
 
   test('should create empty priority queue', () => {
-    expect(pq.empty()).toBe(true);
+    expect(pq.isEmpty()).toBe(true);
     expect(pq.size()).toBe(0);
   });
 
@@ -37,7 +37,7 @@ describe('PriorityQueue', () => {
     expect(pq.size()).toBe(2);
     expect(pq.pop()).toBe('medium');
     expect(pq.pop()).toBe('low');
-    expect(pq.empty()).toBe(true);
+    expect(pq.isEmpty()).toBe(true);
   });
 
   test('should return undefined when popping empty queue', () => {
@@ -60,7 +60,7 @@ describe('PriorityQueue', () => {
     pq.push('high', 3);
     pq.push('medium', 2);
     pq.clear();
-    expect(pq.empty()).toBe(true);
+    expect(pq.isEmpty()).toBe(true);
     expect(pq.size()).toBe(0);
   });
 });

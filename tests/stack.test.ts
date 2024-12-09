@@ -8,7 +8,7 @@ describe('Stack', () => {
   });
 
   test('should create empty stack', () => {
-    expect(stack.empty()).toBe(true);
+    expect(stack.isEmpty()).toBe(true);
     expect(stack.size()).toBe(0);
   });
 
@@ -25,7 +25,7 @@ describe('Stack', () => {
     expect(stack.pop()).toBe(2);
     expect(stack.size()).toBe(1);
     expect(stack.pop()).toBe(1);
-    expect(stack.empty()).toBe(true);
+    expect(stack.isEmpty()).toBe(true);
   });
 
   test('should return undefined when popping empty stack', () => {
@@ -48,7 +48,7 @@ describe('Stack', () => {
     stack.push(2);
     stack.push(3);
     stack.clear();
-    expect(stack.empty()).toBe(true);
+    expect(stack.isEmpty()).toBe(true);
     expect(stack.size()).toBe(0);
   });
 

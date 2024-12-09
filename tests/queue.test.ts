@@ -8,7 +8,7 @@ describe('Queue', () => {
   });
 
   test('should create empty queue', () => {
-    expect(queue.empty()).toBe(true);
+    expect(queue.isEmpty()).toBe(true);
     expect(queue.size()).toBe(0);
   });
 
@@ -25,7 +25,7 @@ describe('Queue', () => {
     expect(queue.pop()).toBe(1);
     expect(queue.size()).toBe(1);
     expect(queue.pop()).toBe(2);
-    expect(queue.empty()).toBe(true);
+    expect(queue.isEmpty()).toBe(true);
   });
 
   test('should return undefined when popping empty queue', () => {
@@ -48,8 +48,7 @@ describe('Queue', () => {
     queue.push(2);
     queue.push(3);
     queue.clear();
-    expect(queue.empty()).toBe(true);
+    expect(queue.isEmpty()).toBe(true);
     expect(queue.size()).toBe(0);
   });
 });
-

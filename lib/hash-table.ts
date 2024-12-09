@@ -3,7 +3,7 @@ export interface HashTable<K, V> {
   get(key: K): V | undefined;
   remove(key: K): boolean;
   size(): number;
-  empty(): boolean;
+  isEmpty(): boolean;
   clear(): void;
 }
 
@@ -143,7 +143,7 @@ export class HashTable<K, V> implements HashTable<K, V> {
     return this.count;
   }
 
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.count === 0;
   }
 

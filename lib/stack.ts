@@ -2,7 +2,7 @@ export interface Stack<T> {
   push(element: T): void;
   pop(): T | undefined;
   top(): T | undefined;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
   clear(): void;
 }
@@ -39,7 +39,7 @@ export class Stack<T> implements Stack<T> {
   /**
    * Checks if the stack is empty. Returns true if the stack is empty, false otherwise.
    */
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.items.length === 0;
   }
 

@@ -8,7 +8,7 @@ describe('HashTable', () => {
   });
 
   test('should start empty', () => {
-    expect(hashTable.empty()).toBe(true);
+    expect(hashTable.isEmpty()).toBe(true);
     expect(hashTable.size()).toBe(0);
   });
 
@@ -63,7 +63,7 @@ describe('HashTable', () => {
     hashTable.insert('three', 3);
 
     hashTable.clear();
-    expect(hashTable.empty()).toBe(true);
+    expect(hashTable.isEmpty()).toBe(true);
     expect(hashTable.size()).toBe(0);
     expect(hashTable.get('one')).toBeUndefined();
   });

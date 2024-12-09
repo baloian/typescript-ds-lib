@@ -6,7 +6,7 @@ export interface Set<T> {
   insert(element: T): void;
   remove(element: T): void;
   find(element: T): boolean;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
   clear(): void;
 }
@@ -52,8 +52,8 @@ export class Set<T> implements Set<T> {
   /**
    * Returns true if the set contains no elements
    */
-  empty(): boolean {
-    return this.bst.empty();
+  isEmpty(): boolean {
+    return this.bst.isEmpty();
   }
 
   /**

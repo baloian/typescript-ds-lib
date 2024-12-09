@@ -7,7 +7,7 @@ export interface BinarySearchTree<T> {
   find(element: T): boolean;
   min(): T | undefined;
   max(): T | undefined;
-  empty(): boolean;
+  isEmpty(): boolean;
   clear(): void;
   count(): number;
 }
@@ -154,7 +154,7 @@ export class BinarySearchTree<T> implements BinarySearchTree<T> {
   /**
    * Returns true if the BST is empty, false otherwise
    */
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.root === null;
   }
 

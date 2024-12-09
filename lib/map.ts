@@ -7,7 +7,7 @@ export interface Map<K, V> {
   find(key: K): V | undefined;
   delete(key: K): void;
   clear(): void;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
 }
 
@@ -39,7 +39,7 @@ export class Map<K, V> implements Map<K, V> {
     return this.rbTree.size();
   }
 
-  empty(): boolean {
-    return this.rbTree.empty();
+  isEmpty(): boolean {
+    return this.rbTree.isEmpty();
   }
 }

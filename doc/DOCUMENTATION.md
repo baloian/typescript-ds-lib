@@ -79,7 +79,7 @@ deque.popBack();      // deque: [1]
 # Hash Table
 A hash table implementation in TypeScript that provides efficient key-value pair storage and retrieval using a hash function for indexing.
 
-**NOTE:** If a key is an instance of a class that provides a `hashCode()` method, that method will be used for generating the hash value instead of the default hashing algorithm. This allows for custom hash implementations for complex key types.
+**NOTE:** If a key is an instance of a class that provides a `hashCode()` and/or `equals()` methods, those methods will be used for generating the hash value and comparing keys instead of the default hashing algorithm. This allows for custom hash implementations for complex key types.
 
 
 ## Constructor

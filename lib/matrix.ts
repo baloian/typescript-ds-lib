@@ -1,4 +1,4 @@
-export interface MatrixTy<T> {
+export interface Matrix<T> {
   get(row: number, col: number): T | undefined;
   set(row: number, col: number, value: T): void;
   rows(): number;
@@ -7,13 +7,13 @@ export interface MatrixTy<T> {
   clear(): void;
   empty(): boolean;
   size(): number;
-  transpose(): MatrixTy<T>;
-  add(other: MatrixTy<T>): MatrixTy<T>;
-  subtract(other: MatrixTy<T>): MatrixTy<T>;
-  multiply(other: MatrixTy<T>): MatrixTy<T>;
-  map(fn: (value: T, row: number, col: number) => T): MatrixTy<T>;
+  transpose(): Matrix<T>;
+  add(other: Matrix<T>): Matrix<T>;
+  subtract(other: Matrix<T>): Matrix<T>;
+  multiply(other: Matrix<T>): Matrix<T>;
+  map(fn: (value: T, row: number, col: number) => T): Matrix<T>;
   forEach(fn: (value: T, row: number, col: number) => void): void;
-  clone(): MatrixTy<T>;
+  clone(): Matrix<T>;
   toArray(): T[][];
   getRow(row: number): T[];
   getColumn(col: number): T[];
@@ -26,7 +26,7 @@ export interface MatrixTy<T> {
 /**
  * A generic matrix implementation that supports basic matrix operations.
  */
-export class Matrix<T> implements MatrixTy<T> {
+export class Matrix<T> implements Matrix<T> {
   private data: T[][]; // The 2D array storing matrix elements
   private numRows: number; // Number of rows in the matrix
   private numCols: number; // Number of columns in the matrix
@@ -105,7 +105,7 @@ export class Matrix<T> implements MatrixTy<T> {
   /**
    * Creates a new matrix that is the transpose of this matrix.
    */
-  transpose(): MatrixTy<T> {
+  transpose(): Matrix<T> {
     const result = new Matrix<T>(this.numCols, this.numRows);
     for (let i = 0; i < this.numRows; i++) {
       for (let j = 0; j < this.numCols; j++) {
@@ -118,7 +118,7 @@ export class Matrix<T> implements MatrixTy<T> {
   /**
    * Adds another matrix to this one.
    */
-  add(other: MatrixTy<T>): MatrixTy<T> {
+  add(other: Matrix<T>): Matrix<T> {
     if (this.numRows !== other.rows() || this.numCols !== other.columns()) {
       throw new Error('Matrix dimensions must match for addition');
     }
@@ -135,7 +135,7 @@ export class Matrix<T> implements MatrixTy<T> {
   /**
    * Subtracts another matrix from this one.
    */
-  subtract(other: MatrixTy<T>): MatrixTy<T> {
+  subtract(other: Matrix<T>): Matrix<T> {
     if (this.numRows !== other.rows() || this.numCols !== other.columns()) {
       throw new Error('Matrix dimensions must match for subtraction');
     }
@@ -152,7 +152,7 @@ export class Matrix<T> implements MatrixTy<T> {
   /**
    * Multiplies this matrix with another matrix.
    */
-  multiply(other: MatrixTy<T>): MatrixTy<T> {
+  multiply(other: Matrix<T>): Matrix<T> {
     if (this.numCols !== other.rows()) {
       throw new Error('Matrix dimensions must be compatible for multiplication');
     }
@@ -172,7 +172,7 @@ export class Matrix<T> implements MatrixTy<T> {
   /**
    * Applies a function to each element and returns a new matrix.
    */
-  map(fn: (value: T, row: number, col: number) => T): MatrixTy<T> {
+  map(fn: (value: T, row: number, col: number) => T): Matrix<T> {
     const result = new Matrix<T>(this.numRows, this.numCols);
     for (let i = 0; i < this.numRows; i++) {
       for (let j = 0; j < this.numCols; j++) {
@@ -196,7 +196,7 @@ export class Matrix<T> implements MatrixTy<T> {
   /**
    * Creates a deep copy of this matrix.
    */
-  clone(): MatrixTy<T> {
+  clone(): Matrix<T> {
     const result = new Matrix<T>(this.numRows, this.numCols);
     for (let i = 0; i < this.numRows; i++) {
       for (let j = 0; j < this.numCols; j++) {

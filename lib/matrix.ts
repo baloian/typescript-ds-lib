@@ -5,7 +5,7 @@ export interface Matrix<T> {
   columns(): number;
   fill(value: T): void;
   clear(): void;
-  empty(): boolean;
+  isEmpty(): boolean;
   size(): number;
   transpose(): Matrix<T>;
   add(other: Matrix<T>): Matrix<T>;
@@ -91,7 +91,7 @@ export class Matrix<T> implements Matrix<T> {
   /**
    * Checks if the matrix is empty (has zero dimensions).
    */
-  empty(): boolean {
+  isEmpty(): boolean {
     return this.numRows === 0 || this.numCols === 0;
   }
 

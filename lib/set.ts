@@ -1,12 +1,12 @@
-import { SetTy } from '../types';
+import { SetTy, Comparator } from '../types';
 import { BinarySearchTree } from './binary-search-tree';
 
 
 export class Set<T> implements SetTy<T> {
   private bst: BinarySearchTree<T>;
 
-  constructor() {
-    this.bst = new BinarySearchTree<T>();
+  constructor(comparator: Comparator<T> = (a: T, b: T) => a < b) {
+    this.bst = new BinarySearchTree<T>(comparator);
   }
 
   /**

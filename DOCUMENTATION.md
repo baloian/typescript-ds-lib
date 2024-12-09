@@ -228,6 +228,9 @@ console.log(queue.front());  // 2
 # Set
 A set implementation in TypeScript that maintains a collection of unique elements, implemented as a red-black tree for efficient operations.
 
+## Constructor
+`constructor(comparator: Comparator<T> = (a: T, b: T) => a < b)` - Creates a new set with the given comparator.
+
 ## Methods
 `insert(value: T)` - Adds a new element to the set if it doesn't already exist.  
 `remove(value: T)` - Removes an element from the set if it exists.  

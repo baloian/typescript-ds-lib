@@ -1,6 +1,6 @@
 {
   "name": "typescript-ds-lib",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "A collection of TypeScript data structure implementations",
   "author": "Artiom Baloian <artiom.baloian@gmail.com>",
   "license": "MIT",

@@ -23,17 +23,11 @@ export interface Matrix<T> {
 }
 
 
-/**
- * A generic matrix implementation that supports basic matrix operations.
- */
 export class Matrix<T> implements Matrix<T> {
-  private data: T[][]; // The 2D array storing matrix elements
-  private numRows: number; // Number of rows in the matrix
-  private numCols: number; // Number of columns in the matrix
+  private data: T[][];
+  private numRows: number;
+  private numCols: number;
 
-  /**
-   * Creates a new matrix with the specified dimensions.
-   */
   constructor(rows: number, cols: number) {
     this.numRows = rows;
     this.numCols = cols;
@@ -44,9 +38,7 @@ export class Matrix<T> implements Matrix<T> {
    * Gets the value at the specified position. The value at [row,col] or undefined if out of bounds.
    */
   get(row: number, col: number): T | undefined {
-    if (row < 0 || row >= this.numRows || col < 0 || col >= this.numCols) {
-      return undefined;
-    }
+    if (!this.isValidPosition(row, col)) return undefined;
     return this.data[row][col];
   }
 
@@ -54,9 +46,7 @@ export class Matrix<T> implements Matrix<T> {
    * Sets a value at the specified position.
    */
   set(row: number, col: number, value: T): void {
-    if (row < 0 || row >= this.numRows || col < 0 || col >= this.numCols) {
-      return;
-    }
+    if (!this.isValidPosition(row, col)) return;
     this.data[row][col] = value;
   }
 
@@ -270,5 +260,9 @@ export class Matrix<T> implements Matrix<T> {
     this.data = newData;
     this.numRows = rows;
     this.numCols = cols;
+  }
+
+  private isValidPosition(row: number, col: number): boolean {
+    return row >= 0 && row < this.numRows && col >= 0 && col < this.numCols;
   }
 }

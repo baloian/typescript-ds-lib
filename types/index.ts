@@ -99,27 +99,3 @@ export interface HashTableTy<K, V> {
   empty(): boolean;
   clear(): void;
 }
-
-export interface MatrixTy<T> {
-  get(row: number, col: number): T | undefined;
-  set(row: number, col: number, value: T): void;
-  rows(): number;
-  columns(): number;
-  fill(value: T): void;
-  clear(): void;
-  empty(): boolean;
-  size(): number;
-  transpose(): MatrixTy<T>;
-  add(other: MatrixTy<T>): MatrixTy<T>;
-  subtract(other: MatrixTy<T>): MatrixTy<T>;
-  multiply(other: MatrixTy<T>): MatrixTy<T>;
-  map(fn: (value: T, row: number, col: number) => T): MatrixTy<T>;
-  forEach(fn: (value: T, row: number, col: number) => void): void;
-  clone(): MatrixTy<T>;
-  toArray(): T[][];
-  getRow(row: number): T[];
-  getColumn(col: number): T[];
-  setRow(row: number, values: T[]): void;
-  setColumn(col: number, values: T[]): void;
-  resize(rows: number, cols: number): void;
-}

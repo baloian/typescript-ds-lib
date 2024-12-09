@@ -40,6 +40,7 @@ console.log(stack.size());  // 2
 - Set
 - Map
 - Hash Table
+- Matrix
 
 
 ## Documentation and Examples

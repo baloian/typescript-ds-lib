@@ -9,6 +9,7 @@ This library provides a collection of commonly used data structures implemented 
 - [Queue](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#queue)
 - [Set](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#set)
 - [Stack](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#stack)
+- [Matrix](https://github.com/baloian/typescript-ds-lib/blob/master/DOCUMENTATION.md#matrix)
 
 # Binary Search Tree
 A binary search tree (BST) implementation in TypeScript that stores values in an ordered tree structure, with smaller values to the left and larger values to the right.
@@ -287,5 +288,49 @@ console.log(stack.size());  // 3
 
 stack.pop();              // stack: [1,2]
 console.log(stack.top()); // 2
+```
+
+
+# Matrix
+A matrix implementation in TypeScript that provides operations for matrix manipulation, such as addition, multiplication, and transposition.
+
+## Constructor
+`constructor(rows: number, cols: number)` - Creates a new matrix with the specified number of rows and columns, initialized with undefined.
+
+## Methods
+`get(row: number, col: number): T` - Returns the element at the specified row and column.  
+`set(row: number, col: number, value: T): void` - Sets the element at the specified row and column to the given value.  
+`add(matrix: Matrix<T>): Matrix<T>` - Adds another matrix to this matrix and returns the result.  
+`multiply(matrix: Matrix<T>): Matrix<T>` - Multiplies this matrix by another matrix and returns the result.  
+`transpose(): Matrix<T>` - Returns the transpose of this matrix.  
+`isEmpty(): boolean` - Checks if the matrix is empty (i.e., has no elements).  
+`clear(): void` - Resets all elements in the matrix to the initial value.  
+`size(): number` - Returns the total number of elements in the matrix.
+`fill(value: T): void` - Fills the matrix with the given value.  
+`clone(): Matrix<T>` - Returns a deep copy of the matrix.  
+`toArray(): T[][]` - Returns the matrix as a 2D array.  
+`getRow(row: number): T[]` - Returns the specified row as an array.  
+`getColumn(col: number): T[]` - Returns the specified column as an array.  
+`setRow(row: number, values: T[]): void` - Sets the specified row to the given array.  
+`setColumn(col: number, values: T[]): void` - Sets the specified column to the given array.  
+`resize(rows: number, cols: number): void` - Resizes the matrix to the specified dimensions.  
+`map(fn: (value: T, row: number, col: number) => T): Matrix<T>` - Applies a function to each element of the matrix and returns a new matrix with the results.  
+`forEach(fn: (value: T, row: number, col: number) => void): void` - Applies a function to each element of the matrix.  
+
+### Example Usage
+```typescript
+import { Matrix } from 'typescript-ds-lib';
+
+const matrix: Matrix<number> = new Matrix<number>(3, 3, 0);
+
+matrix.set(0, 0, 1);
+matrix.set(1, 1, 2);
+matrix.set(2, 2, 3);
+
+console.log(matrix.get(1, 1));  // 2
+console.log(matrix.size());     // { rows: 3, cols: 3 }
+
+const transposed = matrix.transpose();
+console.log(transposed.get(0, 0));  // 1
 ```
 

@@ -1,12 +1,12 @@
-import { MapTy } from '../types';
+import { MapTy, Comparator } from '../types';
 import { RedBlackTree } from './red-black-tree';
 
 
 export class Map<K, V> implements MapTy<K, V> {
   private rbTree: RedBlackTree<K, V>;
 
-  constructor() {
-    this.rbTree = new RedBlackTree<K, V>();
+  constructor(comparator: Comparator<K> = (a: K, b: K) => a < b) {
+    this.rbTree = new RedBlackTree<K, V>(comparator);
   }
 
   insert(key: K, value: V): void {

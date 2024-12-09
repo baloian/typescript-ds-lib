@@ -139,6 +139,9 @@ list.removeAt(1);   // list: [1]
 # Map
 A map implementation in TypeScript that maintains key-value pairs in sorted order based on the keys, implemented as a red-black tree.
 
+## Constructor
+`constructor(comparator: Comparator<K> = (a: K, b: K) => a < b)` - Creates a new map with the given comparator.
+
 ## Methods
 `insert(key: K, value: V)` - Inserts or updates a key-value pair in the map.  
 `find(key: K)` - Retrieves the value associated with the given key.  

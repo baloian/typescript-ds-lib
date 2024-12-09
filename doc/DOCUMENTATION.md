@@ -305,7 +305,7 @@ A matrix implementation in TypeScript that provides operations for matrix manipu
 `transpose(): Matrix<T>` - Returns the transpose of this matrix.  
 `isEmpty(): boolean` - Checks if the matrix is empty (i.e., has no elements).  
 `clear(): void` - Resets all elements in the matrix to the initial value.  
-`size(): number` - Returns the total number of elements in the matrix.
+`size(): number` - Returns the total number of elements in the matrix.  
 `fill(value: T): void` - Fills the matrix with the given value.  
 `clone(): Matrix<T>` - Returns a deep copy of the matrix.  
 `toArray(): T[][]` - Returns the matrix as a 2D array.  

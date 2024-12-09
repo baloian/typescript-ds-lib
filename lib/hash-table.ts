@@ -1,4 +1,11 @@
-import { HashTableTy } from '../types';
+export interface HashTable<K, V> {
+  insert(key: K, value: V): void;
+  get(key: K): V | undefined;
+  remove(key: K): boolean;
+  size(): number;
+  empty(): boolean;
+  clear(): void;
+}
 
 
 class HashNode<K, V> {
@@ -13,7 +20,7 @@ class HashNode<K, V> {
   }
 }
 
-export class HashTable<K, V> implements HashTableTy<K, V> {
+export class HashTable<K, V> implements HashTable<K, V> {
   private table: Array<HashNode<K, V> | null>;
   private count: number;
   private readonly capacity: number;

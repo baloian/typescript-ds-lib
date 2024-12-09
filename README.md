@@ -15,9 +15,9 @@ npm install typescript-ds-lib
 
 ## Usage
 ```typescript
-import { Stack, StackTy } from 'typescript-ds-lib';
+import { Stack } from 'typescript-ds-lib';
 
-const stack: StackTy<number> = new Stack<number>();
+const stack: Stack<number> = new Stack<number>();
 
 stack.push(1);
 stack.push(2);

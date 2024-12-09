@@ -1,8 +1,18 @@
-import { SetTy, Comparator } from '../types';
+import { Comparator } from '../types';
 import { BinarySearchTree } from './binary-search-tree';
 
 
-export class Set<T> implements SetTy<T> {
+export interface Set<T> {
+  insert(element: T): void;
+  remove(element: T): void;
+  find(element: T): boolean;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
+
+
+export class Set<T> implements Set<T> {
   private bst: BinarySearchTree<T>;
 
   constructor(comparator: Comparator<T> = (a: T, b: T) => a < b) {

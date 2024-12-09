@@ -1,4 +1,15 @@
-import { LinkedListTy } from '../types';
+export interface LinkedList<T> {
+  pushBack(element: T): void;
+  pushFront(element: T): void;
+  insert(element: T, position: number): boolean;
+  removeIf(condition: (element: T) => boolean): boolean;
+  removeAt(position: number): T | undefined;
+  get(position: number): T | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
+
 
 class Node<T> {
   value: T;
@@ -10,7 +21,8 @@ class Node<T> {
   }
 }
 
-export class LinkedList<T> implements LinkedListTy<T> {
+
+export class LinkedList<T> implements LinkedList<T> {
   private head: Node<T> | null;
   private tail: Node<T> | null;
   private length: number;

@@ -1,7 +1,17 @@
-import { DequeTy } from '../types';
+export interface Deque<T> {
+  pushFront(element: T): void;
+  pushBack(element: T): void;
+  popFront(): T | undefined;
+  popBack(): T | undefined;
+  front(): T | undefined;
+  back(): T | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
 
 
-export class Deque<T> implements DequeTy<T> {
+export class Deque<T> implements Deque<T> {
   private items: T[];
 
   constructor() {

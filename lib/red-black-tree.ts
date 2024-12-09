@@ -1,9 +1,23 @@
-import { RedBlackTreeTy, Comparator } from '../types';
+import { Comparator } from '../types';
+
+
+export interface RedBlackTree<K, V> {
+  insert(key: K, value: V): void;
+  remove(key: K): void;
+  find(key: K): V | undefined;
+  min(): V | undefined;
+  max(): V | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
+
 
 enum Color {
   RED,
   BLACK
 }
+
 
 class RBNode<K, V> {
   key: K;
@@ -23,7 +37,8 @@ class RBNode<K, V> {
   }
 }
 
-export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
+
+export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
   private root: RBNode<K, V> | null;
   private nodeCount: number;
   private comparator: Comparator<K>;

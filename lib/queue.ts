@@ -1,4 +1,11 @@
-import { QueueTy } from '../types';
+export interface QueueTy<T> {
+  push(element: T): void;
+  pop(): T | undefined;
+  front(): T | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
 
 
 export class Queue<T> implements QueueTy<T> {

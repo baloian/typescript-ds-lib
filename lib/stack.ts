@@ -1,7 +1,14 @@
-import { StackTy } from '../types/';
+export interface Stack<T> {
+  push(element: T): void;
+  pop(): T | undefined;
+  top(): T | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
 
 
-export class Stack<T> implements StackTy<T> {
+export class Stack<T> implements Stack<T> {
   private items: T[];
 
   constructor() {

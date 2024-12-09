@@ -1,4 +1,16 @@
-import { BinarySearchTreeTy, Comparator } from '../types';
+import { Comparator } from '../types';
+
+
+export interface BinarySearchTree<T> {
+  insert(element: T): void;
+  remove(element: T): void;
+  find(element: T): boolean;
+  min(): T | undefined;
+  max(): T | undefined;
+  empty(): boolean;
+  clear(): void;
+  count(): number;
+}
 
 
 class TreeNode<T> {
@@ -13,7 +25,8 @@ class TreeNode<T> {
   }
 }
 
-export class BinarySearchTree<T> implements BinarySearchTreeTy<T> {
+
+export class BinarySearchTree<T> implements BinarySearchTree<T> {
   private root: TreeNode<T> | null;
   private comparator: Comparator<T>;
 

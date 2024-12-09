@@ -1,7 +1,14 @@
-import { PriorityQueueTy } from '../types';
+export interface PriorityQueue<T> {
+  push(element: T, priority: number): void;
+  pop(): T | undefined;
+  front(): T | undefined;
+  empty(): boolean;
+  size(): number;
+  clear(): void;
+}
 
 
-export class PriorityQueue<T> implements PriorityQueueTy<T> {
+export class PriorityQueue<T> implements PriorityQueue<T> {
   private items: { element: T; priority: number }[];
 
   constructor() {

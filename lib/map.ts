@@ -1,8 +1,18 @@
-import { MapTy, Comparator } from '../types';
+import { Comparator } from '../types';
 import { RedBlackTree } from './red-black-tree';
 
 
-export class Map<K, V> implements MapTy<K, V> {
+export interface Map<K, V> {
+  insert(key: K, value: V): void;
+  find(key: K): V | undefined;
+  delete(key: K): void;
+  clear(): void;
+  empty(): boolean;
+  size(): number;
+}
+
+
+export class Map<K, V> implements Map<K, V> {
   private rbTree: RedBlackTree<K, V>;
 
   constructor(comparator: Comparator<K> = (a: K, b: K) => a < b) {

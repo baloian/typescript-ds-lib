@@ -28,9 +28,9 @@ A binary search tree (BST) implementation in TypeScript that stores values in an
 
 ### Example Usage
 ```typescript
-import { BinarySearchTree, BinarySearchTreeTy } from 'typescript-ds-lib';
+import { BinarySearchTree } from 'typescript-ds-lib';
 
-const bst: BinarySearchTreeTy<number> = new BinarySearchTree<number>();
+const bst: BinarySearchTree<number> = new BinarySearchTree<number>();
 
 bst.insert(10);
 bst.insert(5);
@@ -58,9 +58,9 @@ A double-ended queue (Deque) implementation in TypeScript that allows insertion 
 
 ### Example Usage
 ```typescript
-import { Deque, DequeTy } from 'typescript-ds-lib';
+import { Deque } from 'typescript-ds-lib';
 
-const deque: DequeTy<number> = new Deque<number>();
+const deque: Deque<number> = new Deque<number>();
 
 deque.pushBack(1);    // deque: [1]
 deque.pushFront(2);   // deque: [2,1]
@@ -88,9 +88,9 @@ A hash table implementation in TypeScript that provides efficient key-value pair
 
 ### Example Usage
 ```typescript
-import { HashTable, HashTableTy } from 'typescript-ds-lib';
+import { HashTable } from 'typescript-ds-lib';
 
-const hashTable: HashTableTy<string, number> = new HashTable<string, number>();
+const hashTable: HashTable<string, number> = new HashTable<string, number>();
 
 hashTable.insert('one', 1);
 hashTable.insert('two', 2);
@@ -120,9 +120,9 @@ A singly linked list implementation in TypeScript that stores elements in a sequ
 
 ### Example Usage
 ```typescript
-import { LinkedList, LinkedListTy } from 'typescript-ds-lib';
+import { LinkedList } from 'typescript-ds-lib';
 
-const list: LinkedListTy<number> = new LinkedList<number>();
+const list: LinkedList<number> = new LinkedList<number>();
 
 list.pushBack(1);     // list: [1]
 list.pushBack(2);     // list: [1,2]
@@ -153,9 +153,9 @@ A map implementation in TypeScript that maintains key-value pairs in sorted orde
 
 ### Example Usage
 ```typescript
-import { Map, MapTy } from 'typescript-ds-lib';
+import { Map } from 'typescript-ds-lib';
 
-const map: MapTy<string, number> = new Map<string, number>();
+const map: Map<string, number> = new Map<string, number>();
 
 map.insert('apple', 1);
 map.insert('banana', 2);
@@ -183,9 +183,9 @@ A priority queue implementation in TypeScript that maintains elements in a heap 
 
 ### Example Usage
 ```typescript
-import { PriorityQueue, PriorityQueueTy } from 'typescript-ds-lib';
+import { PriorityQueue } from 'typescript-ds-lib';
 
-const pq: PriorityQueueTy<string> = new PriorityQueue<string>();
+const pq: PriorityQueue<string> = new PriorityQueue<string>();
 
 pq.push('Task 1', 2);    // Normal priority
 pq.push('Task 2', 3);    // High priority
@@ -212,9 +212,9 @@ A queue implementation in TypeScript that follows the First-In-First-Out (FIFO) 
 
 ### Example Usage
 ```typescript
-import { Queue, QueueTy } from 'typescript-ds-lib';
+import { Queue } from 'typescript-ds-lib';
 
-const queue: QueueTy<number> = new Queue<number>();
+const queue: Queue<number> = new Queue<number>();
 
 queue.push(1);    // queue: [1]
 queue.push(2);    // queue: [1,2]
@@ -244,9 +244,9 @@ A set implementation in TypeScript that maintains a collection of unique element
 
 ### Example Usage
 ```typescript
-import { Set, SetTy } from 'typescript-ds-lib';
+import { Set } from 'typescript-ds-lib';
 
-const set: SetTy<number> = new Set<number>();
+const set: Set<number> = new Set<number>();
 
 set.insert(1);    // set: {1}
 set.insert(2);    // set: {1,2}
@@ -274,9 +274,9 @@ A stack implementation in TypeScript that follows the Last-In-First-Out (LIFO) p
 
 ### Example Usage
 ```typescript
-import { Stack, StackTy } from 'typescript-ds-lib';
+import { Stack } from 'typescript-ds-lib';
 
-const stack: StackTy<number> = new Stack<number>();
+const stack: Stack<number> = new Stack<number>();
 
 stack.push(1);    // stack: [1]
 stack.push(2);    // stack: [1,2]

@@ -117,6 +117,10 @@ export class HashTable<K, V> implements HashTable<K, V> {
   }
 
   private keysEqual(key1: K, key2: K): boolean {
+    // Check if keys have equals method and use it for comparison
+    if (typeof (key1 as any).equals === 'function') {
+      return (key1 as any).equals(key2);
+    }
     if (key1 === key2) return true;
     if (key1 == null || key2 == null) return false;
 

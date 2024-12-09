@@ -82,7 +82,7 @@ describe('HashTable', () => {
     expect(mixedTable.get([1, 2, 3])).toBe('array');
   });
 
-  test('should handle keys with custom hashCode method', () => {
+  test('should handle keys with custom hashCode and equals methods', () => {
     class CustomKey {
       constructor(private id: number) {}
 

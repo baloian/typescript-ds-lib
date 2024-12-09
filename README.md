@@ -3,9 +3,9 @@
 
 Native TypeScript data structure implementations without external dependencies.
 
-1. Fast
-2. Native & Light
-3. Fully Tested
+1. Fully Tested
+2. Provides Comparator for custom types. Just pass your own comparator function to the constructor.
+3. Fast & Native & Light
 
 ## Install
 ```

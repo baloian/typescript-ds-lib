@@ -2,10 +2,11 @@
 [![NPM](https://img.shields.io/npm/v/typescript-ds-lib?label=npm%20package&color=limegreen)](https://www.npmjs.com/package/typescript-ds-lib)
 
 Native TypeScript data structure implementations without external dependencies.
+Provides Comparator for custom types. Just pass your own comparator function to the constructor.
 
 1. Fully Tested
-2. Provides Comparator for custom types. Just pass your own comparator function to the constructor.
-3. Fast & Native & Light
+2. Fast & Native & Light
+3. Comes with Comparator  
 
 ## Install
 ```

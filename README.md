@@ -4,9 +4,10 @@
 Native TypeScript data structure implementations without external dependencies.  
 Provides Comparator for custom types. Just pass your own comparator function to the constructor.
 
-1. Fully Tested
-2. Fast & Native & Light
-3. Comes with Comparator  
+- Fully Tested
+- Fast & Native & Light
+- Comes with Comparator
+- `hashCode()` and `equals()` are supported
 
 ## Install
 ```

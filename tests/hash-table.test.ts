@@ -81,4 +81,32 @@ describe('HashTable', () => {
     expect(mixedTable.get({ id: 1 })).toBe('object');
     expect(mixedTable.get([1, 2, 3])).toBe('array');
   });
+
+  test('should handle keys with custom hashCode method', () => {
+    class CustomKey {
+      constructor(private id: number) {}
+
+      hashCode(): number {
+        return this.id;
+      }
+
+      equals(other: CustomKey): boolean {
+        return this.id === other.id;
+      }
+    }
+
+    const customTable = new HashTable<CustomKey, string>();
+    const key1 = new CustomKey(1);
+    const key2 = new CustomKey(2);
+    const key1Duplicate = new CustomKey(1);
+
+    customTable.insert(key1, 'first');
+    customTable.insert(key2, 'second');
+
+    expect(customTable.get(key1)).toBe('first');
+    expect(customTable.get(key2)).toBe('second');
+    expect(customTable.get(key1Duplicate)).toBe('first');
+
+    expect(customTable.size()).toBe(2);
+  });
 });

@@ -32,6 +32,9 @@ export class HashTable<K, V> implements HashTable<K, V> {
   }
 
   private hash(key: K): number {
+    if (typeof (key as any).hashCode === 'function') {
+      return (key as any).hashCode();
+    }
     let stringKey: string;
     if (key === null || key === undefined) {
       stringKey = 'null';

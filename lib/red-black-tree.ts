@@ -1,4 +1,4 @@
-import { RedBlackTreeTy } from '../types';
+import { RedBlackTreeTy, Comparator } from '../types';
 
 enum Color {
   RED,
@@ -26,22 +26,21 @@ class RBNode<K, V> {
 export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
   private root: RBNode<K, V> | null;
   private nodeCount: number;
+  private comparator: Comparator<K>;
 
-  constructor() {
+  constructor(comparator: Comparator<K> = (a: K, b: K) => a < b) {
     this.root = null;
     this.nodeCount = 0;
+    this.comparator = comparator;
   }
 
   private rotateLeft(node: RBNode<K, V>): void {
     const rightChild = node.right!;
     node.right = rightChild.left;
-    
     if (rightChild.left !== null) {
       rightChild.left.parent = node;
     }
-    
     rightChild.parent = node.parent;
-    
     if (node.parent === null) {
       this.root = rightChild;
     } else if (node === node.parent.left) {
@@ -49,7 +48,6 @@ export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
     } else {
       node.parent.right = rightChild;
     }
-    
     rightChild.left = node;
     node.parent = rightChild;
   }
@@ -57,13 +55,10 @@ export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
   private rotateRight(node: RBNode<K, V>): void {
     const leftChild = node.left!;
     node.left = leftChild.right;
-    
     if (leftChild.right !== null) {
       leftChild.right.parent = node;
     }
-    
     leftChild.parent = node.parent;
-    
     if (node.parent === null) {
       this.root = leftChild;
     } else if (node === node.parent.right) {
@@ -71,7 +66,6 @@ export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
     } else {
       node.parent.left = leftChild;
     }
-    
     leftChild.right = node;
     node.parent = leftChild;
   }
@@ -122,9 +116,9 @@ export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
     let current = this.root;
     while (current !== null) {
       parent = current;
-      if (key < current.key) {
+      if (this.comparator(key, current.key)) {
         current = current.left;
-      } else if (key > current.key) {
+      } else if (this.comparator(current.key, key)) {
         current = current.right;
       } else {
         // Key already exists, update value
@@ -137,7 +131,7 @@ export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
     
     if (parent === null) {
       this.root = newNode;
-    } else if (key < parent.key) {
+    } else if (this.comparator(key, parent.key)) {
       parent.left = newNode;
     } else {
       parent.right = newNode;
@@ -150,10 +144,10 @@ export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
   private findNode(key: K): RBNode<K, V> | null {
     let current = this.root;
     while (current !== null) {
-      if (key === current.key) {
+      if (this.isEqual(key, current.key)) {
         return current;
       }
-      current = key < current.key ? current.left : current.right;
+      current = this.comparator(key, current.key) ? current.left : current.right;
     }
     return null;
   }
@@ -319,5 +313,10 @@ export class RedBlackTree<K, V> implements RedBlackTreeTy<K, V> {
   clear(): void {
     this.root = null;
     this.nodeCount = 0;
+  }
+
+  private isEqual(a: K, b: K): boolean {
+    // Two values are equal if neither is less than the other
+    return !this.comparator(a, b) && !this.comparator(b, a);
   }
 }

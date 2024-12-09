@@ -1,4 +1,4 @@
-import { BinarySearchTreeTy } from '../types';
+import { BinarySearchTreeTy, Comparator } from '../types';
 
 
 class TreeNode<T> {
@@ -15,9 +15,11 @@ class TreeNode<T> {
 
 export class BinarySearchTree<T> implements BinarySearchTreeTy<T> {
   private root: TreeNode<T> | null;
+  private comparator: Comparator<T>;
 
-  constructor() {
+  constructor(comparator: Comparator<T> = (a: T, b: T) => a < b) {
     this.root = null;
+    this.comparator = comparator;
   }
 
   /**
@@ -31,7 +33,7 @@ export class BinarySearchTree<T> implements BinarySearchTreeTy<T> {
     }
     let current = this.root;
     while (true) {
-      if (value < current.value) {
+      if (this.comparator(value, current.value)) {
         if (current.left === null) {
           current.left = newNode;
           break;
@@ -53,10 +55,10 @@ export class BinarySearchTree<T> implements BinarySearchTreeTy<T> {
   find(value: T): boolean {
     let current = this.root;
     while (current !== null) {
-      if (value === current.value) {
+      if (this.isEqual(value, current.value)) {
         return true;
       }
-      if (value < current.value) {
+      if (this.comparator(value, current.value)) {
         current = current.left;
       } else {
         current = current.right;
@@ -100,10 +102,10 @@ export class BinarySearchTree<T> implements BinarySearchTreeTy<T> {
   private removeNode(node: TreeNode<T> | null, value: T): TreeNode<T> | null {
     if (node === null) return null;
 
-    if (value < node.value) {
+    if (this.comparator(value, node.value)) {
       node.left = this.removeNode(node.left, value);
       return node;
-    } else if (value > node.value) {
+    } else if (this.comparator(node.value, value)) {
       node.right = this.removeNode(node.right, value);
       return node;
     } else {
@@ -129,6 +131,11 @@ export class BinarySearchTree<T> implements BinarySearchTreeTy<T> {
       current = current.left;
     }
     return current;
+  }
+
+  private isEqual(a: T, b: T): boolean {
+    // Two values are equal if neither is less than the other
+    return !this.comparator(a, b) && !this.comparator(b, a);
   }
 
   /**

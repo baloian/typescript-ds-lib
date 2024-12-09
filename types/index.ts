@@ -1,3 +1,5 @@
+export type Comparator<T> = (a: T, b: T) => boolean;
+
 export interface StackTy<T> {
   push(element: T): void;
   pop(): T | undefined;

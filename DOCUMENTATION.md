@@ -13,6 +13,8 @@ This library provides a collection of commonly used data structures implemented 
 # Binary Search Tree
 A binary search tree (BST) implementation in TypeScript that stores values in an ordered tree structure, with smaller values to the left and larger values to the right.
 
+## Constructor
+`constructor(comparator: Comparator<T> = (a: T, b: T) => a < b)` - Creates a new binary search tree with the given comparator.
 
 ## Methods
 `insert(value: T)` - Inserts a new value into the binary search tree.   

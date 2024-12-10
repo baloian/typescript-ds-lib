@@ -1,4 +1,7 @@
-export interface QueueTy<T> {
+import { LinkedList } from './linked-list';
+
+
+export interface Queue<T> {
   push(element: T): void;
   pop(): T | undefined;
   front(): T | undefined;
@@ -8,52 +11,52 @@ export interface QueueTy<T> {
 }
 
 
-export class Queue<T> implements QueueTy<T> {
-  private items: T[];
+export class Queue<T> implements Queue<T> {
+  private items: LinkedList<T>;
 
   constructor() {
-    this.items = [];
+    this.items = new LinkedList<T>();
   }
 
   /**
    * Adds an element to the back of the queue.
    */
   push(element: T): void {
-    this.items.push(element);
+    this.items.pushBack(element);
   }
 
   /**
    * Removes and returns the front element from the queue, or undefined if queue is empty.
    */
   pop(): T | undefined {
-    return this.items.shift();
+    return this.items.popFront();
   }
 
   /**
    * Returns the front element of the queue without removing it, or undefined if queue is empty.
    */
   front(): T | undefined {
-    return this.items[0];
+    return this.items.get(0);
   }
 
   /**
    * Checks if the queue is empty. Returns true if the queue is empty, false otherwise.
    */
   isEmpty(): boolean {
-    return this.items.length === 0;
+    return this.items.isEmpty();
   }
 
   /**
    * Returns the number of elements in the queue.
    */
   size(): number {
-    return this.items.length;
+    return this.items.size();
   }
 
   /**
    * Removes all elements from the queue.
    */
   clear(): void {
-    this.items = [];
+    this.items.clear();
   }
 }

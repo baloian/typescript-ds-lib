@@ -117,6 +117,8 @@ A singly linked list implementation in TypeScript that stores elements in a sequ
 ## Methods
 `pushBack(value: T)` - Adds a new element to the end of the linked list.  
 `pushFront(value: T)` - Adds a new element to the beginning of the linked list.  
+`popBack()` - Removes and returns the last element from the linked list.   
+`popFront()` - Removes and returns the first element from the linked list.   
 `insert(value: T, position: number)` - Inserts a new element at the specified position.  
 `removeIf(condition: (element: T) => boolean)` - Removes all elements that satisfy the condition.  
 `removeAt(position: number)` - Removes the element at the specified position.  

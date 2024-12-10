@@ -36,9 +36,10 @@ export class HashTable<K, V> implements HashTable<K, V> {
       return (key as any).hashCode();
     }
 
-    // Handle numbers directly without string conversion
-    if (typeof key === 'number') {
-      // Knuth's multiplicative method
+    // Handle numbers directly without string conversion.
+    // For numbers that fit in 64 bits, use Knuth's multiplicative method. For larger numbers,
+    // convert to string and use string hashing.
+    if (typeof key === 'number' && Number.isSafeInteger(key)) {
       const knuthConstant = 2654435761;
       return (Math.abs(key * knuthConstant) >>> 0) % this.capacity;
     }
@@ -46,6 +47,8 @@ export class HashTable<K, V> implements HashTable<K, V> {
     let stringKey: string;
     if (key === null || key === undefined) {
       stringKey = 'null';
+    } else if (typeof key === "string") {
+      stringKey = key;
     } else if (typeof key === 'object') {
       if (key instanceof Date) {
         stringKey = key.getTime().toString();
@@ -53,9 +56,9 @@ export class HashTable<K, V> implements HashTable<K, V> {
         stringKey = key.toString();
       }
       stringKey = JSON.stringify(key);
-    } else if (typeof key === 'symbol') {
-      stringKey = key.toString();
     } else if (typeof key === 'function') {
+      stringKey = key.toString();
+    } else if (typeof key === 'symbol') {
       stringKey = key.toString();
     } else {
       stringKey = String(key);

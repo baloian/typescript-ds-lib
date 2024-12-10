@@ -1,3 +1,6 @@
+import { LinkedList } from './linked-list';
+
+
 export interface PriorityQueue<T> {
   push(element: T, priority: number): void;
   pop(): T | undefined;
@@ -9,10 +12,10 @@ export interface PriorityQueue<T> {
 
 
 export class PriorityQueue<T> implements PriorityQueue<T> {
-  private items: { element: T; priority: number }[];
+  private list: LinkedList<{element: T; priority: number}>;
 
   constructor() {
-    this.items = [];
+    this.list = new LinkedList<{element: T; priority: number}>();
   }
 
   /**
@@ -21,52 +24,49 @@ export class PriorityQueue<T> implements PriorityQueue<T> {
    */
   push(element: T, priority: number): void {
     const item = { element, priority };
-    let added = false;
-    for (let i = 0; i < this.items.length; i++) {
-      if (priority > this.items[i].priority) {
-        this.items.splice(i, 0, item);
-        added = true;
-        break;
-      }
+    if (this.list.isEmpty()) {
+      this.list.pushBack(item);
+      return;
     }
-    if (!added) this.items.push(item);
+    if (!this.list.insertBefore(item, (current) => current.priority < priority)) {
+      this.list.pushBack(item);
+    }
   }
 
   /**
-   * Removes and returns the highest priority element from the queue, 
-   * or undefined if queue is empty.
+   * Removes and returns the highest priority element from the queue, or undefined if queue is empty.
    */
   pop(): T | undefined {
-    const item = this.items.shift();
+    const item = this.list.popFront();
     return item?.element;
   }
 
   /**
-   * Returns the highest priority element without removing it,
-   * or undefined if queue is empty.
+   * Returns the highest priority element without removing it, or undefined if queue is empty.
    */
   front(): T | undefined {
-    return this.items[0]?.element;
+    const item = this.list.get(0);
+    return item?.element;
   }
 
   /**
    * Checks if the queue is empty. Returns true if empty, false otherwise.
    */
   isEmpty(): boolean {
-    return this.items.length === 0;
+    return this.list.isEmpty();
   }
 
   /**
    * Returns the number of elements in the queue.
    */
   size(): number {
-    return this.items.length;
+    return this.list.size();
   }
 
   /**
    * Removes all elements from the queue.
    */
   clear(): void {
-    this.items = [];
+    this.list.clear();
   }
 }

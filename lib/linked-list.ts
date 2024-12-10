@@ -1,6 +1,8 @@
 export interface LinkedList<T> {
   pushBack(element: T): void;
   pushFront(element: T): void;
+  popBack(): T | undefined;
+  popFront(): T | undefined;
   insert(element: T, position: number): boolean;
   removeIf(condition: (element: T) => boolean): boolean;
   removeAt(position: number): T | undefined;
@@ -61,6 +63,47 @@ export class LinkedList<T> implements LinkedList<T> {
       this.head = newNode;
     }
     this.length++;
+  }
+
+  /**
+   * Removes and returns the last element from the list, or undefined if list is empty
+   */
+  popBack(): T | undefined {
+    if (!this.head) {
+      return undefined;
+    }
+    if (this.length === 1) {
+      const value = this.head.value;
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return value;
+    }
+    let current = this.head;
+    while (current.next !== this.tail) {
+      current = current.next!;
+    }
+    const value = this.tail!.value;
+    current.next = null;
+    this.tail = current;
+    this.length--;
+    return value;
+  }
+
+  /**
+   * Removes and returns the first element from the list, or undefined if list is empty
+   */
+  popFront(): T | undefined {
+    if (!this.head) {
+      return undefined;
+    }
+    const value = this.head.value;
+    this.head = this.head.next;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return value;
   }
 
   /**

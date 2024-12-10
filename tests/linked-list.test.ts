@@ -111,4 +111,58 @@ describe('LinkedList', () => {
     expect(list.isEmpty()).toBe(true);
     expect(list.size()).toBe(0);
   });
+
+  test('should pop elements from back', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.popBack()).toBe(3);
+    expect(list.size()).toBe(2);
+    expect(list.popBack()).toBe(2);
+    expect(list.size()).toBe(1);
+    expect(list.popBack()).toBe(1);
+    expect(list.size()).toBe(0);
+  });
+
+  test('should return undefined when popping from empty list from back', () => {
+    expect(list.popBack()).toBeUndefined();
+  });
+
+  test('should pop elements from front', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.popFront()).toBe(1);
+    expect(list.size()).toBe(2);
+    expect(list.popFront()).toBe(2);
+    expect(list.size()).toBe(1);
+    expect(list.popFront()).toBe(3);
+    expect(list.size()).toBe(0);
+  });
+
+  test('should return undefined when popping from empty list from front', () => {
+    expect(list.popFront()).toBeUndefined();
+  });
+
+  test('should handle mixed push and pop operations', () => {
+    list.pushBack(1);
+    list.pushFront(2);
+    expect(list.popBack()).toBe(1);
+    list.pushBack(3);
+    expect(list.popFront()).toBe(2);
+    expect(list.size()).toBe(1);
+    expect(list.get(0)).toBe(3);
+  });
+
+  test('should maintain correct order after multiple operations', () => {
+    list.pushBack(1);
+    list.pushFront(2);
+    list.pushBack(3);
+    list.pushFront(4);
+    expect(list.size()).toBe(4);
+    expect(list.get(0)).toBe(4);
+    expect(list.get(1)).toBe(2);
+    expect(list.get(2)).toBe(1);
+    expect(list.get(3)).toBe(3);
+  });
 });

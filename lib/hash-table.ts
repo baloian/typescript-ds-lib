@@ -45,6 +45,7 @@ export class HashTable<K, V> implements HashTable<K, V> {
           return (Math.abs(key * knuthConstant) >>> 0) % this.capacity;
         }
         stringKey = key.toString();
+        break;
       case 'object':
         if (key === null) {
           stringKey = 'null';

@@ -4,6 +4,8 @@ export interface LinkedList<T> {
   popBack(): T | undefined;
   popFront(): T | undefined;
   insert(element: T, position: number): boolean;
+  insertBefore(element: T, condition: (element: T) => boolean): boolean;
+  insertAfter(element: T, condition: (element: T) => boolean): boolean;
   removeIf(condition: (element: T) => boolean): boolean;
   removeAt(position: number): T | undefined;
   get(position: number): T | undefined;
@@ -134,6 +136,52 @@ export class LinkedList<T> implements LinkedList<T> {
     newNode.next = current;
     this.length++;
     return true;
+  }
+
+  /**
+   * Inserts an element before the first element that satisfies the condition. Returns true if successful, false if no matching element found
+   */
+  insertBefore(element: T, condition: (element: T) => boolean): boolean {
+    if (!this.head) {
+      return false;
+    }
+    if (condition(this.head.value)) {
+      this.pushFront(element);
+      return true;
+    }
+    let current = this.head;
+    while (current.next !== null) {
+      if (condition(current.next.value)) {
+        const newNode = new Node(element);
+        newNode.next = current.next;
+        current.next = newNode;
+        this.length++;
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
+
+  /**
+   * Inserts an element after the first element that satisfies the condition. Returns true if successful, false if no matching element found
+   */
+  insertAfter(element: T, condition: (element: T) => boolean): boolean {
+    let current = this.head;
+    while (current !== null) {
+      if (condition(current.value)) {
+        const newNode = new Node(element);
+        newNode.next = current.next;
+        current.next = newNode;
+        if (current === this.tail) {
+          this.tail = newNode;
+        }
+        this.length++;
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
   }
 
   /**

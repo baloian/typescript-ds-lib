@@ -36,6 +36,24 @@ describe('LinkedList', () => {
     expect(list.get(2)).toBe(3);
   });
 
+  test('should insert at beginning', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    expect(list.insert(0, 0)).toBe(true);
+    expect(list.get(0)).toBe(0);
+    expect(list.get(1)).toBe(1);
+    expect(list.get(2)).toBe(2);
+  });
+
+  test('should insert at end', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    expect(list.insert(3, 2)).toBe(true);
+    expect(list.get(0)).toBe(1);
+    expect(list.get(1)).toBe(2);
+    expect(list.get(2)).toBe(3);
+  });
+
   test('should return false for invalid positions', () => {
     expect(list.insert(1, -1)).toBe(false);
     expect(list.insert(1, 1)).toBe(false);
@@ -49,6 +67,38 @@ describe('LinkedList', () => {
     expect(list.size()).toBe(2);
     expect(list.get(0)).toBe(1);
     expect(list.get(1)).toBe(3);
+  });
+
+  test('should remove multiple elements that satisfy the condition', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.removeIf(x => x === 2)).toBe(true);
+    expect(list.size()).toBe(3);
+    expect(list.get(0)).toBe(1);
+    expect(list.get(1)).toBe(2);
+    expect(list.get(2)).toBe(3);
+  });
+
+  test('should remove first element that satisfies condition', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.removeIf(x => x === 1)).toBe(true);
+    expect(list.size()).toBe(2);
+    expect(list.get(0)).toBe(2);
+    expect(list.get(1)).toBe(3);
+  });
+
+  test('should remove last element that satisfies condition', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.removeIf(x => x === 3)).toBe(true);
+    expect(list.size()).toBe(2);
+    expect(list.get(0)).toBe(1);
+    expect(list.get(1)).toBe(2);
   });
 
   test('should return false if no element satisfies the condition', () => {
@@ -66,6 +116,26 @@ describe('LinkedList', () => {
     expect(list.size()).toBe(2);
     expect(list.get(0)).toBe(1);
     expect(list.get(1)).toBe(3);
+  });
+
+  test('should remove first element', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.removeAt(0)).toBe(1);
+    expect(list.size()).toBe(2);
+    expect(list.get(0)).toBe(2);
+    expect(list.get(1)).toBe(3);
+  });
+
+  test('should remove last element', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.removeAt(2)).toBe(3);
+    expect(list.size()).toBe(2);
+    expect(list.get(0)).toBe(1);
+    expect(list.get(1)).toBe(2);
   });
 
   test('should return undefined for invalid positions', () => {
@@ -164,5 +234,57 @@ describe('LinkedList', () => {
     expect(list.get(1)).toBe(2);
     expect(list.get(2)).toBe(1);
     expect(list.get(3)).toBe(3);
+  });
+
+  test('should insert before element that satisfies condition', () => {
+    list.pushBack(1);
+    list.pushBack(3);
+    list.pushBack(5);
+    expect(list.insertBefore(2, x => x === 3)).toBe(true);
+    expect(list.get(0)).toBe(1);
+    expect(list.get(1)).toBe(2);
+    expect(list.get(2)).toBe(3);
+    expect(list.get(3)).toBe(5);
+  });
+
+  test('should insert before first element when condition matches', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    expect(list.insertBefore(0, x => x === 1)).toBe(true);
+    expect(list.get(0)).toBe(0);
+    expect(list.get(1)).toBe(1);
+    expect(list.get(2)).toBe(2);
+  });
+
+  test('should return false when inserting before with no match', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    expect(list.insertBefore(3, x => x === 4)).toBe(false);
+  });
+
+  test('should insert after element that satisfies condition', () => {
+    list.pushBack(1);
+    list.pushBack(3);
+    list.pushBack(5);
+    expect(list.insertAfter(4, x => x === 3)).toBe(true);
+    expect(list.get(0)).toBe(1);
+    expect(list.get(1)).toBe(3);
+    expect(list.get(2)).toBe(4);
+    expect(list.get(3)).toBe(5);
+  });
+
+  test('should insert after last element when condition matches', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    expect(list.insertAfter(3, x => x === 2)).toBe(true);
+    expect(list.get(0)).toBe(1);
+    expect(list.get(1)).toBe(2);
+    expect(list.get(2)).toBe(3);
+  });
+
+  test('should return false when inserting after with no match', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    expect(list.insertAfter(3, x => x === 4)).toBe(false);
   });
 });

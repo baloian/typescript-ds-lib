@@ -36,16 +36,15 @@ export class HashTable<K, V> implements HashTable<K, V> {
       return (key as any).hashCode();
     }
 
-    // Handle numbers directly without string conversion.
-    // For numbers that fit in 64 bits, use Knuth's multiplicative method. For larger numbers,
-    // convert to string and use string hashing.
-    if (typeof key === 'number' && Number.isSafeInteger(key)) {
-      const knuthConstant = 2654435761;
-      return (Math.abs(key * knuthConstant) >>> 0) % this.capacity;
-    }
-
     let stringKey: string;
     switch (typeof key) {
+      case 'number':
+        // If the number is a safe integer, use Knuth's multiplicative method.
+        if (Number.isSafeInteger(key)) {
+          const knuthConstant = 2654435761;
+          return (Math.abs(key * knuthConstant) >>> 0) % this.capacity;
+        }
+        stringKey = key.toString();
       case 'object':
         if (key === null) {
           stringKey = 'null';

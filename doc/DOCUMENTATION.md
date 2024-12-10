@@ -347,7 +347,7 @@ console.log(transposed.get(0, 0));  // 1
 A self-balancing binary search tree (Red-Black key-value Tree) implementation in TypeScript that maintains balance through color properties and rotation operations, ensuring O(log n) time complexity for basic operations.
 
 ## Constructor
-`constructor(comparator: Comparator<T> = (a: T, b: T) => a < b)` - Creates a new red-black tree with the given comparator.
+`constructor(comparator: Comparator<K> = (a: K, b: K) => a < b)` - Creates a new red-black tree with the given comparator.
 
 ## Methods
 `insert(key: K, value: V)` - Inserts a new key-value pair into the tree while maintaining red-black properties.  

@@ -121,18 +121,15 @@ export class LinkedList<T> implements LinkedList<T> {
       this.pushBack(element);
       return true;
     }
-
     const newNode = new Node(element);
     let current = this.head;
     let prev: Node<T> | null = null;
     let index: number = 0;
-
     while (index < position) {
       prev = current;
       current = current!.next;
       index++;
     }
-
     prev!.next = newNode;
     newNode.next = current;
     this.length++;

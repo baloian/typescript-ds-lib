@@ -1,5 +1,6 @@
 import { LinkedList } from './linked-list';
 
+
 export interface Deque<T> {
   pushFront(element: T): void;
   pushBack(element: T): void;

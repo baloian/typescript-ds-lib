@@ -203,6 +203,10 @@ export class LinkedList<T> implements LinkedList<T> {
     if (position < 0 || position >= this.length) {
       return undefined;
     }
+    // Optimize for front element
+    if (position === 0) return this.head!.value;
+    // Optimize for back element
+    if (position === this.length - 1) return this.tail!.value;
     let current: Node<T> | null = this.head;
     let index: number = 0;
     while (index < position) {

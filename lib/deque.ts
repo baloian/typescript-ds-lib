@@ -1,3 +1,5 @@
+import { LinkedList } from './linked-list';
+
 export interface Deque<T> {
   pushFront(element: T): void;
   pushBack(element: T): void;
@@ -12,72 +14,72 @@ export interface Deque<T> {
 
 
 export class Deque<T> implements Deque<T> {
-  private items: T[];
+  private items: LinkedList<T>;
 
   constructor() {
-    this.items = [];
+    this.items = new LinkedList<T>();
   }
 
   /**
    * Adds an element to the front of the deque
    */
   pushFront(element: T): void {
-    this.items.unshift(element);
+    this.items.pushFront(element);
   }
 
   /**
    * Adds an element to the back of the deque
    */
   pushBack(element: T): void {
-    this.items.push(element);
+    this.items.pushBack(element);
   }
 
   /**
    * Removes and returns the front element from the deque, or undefined if deque is empty
    */
   popFront(): T | undefined {
-    return this.items.shift();
+    return this.items.popFront();
   }
 
   /**
    * Removes and returns the back element from the deque, or undefined if deque is empty
    */
   popBack(): T | undefined {
-    return this.items.pop();
+    return this.items.popBack();
   }
 
   /**
    * Returns the front element without removing it, or undefined if deque is empty
    */
   front(): T | undefined {
-    return this.items[0];
+    return this.items.get(0);
   }
 
   /**
    * Returns the back element without removing it, or undefined if deque is empty
    */
   back(): T | undefined {
-    return this.items[this.items.length - 1];
+    return this.items.get(this.items.size() - 1);
   }
 
   /**
    * Returns true if the deque is empty, false otherwise
    */
   isEmpty(): boolean {
-    return this.items.length === 0;
+    return this.items.isEmpty();
   }
 
   /**
    * Returns the number of elements in the deque
    */
   size(): number {
-    return this.items.length;
+    return this.items.size();
   }
 
   /**
    * Removes all elements from the deque
    */
   clear(): void {
-    this.items = [];
+    this.items.clear();
   }
 }

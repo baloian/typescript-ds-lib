@@ -45,22 +45,30 @@ export class HashTable<K, V> implements HashTable<K, V> {
     }
 
     let stringKey: string;
-    if (typeof key === 'object') {
-      if (typeof (key as any).toString === 'function') {
-        stringKey = (key as any).toString();
-      } else {
-        stringKey = JSON.stringify(key);
-      }
-    } else if (typeof key === 'string') {
-      stringKey = key;
-    } else if (typeof key === 'function') {
-      stringKey = key.toString();
-    } else if (typeof key === 'symbol') {
-      stringKey = key.toString();
-    } else if (key === null || key === undefined) {
-      stringKey = 'null';
-    } else {
-      stringKey = String(key);
+    switch (typeof key) {
+      case 'object':
+        if (key === null) {
+          stringKey = 'null';
+        } else if (typeof (key as any).toString === 'function') {
+          stringKey = (key as any).toString();
+        } else {
+          stringKey = JSON.stringify(key);
+        }
+        break;
+      case 'string':
+        stringKey = key;
+        break;
+      case 'function':
+        stringKey = key.toString();
+        break;
+      case 'symbol':
+        stringKey = key.toString();
+        break;
+      case 'undefined':
+        stringKey = 'null';
+        break;
+      default:
+        stringKey = String(key);
     }
     let hash = 0;
     // DJB2 hash algorithm

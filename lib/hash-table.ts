@@ -152,14 +152,14 @@ export class HashTable<K, V> implements HashTable<K, V> {
       return key1.toString() === key2.toString();
     }
     if (Array.isArray(key1) && Array.isArray(key2)) {
-      return key1.length === key2.length && 
-             key1.every((val, idx) => this.keysEqual(val, key2[idx]));
+      return key1.length === key2.length &&
+        key1.every((val, idx) => this.keysEqual(val, key2[idx]));
     }
     if (typeof key1 === 'object' && typeof key2 === 'object') {
       const keys1 = Object.keys(key1);
       const keys2 = Object.keys(key2);
       return keys1.length === keys2.length &&
-             keys1.every(k => k in key2 && this.keysEqual((key1 as any)[k], (key2 as any)[k]));
+        keys1.every(k => k in key2 && this.keysEqual((key1 as any)[k], (key2 as any)[k]));
     }
     return false;
   }

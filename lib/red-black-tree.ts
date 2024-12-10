@@ -89,7 +89,7 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
     while (node !== this.root && node.parent?.color === Color.RED) {
       if (node.parent === node.parent.parent?.left) {
         const uncle = node.parent.parent.right;
-        
+
         if (uncle?.color === Color.RED) {
           node.parent.color = Color.BLACK;
           uncle.color = Color.BLACK;
@@ -143,7 +143,7 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
     }
 
     newNode.parent = parent;
-    
+
     if (parent === null) {
       this.root = newNode;
     } else if (this.comparator(key, parent.key)) {
@@ -221,7 +221,7 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
       y = this.findMinNode(node.right);
       originalColor = y.color;
       x = y.right;
-      
+
       if (y.parent === node) {
         if (x) x.parent = y;
       } else {
@@ -229,7 +229,7 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
         y.right = node.right;
         y.right.parent = y;
       }
-      
+
       this.transplant(node, y);
       y.left = node.left;
       y.left.parent = y;
@@ -258,16 +258,16 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
     while (x !== this.root && x.color === Color.BLACK) {
       if (x === x.parent!.left) {
         let w = x.parent!.right!;
-        
+
         if (w.color === Color.RED) {
           w.color = Color.BLACK;
           x.parent!.color = Color.RED;
           this.rotateLeft(x.parent!);
           w = x.parent!.right!;
         }
-        
-        if ((!w.left || w.left.color === Color.BLACK) && 
-            (!w.right || w.right.color === Color.BLACK)) {
+
+        if ((!w.left || w.left.color === Color.BLACK) &&
+          (!w.right || w.right.color === Color.BLACK)) {
           w.color = Color.RED;
           x = x.parent!;
         } else {
@@ -277,7 +277,7 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
             this.rotateRight(w);
             w = x.parent!.right!;
           }
-          
+
           w.color = x.parent!.color;
           x.parent!.color = Color.BLACK;
           if (w.right) w.right.color = Color.BLACK;
@@ -286,16 +286,16 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
         }
       } else {
         let w = x.parent!.left!;
-        
+
         if (w.color === Color.RED) {
           w.color = Color.BLACK;
           x.parent!.color = Color.RED;
           this.rotateRight(x.parent!);
           w = x.parent!.left!;
         }
-        
-        if ((!w.right || w.right.color === Color.BLACK) && 
-            (!w.left || w.left.color === Color.BLACK)) {
+
+        if ((!w.right || w.right.color === Color.BLACK) &&
+          (!w.left || w.left.color === Color.BLACK)) {
           w.color = Color.RED;
           x = x.parent!;
         } else {
@@ -305,7 +305,7 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
             this.rotateLeft(w);
             w = x.parent!.left!;
           }
-          
+
           w.color = x.parent!.color;
           x.parent!.color = Color.BLACK;
           if (w.left) w.left.color = Color.BLACK;

@@ -12,10 +12,10 @@ export interface PriorityQueue<T> {
 
 
 export class PriorityQueue<T> implements PriorityQueue<T> {
-  private list: LinkedList<{element: T; priority: number}>;
+  private list: LinkedList<{ element: T; priority: number }>;
 
   constructor() {
-    this.list = new LinkedList<{element: T; priority: number}>();
+    this.list = new LinkedList<{ element: T; priority: number }>();
   }
 
   /**

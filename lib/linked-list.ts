@@ -3,6 +3,8 @@ export interface LinkedList<T> {
   pushFront(element: T): void;
   popBack(): T | undefined;
   popFront(): T | undefined;
+  front(): T | undefined;
+  back(): T | undefined;
   insert(element: T, position: number): boolean;
   insertBefore(element: T, condition: (element: T) => boolean): boolean;
   insertAfter(element: T, condition: (element: T) => boolean): boolean;
@@ -35,6 +37,20 @@ export class LinkedList<T> implements LinkedList<T> {
     this.head = null;
     this.tail = null;
     this.length = 0;
+  }
+
+  /**
+   * Returns the first element in the list without removing it, or undefined if list is empty
+   */
+  front(): T | undefined {
+    return this.head?.value;
+  }
+
+  /**
+   * Returns the last element in the list without removing it, or undefined if list is empty
+   */
+  back(): T | undefined {
+    return this.tail?.value;
   }
 
   /**

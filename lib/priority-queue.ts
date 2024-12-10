@@ -45,8 +45,7 @@ export class PriorityQueue<T> implements PriorityQueue<T> {
    * Returns the highest priority element without removing it, or undefined if queue is empty.
    */
   front(): T | undefined {
-    const item = this.list.get(0);
-    return item?.element;
+    return this.list.front()?.element;
   }
 
   /**

@@ -120,6 +120,8 @@ A singly linked list implementation in TypeScript that stores elements in a sequ
 `pushFront(value: T)` - Adds a new element to the beginning of the linked list.  
 `popBack()` - Removes and returns the last element from the linked list.   
 `popFront()` - Removes and returns the first element from the linked list.   
+`front()` - Returns the first element without removing it.  
+`back()` - Returns the last element without removing it.  
 `insert(value: T, position: number)` - Inserts a new element at the specified position.  
 `insertBefore(value: T, condition: (element: T) => boolean)` - Inserts a new element before the first element that satisfies the condition.  
 `insertAfter(value: T, condition: (element: T) => boolean)` - Inserts a new element after the first element that satisfies the condition.  

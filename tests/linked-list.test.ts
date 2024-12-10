@@ -287,4 +287,28 @@ describe('LinkedList', () => {
     list.pushBack(2);
     expect(list.insertAfter(3, x => x === 4)).toBe(false);
   });
+
+  test('should return first element with front()', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.front()).toBe(1);
+    expect(list.size()).toBe(3); // Check size hasn't changed
+  });
+
+  test('should return undefined when calling front() on empty list', () => {
+    expect(list.front()).toBeUndefined();
+  });
+
+  test('should return last element with back()', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    expect(list.back()).toBe(3);
+    expect(list.size()).toBe(3); // Check size hasn't changed
+  });
+
+  test('should return undefined when calling back() on empty list', () => {
+    expect(list.back()).toBeUndefined();
+  });
 });

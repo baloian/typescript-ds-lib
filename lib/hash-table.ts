@@ -45,21 +45,20 @@ export class HashTable<K, V> implements HashTable<K, V> {
     }
 
     let stringKey: string;
-    if (key === null || key === undefined) {
-      stringKey = 'null';
-    } else if (typeof key === "string") {
-      stringKey = key;
-    } else if (typeof key === 'object') {
-      if (key instanceof Date) {
-        stringKey = key.getTime().toString();
-      } else if (key instanceof RegExp) {
-        stringKey = key.toString();
+    if (typeof key === 'object') {
+      if (typeof (key as any).toString === 'function') {
+        stringKey = (key as any).toString();
+      } else {
+        stringKey = JSON.stringify(key);
       }
-      stringKey = JSON.stringify(key);
+    } else if (typeof key === 'string') {
+      stringKey = key;
     } else if (typeof key === 'function') {
       stringKey = key.toString();
     } else if (typeof key === 'symbol') {
       stringKey = key.toString();
+    } else if (key === null || key === undefined) {
+      stringKey = 'null';
     } else {
       stringKey = String(key);
     }

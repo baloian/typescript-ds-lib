@@ -85,7 +85,6 @@ export class BinarySearchTree<T> implements BinarySearchTree<T> {
    */
   min(): T | undefined {
     if (!this.root) return undefined;
-
     let current = this.root;
     while (current.left !== null) {
       current = current.left;
@@ -114,7 +113,6 @@ export class BinarySearchTree<T> implements BinarySearchTree<T> {
 
   private removeNode(node: TreeNode<T> | null, value: T): TreeNode<T> | null {
     if (node === null) return null;
-
     if (this.comparator(value, node.value)) {
       node.left = this.removeNode(node.left, value);
       return node;

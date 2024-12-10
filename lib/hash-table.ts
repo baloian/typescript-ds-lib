@@ -35,6 +35,14 @@ export class HashTable<K, V> implements HashTable<K, V> {
     if (typeof (key as any).hashCode === 'function') {
       return (key as any).hashCode();
     }
+
+    // Handle numbers directly without string conversion
+    if (typeof key === 'number') {
+      // Knuth's multiplicative method
+      const knuthConstant = 2654435761;
+      return (Math.abs(key * knuthConstant) >>> 0) % this.capacity;
+    }
+
     let stringKey: string;
     if (key === null || key === undefined) {
       stringKey = 'null';

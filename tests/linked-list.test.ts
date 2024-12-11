@@ -311,4 +311,38 @@ describe('LinkedList', () => {
   test('should return undefined when calling back() on empty list', () => {
     expect(list.back()).toBeUndefined();
   });
+
+  test('should iterate through all elements with forEach', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    const elements: number[] = [];
+    list.forEach(x => elements.push(x));
+    expect(elements).toEqual([1, 2, 3]);
+  });
+
+  test('should not call callback for empty list', () => {
+    const callback = jest.fn();
+    list.forEach(callback);
+    expect(callback).not.toHaveBeenCalled();
+  });
+
+  test('should call callback with correct elements in order', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    const callback = jest.fn();
+    list.forEach(callback);
+    expect(callback).toHaveBeenNthCalledWith(1, 1);
+    expect(callback).toHaveBeenNthCalledWith(2, 2);
+    expect(callback).toHaveBeenCalledTimes(2);
+  });
+
+  test('should allow callback to modify elements', () => {
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    const doubled: number[] = [];
+    list.forEach(x => doubled.push(x * 2));
+    expect(doubled).toEqual([2, 4, 6]);
+  });
 });

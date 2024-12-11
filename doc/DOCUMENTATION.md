@@ -127,6 +127,7 @@ A singly linked list implementation in TypeScript that stores elements in a sequ
 `insertAfter(value: T, condition: (element: T) => boolean)` - Inserts a new element after the first element that satisfies the condition.  
 `removeIf(condition: (element: T) => boolean)` - Removes all elements that satisfy the condition.  
 `removeAt(position: number)` - Removes the element at the specified position.  
+`forEach(callback: (element: T) => void)` - Applies a function to each element of the linked list.  
 `get(position: number)` - Returns the element at the specified position.  
 `isEmpty()` - Checks if the linked list is empty.  
 `clear()` - Removes all elements from the linked list.  

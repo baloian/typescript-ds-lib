@@ -10,6 +10,7 @@ export interface LinkedList<T> {
   insertAfter(element: T, condition: (element: T) => boolean): boolean;
   removeIf(condition: (element: T) => boolean): boolean;
   removeAt(position: number): T | undefined;
+  forEach(callback: (element: T) => void): void;
   get(position: number): T | undefined;
   isEmpty(): boolean;
   size(): number;
@@ -255,6 +256,17 @@ export class LinkedList<T> implements LinkedList<T> {
     }
     this.length--;
     return current!.value;
+  }
+
+  /**
+   * Executes a provided function once for each element in the list
+   */
+  forEach(callback: (element: T) => void): void {
+    let current = this.head;
+    while (current !== null) {
+      callback(current.value);
+      current = current.next;
+    }
   }
 
   /**

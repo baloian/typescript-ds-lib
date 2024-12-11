@@ -6,6 +6,7 @@ export interface Map<K, V> {
   insert(key: K, value: V): void;
   find(key: K): V | undefined;
   delete(key: K): void;
+  remove(key: K): void;
   clear(): void;
   isEmpty(): boolean;
   size(): number;
@@ -28,6 +29,10 @@ export class Map<K, V> implements Map<K, V> {
   }
 
   delete(key: K): void {
+    this.rbTree.remove(key);
+  }
+
+  remove(key: K): void {
     this.rbTree.remove(key);
   }
 

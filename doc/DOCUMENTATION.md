@@ -159,7 +159,7 @@ A map implementation in TypeScript that maintains key-value pairs in sorted orde
 ## Methods
 `insert(key: K, value: V)` - Inserts or updates a key-value pair in the map.  
 `find(key: K)` - Retrieves the value associated with the given key.  
-`delete(key: K)` - Removes a key-value pair from the map.  
+`remove(key: K)` - Removes a key-value pair from the map.  
 `clear()` - Removes all key-value pairs from the map.  
 `size()` - Returns the number of key-value pairs in the map.  
 `isEmpty()` - Checks if the map is empty.  

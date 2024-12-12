@@ -47,6 +47,9 @@ console.log(bst.max());     // 15
 # Deque
 A double-ended queue (Deque) implementation in TypeScript that allows insertion and deletion of elements from both ends of the queue.
 
+## Constructor
+`constructor()` - Creates a new deque.
+
 ## Methods
 `pushFront(value: T)` - Adds an element to the front of the deque.  
 `pushBack(value: T)` - Adds an element to the back of the deque.  
@@ -105,7 +108,7 @@ hashTable.insert('two', 2);
 hashTable.insert('three', 3);
 
 console.log(hashTable.get('two'));     // 2
-console.log(hashTable.isEmpty());        // false
+console.log(hashTable.isEmpty());      // false
 console.log(hashTable.size());         // 3
 
 hashTable.remove("one");
@@ -114,6 +117,9 @@ hashTable.remove("one");
 
 # Linked List
 A singly linked list implementation in TypeScript that stores elements in a sequence of nodes, where each node points to the next node in the sequence.
+
+## Constructor
+`constructor()` - Creates a new linked list.
 
 ## Methods
 `pushBack(value: T)` - Adds a new element to the end of the linked list.  
@@ -188,6 +194,9 @@ console.log(map.size());           // 2
 # Priority Queue
 A priority queue implementation in TypeScript that maintains elements in a heap structure, where each element has a priority value determining its position in the queue.
 
+## Constructor
+`constructor()` - Creates a new priority queue.
+
 ## Methods
 `push(value: T, priority: number)` - Adds an element with the specified priority to the queue.  
 `pop()` - Removes and returns the element with the highest priority.  
@@ -216,6 +225,9 @@ console.log(pq.front()); // "Task 1" (next highest priority)
 
 # Queue
 A queue implementation in TypeScript that follows the First-In-First-Out (FIFO) principle, where elements are added to the back and removed from the front of the queue.
+
+## Constructor
+`constructor()` - Creates a new queue.
 
 ## Methods
 `push(value: T)` - Adds an element to the back of the queue.  
@@ -316,6 +328,9 @@ console.log(set.find(1));  // false
 
 # Stack
 A stack implementation in TypeScript that follows the Last-In-First-Out (LIFO) principle, where elements are added and removed from the same end of the stack.
+
+## Constructor
+`constructor()` - Creates a new stack.
 
 ## Methods
 `push(value: T)` - Adds an element to the top of the stack.  

@@ -4,8 +4,10 @@ import { BinarySearchTree } from './binary-search-tree';
 
 export interface Set<T> {
   insert(element: T): void;
+  insertList(elements: T[]): void;
   remove(element: T): void;
   find(element: T): boolean;
+  forEach(callback: (element: T) => void): void;
   isEmpty(): boolean;
   size(): number;
   clear(): void;
@@ -29,6 +31,15 @@ export class Set<T> implements Set<T> {
   }
 
   /**
+   * Adds multiple values to the set if they're not already present
+   */
+  insertList(values: T[]): void {
+    for (const value of values) {
+      this.insert(value);
+    }
+  }
+
+  /**
    * Checks if a value exists in the set
    */
   find(value: T): boolean {
@@ -40,6 +51,13 @@ export class Set<T> implements Set<T> {
    */
   remove(value: T): void {
     this.bst.remove(value);
+  }
+
+  /**
+   * Executes a callback function for each element in the set
+   */
+  forEach(callback: (element: T) => void): void {
+    this.bst.forEach(callback);
   }
 
   /**

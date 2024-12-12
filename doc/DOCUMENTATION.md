@@ -265,6 +265,7 @@ A self-balancing binary search tree (Red-Black key-value Tree) implementation in
 ## Methods
 `insert(key: K, value: V)` - Inserts a new key-value pair into the tree while maintaining red-black properties.  
 `remove(key: K)` - Removes a key-value pair from the tree if it exists while maintaining red-black properties.  
+`forEach(callback: (key: K, value: V) => void)` - Executes a callback function for each key-value pair in the tree.  
 `find(key: K)` - Searches for a key in the tree and returns true if found.  
 `min()` - Returns the minimum value stored in the tree.  
 `max()` - Returns the maximum value stored in the tree.  

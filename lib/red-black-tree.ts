@@ -7,6 +7,7 @@ export interface RedBlackTree<K, V> {
   find(key: K): V | undefined;
   min(): V | undefined;
   max(): V | undefined;
+  forEach(callback: (key: K, value: V) => void): void;
   isEmpty(): boolean;
   size(): number;
   clear(): void;
@@ -333,5 +334,17 @@ export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
   private isEqual(a: K, b: K): boolean {
     // Two values are equal if neither is less than the other
     return !this.comparator(a, b) && !this.comparator(b, a);
+  }
+
+  private inorderTraversal(node: RBNode<K, V> | null, callback: (key: K, value: V) => void): void {
+    if (node !== null) {
+      this.inorderTraversal(node.left, callback);
+      callback(node.key, node.value);
+      this.inorderTraversal(node.right, callback);
+    }
+  }
+
+  forEach(callback: (key: K, value: V) => void): void {
+    this.inorderTraversal(this.root, callback);
   }
 }

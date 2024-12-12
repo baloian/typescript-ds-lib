@@ -312,24 +312,36 @@ A matrix implementation in TypeScript that provides operations for matrix manipu
 `constructor(rows: number, cols: number)` - Creates a new matrix with the specified number of rows and columns, initialized with undefined.
 
 ## Methods
-`get(row: number, col: number): T` - Returns the element at the specified row and column.  
-`set(row: number, col: number, value: T): void` - Sets the element at the specified row and column to the given value.  
-`add(matrix: Matrix<T>): Matrix<T>` - Adds another matrix to this matrix and returns the result.  
-`multiply(matrix: Matrix<T>): Matrix<T>` - Multiplies this matrix by another matrix and returns the result.  
-`transpose(): Matrix<T>` - Returns the transpose of this matrix.  
-`isEmpty(): boolean` - Checks if the matrix is empty (i.e., has no elements).  
-`clear(): void` - Resets all elements in the matrix to the initial value.  
-`size(): number` - Returns the total number of elements in the matrix.  
-`fill(value: T): void` - Fills the matrix with the given value.  
-`clone(): Matrix<T>` - Returns a deep copy of the matrix.  
-`toArray(): T[][]` - Returns the matrix as a 2D array.  
-`getRow(row: number): T[]` - Returns the specified row as an array.  
-`getColumn(col: number): T[]` - Returns the specified column as an array.  
-`setRow(row: number, values: T[]): void` - Sets the specified row to the given array.  
-`setColumn(col: number, values: T[]): void` - Sets the specified column to the given array.  
-`resize(rows: number, cols: number): void` - Resizes the matrix to the specified dimensions.  
-`map(fn: (value: T, row: number, col: number) => T): Matrix<T>` - Applies a function to each element of the matrix and returns a new matrix with the results.  
-`forEach(fn: (value: T, row: number, col: number) => void): void` - Applies a function to each element of the matrix.  
+`get(row: number, col: number): T | undefined` - Returns the element at the specified row and column, or undefined if out of bounds.  
+`set(row: number, col: number, value: T): void` - Sets the element at the specified row and column to the given value. Ignores if out of bounds.  
+`add(matrix: Matrix<T>): Matrix<T>` - Adds another matrix to this matrix and returns the result. Matrices must have same dimensions.  
+`multiply(matrix: Matrix<T>): Matrix<T>` - Multiplies this matrix by another matrix and returns the result. Number of columns in first matrix must equal rows in second.  
+`transpose(): Matrix<T>` - Returns a new matrix that is the transpose of this matrix (rows become columns and vice versa).  
+`isEmpty(): boolean` - Checks if the matrix has zero dimensions (rows or columns is 0).  
+`clear(): void` - Resets all elements in the matrix to undefined.  
+`size(): number` - Returns the total number of elements in the matrix (rows * columns).  
+`fill(value: T): void` - Fills the entire matrix with the given value.  
+`clone(): Matrix<T>` - Returns a deep copy of the matrix with all values copied.  
+`toArray(): T[][]` - Returns a copy of the internal 2D array representation.  
+`getRow(row: number): T[]` - Returns a copy of the specified row as an array. Returns empty array if invalid row.  
+`getColumn(col: number): T[]` - Returns a copy of the specified column as an array. Returns empty array if invalid column.  
+`setRow(row: number, values: T[]): void` - Sets the specified row to the given array. Values array length must match columns.  
+`setColumn(col: number, values: T[]): void` - Sets the specified column to the given array. Values array length must match rows.  
+`resize(rows: number, cols: number): void` - Resizes the matrix to new dimensions, preserving existing values where possible.  
+`map(fn: (value: T, row: number, col: number) => T): Matrix<T>` - Returns a new matrix with the function applied to each element.  
+`forEach(fn: (value: T, row: number, col: number) => void): void` - Executes the function for each element in the matrix.  
+`swapRows(row1: number, row2: number): void` - Swaps the positions of two rows in the matrix.  
+`swapColumns(col1: number, col2: number): void` - Swaps the positions of two columns in the matrix.  
+`submatrix(startRow: number, startCol: number, endRow: number, endCol: number): Matrix<T>` - Extracts a submatrix from the given bounds.  
+`insertMatrix(other: Matrix<T>, startRow: number, startCol: number): void` - Inserts another matrix into this matrix at the specified position.  
+`getDiagonal(): T[]` - Returns the diagonal elements of the matrix as an array.  
+`setDiagonal(values: T[]): void` - Sets the diagonal elements of the matrix from the given array.  
+`trace(): T` - Calculates and returns the sum of diagonal elements.  
+`isSquare(): boolean` - Checks if the matrix has equal number of rows and columns.  
+`isSymmetric(): boolean` - Checks if the matrix is symmetric (equal to its transpose).  
+`scalarMultiply(scalar: number): Matrix<T>` - Multiplies each element in the matrix by a scalar value.  
+`subtract(other: Matrix<T>): Matrix<T>` - Subtracts another matrix from this matrix and returns the result.  
+`equals(other: Matrix<T>): boolean` - Checks if this matrix is equal to another matrix.
 
 ### Example Usage
 ```typescript

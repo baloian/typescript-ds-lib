@@ -1,25 +1,53 @@
 export interface Matrix<T> {
+  // Basic operations
   get(row: number, col: number): T | undefined;
   set(row: number, col: number, value: T): void;
   rows(): number;
   columns(): number;
+
+  // Bulk operations
   fill(value: T): void;
   clear(): void;
+  resize(rows: number, cols: number): void;
+
+  // State checks
   isEmpty(): boolean;
   size(): number;
-  transpose(): Matrix<T>;
-  add(other: Matrix<T>): Matrix<T>;
-  subtract(other: Matrix<T>): Matrix<T>;
-  multiply(other: Matrix<T>): Matrix<T>;
-  map(fn: (value: T, row: number, col: number) => T): Matrix<T>;
-  forEach(fn: (value: T, row: number, col: number) => void): void;
-  clone(): Matrix<T>;
-  toArray(): T[][];
+  isSquare(): boolean;
+  isSymmetric(): boolean;
+
+  // Row/Column operations
   getRow(row: number): T[];
   getColumn(col: number): T[];
   setRow(row: number, values: T[]): void;
   setColumn(col: number, values: T[]): void;
-  resize(rows: number, cols: number): void;
+  swapRows(row1: number, row2: number): void;
+  swapColumns(col1: number, col2: number): void;
+
+  // Matrix transformations
+  transpose(): Matrix<T>;
+  add(other: Matrix<T>): Matrix<T>;
+  subtract(other: Matrix<T>): Matrix<T>;
+  multiply(other: Matrix<T>): Matrix<T>;
+  scalarMultiply(scalar: number): Matrix<T>;
+
+  // Element-wise operations
+  map(fn: (value: T, row: number, col: number) => T): Matrix<T>;
+  forEach(fn: (value: T, row: number, col: number) => void): void;
+
+  // Utility methods
+  clone(): Matrix<T>;
+  toArray(): T[][];
+  equals(other: Matrix<T>): boolean;
+
+  // Submatrix operations
+  submatrix(startRow: number, startCol: number, endRow: number, endCol: number): Matrix<T>;
+  insertMatrix(other: Matrix<T>, startRow: number, startCol: number): void;
+
+  // Diagonal operations
+  getDiagonal(): T[];
+  setDiagonal(values: T[]): void;
+  trace(): T;
 }
 
 
@@ -93,6 +121,26 @@ export class Matrix<T> implements Matrix<T> {
   }
 
   /**
+   * Checks if the matrix is square (same number of rows and columns).
+   */
+  isSquare(): boolean {
+    return this.numRows === this.numCols;
+  }
+
+  /**
+   * Checks if the matrix is symmetric (equal to its transpose).
+   */
+  isSymmetric(): boolean {
+    if (!this.isSquare()) return false;
+    for (let i = 0; i < this.numRows; i++) {
+      for (let j = 0; j < i; j++) {
+        if (this.data[i][j] !== this.data[j][i]) return false;
+      }
+    }
+    return true;
+  }
+
+  /**
    * Creates a new matrix that is the transpose of this matrix.
    */
   transpose(): Matrix<T> {
@@ -160,6 +208,20 @@ export class Matrix<T> implements Matrix<T> {
   }
 
   /**
+   * Multiplies the matrix by a scalar value.
+   */
+  scalarMultiply(scalar: number): Matrix<T> {
+    const result = new Matrix<T>(this.numRows, this.numCols);
+    for (let i = 0; i < this.numRows; i++) {
+      for (let j = 0; j < this.numCols; j++) {
+        const product = (this.data[i][j] as any) * scalar;
+        result.set(i, j, product as T);
+      }
+    }
+    return result;
+  }
+
+  /**
    * Applies a function to each element and returns a new matrix.
    */
   map(fn: (value: T, row: number, col: number) => T): Matrix<T> {
@@ -204,6 +266,21 @@ export class Matrix<T> implements Matrix<T> {
   }
 
   /**
+   * Checks if this matrix equals another matrix.
+   */
+  equals(other: Matrix<T>): boolean {
+    if (this.numRows !== other.rows() || this.numCols !== other.columns()) {
+      return false;
+    }
+    for (let i = 0; i < this.numRows; i++) {
+      for (let j = 0; j < this.numCols; j++) {
+        if (this.data[i][j] !== other.get(i, j)) return false;
+      }
+    }
+    return true;
+  }
+
+  /**
    * Gets a copy of the specified row.
    */
   getRow(row: number): T[] {
@@ -243,6 +320,88 @@ export class Matrix<T> implements Matrix<T> {
     for (let i = 0; i < this.numRows; i++) {
       this.data[i][col] = values[i];
     }
+  }
+
+  /**
+   * Swaps two rows in the matrix.
+   */
+  swapRows(row1: number, row2: number): void {
+    if (!this.isValidPosition(row1, 0) || !this.isValidPosition(row2, 0)) return;
+    [this.data[row1], this.data[row2]] = [this.data[row2], this.data[row1]];
+  }
+
+  /**
+   * Swaps two columns in the matrix.
+   */
+  swapColumns(col1: number, col2: number): void {
+    if (!this.isValidPosition(0, col1) || !this.isValidPosition(0, col2)) return;
+    for (let i = 0; i < this.numRows; i++) {
+      [this.data[i][col1], this.data[i][col2]] = [this.data[i][col2], this.data[i][col1]];
+    }
+  }
+
+  /**
+   * Extracts a submatrix from this matrix.
+   */
+  submatrix(startRow: number, startCol: number, endRow: number, endCol: number): Matrix<T> {
+    if (!this.isValidPosition(startRow, startCol) || !this.isValidPosition(endRow, endCol)) {
+      throw new Error('Invalid submatrix bounds');
+    }
+    const rows = endRow - startRow + 1;
+    const cols = endCol - startCol + 1;
+    const result = new Matrix<T>(rows, cols);
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        result.set(i, j, this.data[startRow + i][startCol + j]);
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Inserts another matrix into this matrix at the specified position.
+   */
+  insertMatrix(other: Matrix<T>, startRow: number, startCol: number): void {
+    if (!this.isValidPosition(startRow, startCol)) return;
+    const maxRows = Math.min(other.rows(), this.numRows - startRow);
+    const maxCols = Math.min(other.columns(), this.numCols - startCol);
+    for (let i = 0; i < maxRows; i++) {
+      for (let j = 0; j < maxCols; j++) {
+        this.data[startRow + i][startCol + j] = other.get(i, j)!;
+      }
+    }
+  }
+
+  /**
+   * Gets the diagonal elements of the matrix.
+   */
+  getDiagonal(): T[] {
+    const size = Math.min(this.numRows, this.numCols);
+    const result: T[] = [];
+    for (let i = 0; i < size; i++) {
+      result.push(this.data[i][i]);
+    }
+    return result;
+  }
+
+  /**
+   * Sets the diagonal elements of the matrix.
+   */
+  setDiagonal(values: T[]): void {
+    const size = Math.min(this.numRows, this.numCols, values.length);
+    for (let i = 0; i < size; i++) {
+      this.data[i][i] = values[i];
+    }
+  }
+
+  /**
+   * Calculates the trace (sum of diagonal elements) of the matrix.
+   */
+  trace(): T {
+    if (!this.isSquare() || this.isEmpty()) {
+      throw new Error('Trace is only defined for non-empty square matrices');
+    }
+    return this.getDiagonal().reduce((sum: any, val: any) => sum + val);
   }
 
   /**

@@ -136,6 +136,16 @@ describe('Matrix', () => {
       other.fill(2);
       expect(() => matrix.multiply(other)).toThrow('Matrix dimensions must be compatible for multiplication');
     });
+
+    it('should multiply by scalar correctly', () => {
+      matrix.fill(2);
+      const result = matrix.scalarMultiply(3);
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          expect(result.get(i, j)).toBe(6);
+        }
+      }
+    });
   });
 
   describe('utility operations', () => {
@@ -207,6 +217,100 @@ describe('Matrix', () => {
       expect(matrix.size()).toBe(9);
       const matrix2 = new Matrix<number>(2, 4);
       expect(matrix2.size()).toBe(8);
+    });
+
+    it('should check if matrix is square', () => {
+      expect(matrix.isSquare()).toBe(true);
+      const rectMatrix = new Matrix<number>(2, 3);
+      expect(rectMatrix.isSquare()).toBe(false);
+    });
+
+    it('should check if matrix is symmetric', () => {
+      matrix.set(0, 1, 2);
+      matrix.set(1, 0, 2);
+      matrix.set(0, 2, 3);
+      matrix.set(2, 0, 3);
+      matrix.set(1, 2, 4);
+      matrix.set(2, 1, 4);
+      expect(matrix.isSymmetric()).toBe(true);
+
+      matrix.set(0, 1, 5); // Make asymmetric
+      expect(matrix.isSymmetric()).toBe(false);
+    });
+
+    it('should swap rows correctly', () => {
+      matrix.setRow(0, [1, 2, 3]);
+      matrix.setRow(1, [4, 5, 6]);
+      matrix.swapRows(0, 1);
+      expect(matrix.getRow(0)).toEqual([4, 5, 6]);
+      expect(matrix.getRow(1)).toEqual([1, 2, 3]);
+    });
+
+    it('should swap columns correctly', () => {
+      matrix.setColumn(0, [1, 2, 3]);
+      matrix.setColumn(1, [4, 5, 6]);
+      matrix.swapColumns(0, 1);
+      expect(matrix.getColumn(0)).toEqual([4, 5, 6]);
+      expect(matrix.getColumn(1)).toEqual([1, 2, 3]);
+    });
+
+    it('should extract submatrix correctly', () => {
+      matrix.fill(1);
+      matrix.set(0, 0, 2);
+      matrix.set(0, 1, 3);
+      matrix.set(1, 0, 4);
+      matrix.set(1, 1, 5);
+      const sub = matrix.submatrix(0, 0, 1, 1);
+      expect(sub.rows()).toBe(2);
+      expect(sub.columns()).toBe(2);
+      expect(sub.get(0, 0)).toBe(2);
+      expect(sub.get(0, 1)).toBe(3);
+      expect(sub.get(1, 0)).toBe(4);
+      expect(sub.get(1, 1)).toBe(5);
+    });
+
+    it('should insert matrix correctly', () => {
+      const small = new Matrix<number>(2, 2);
+      small.fill(5);
+      matrix.fill(1);
+      matrix.insertMatrix(small, 0, 0);
+      expect(matrix.get(0, 0)).toBe(5);
+      expect(matrix.get(0, 1)).toBe(5);
+      expect(matrix.get(1, 0)).toBe(5);
+      expect(matrix.get(1, 1)).toBe(5);
+      expect(matrix.get(2, 2)).toBe(1);
+    });
+
+    it('should get/set diagonal correctly', () => {
+      matrix.setDiagonal([1, 2, 3]);
+      expect(matrix.getDiagonal()).toEqual([1, 2, 3]);
+    });
+
+    it('should calculate trace correctly', () => {
+      matrix.setDiagonal([1, 2, 3]);
+      expect(matrix.trace()).toBe(6);
+    });
+
+    it('should check equality correctly', () => {
+      const other = new Matrix<number>(3, 3);
+      matrix.fill(1);
+      other.fill(1);
+      expect(matrix.equals(other)).toBe(true);
+
+      other.set(0, 0, 2);
+      expect(matrix.equals(other)).toBe(false);
+
+      const different = new Matrix<number>(2, 3);
+      expect(matrix.equals(different)).toBe(false);
+    });
+
+    it('should resize matrix correctly', () => {
+      matrix.fill(1);
+      matrix.resize(2, 4);
+      expect(matrix.rows()).toBe(2);
+      expect(matrix.columns()).toBe(4);
+      expect(matrix.get(0, 0)).toBe(1);
+      expect(matrix.get(0, 3)).toBeUndefined();
     });
   });
 });

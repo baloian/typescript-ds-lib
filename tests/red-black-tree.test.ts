@@ -47,10 +47,10 @@ describe('RedBlackTree', () => {
     });
 
     test('should handle large number of insertions', () => {
-      const values = Array.from({length: 1000}, (_, i) => i);
+      const values = Array.from({ length: 1000 }, (_, i) => i);
       values.forEach(v => tree.insert(v, v));
       expect(tree.size()).toBe(1000);
-      
+
       // Verify some random values
       expect(tree.find(42)).toBe(42);
       expect(tree.find(999)).toBe(999);
@@ -80,10 +80,10 @@ describe('RedBlackTree', () => {
     test('should handle removing non-existent values', () => {
       tree.insert(5, 5);
       tree.insert(3, 3);
-      
+
       const initialSize = tree.size();
       tree.remove(7);
-      
+
       expect(tree.size()).toBe(initialSize);
     });
 
@@ -91,7 +91,7 @@ describe('RedBlackTree', () => {
       tree.insert(5, 5);
       tree.insert(3, 3);
       tree.insert(7, 7);
-      
+
       tree.remove(5);
       expect(tree.find(5)).toBeUndefined();
       expect(tree.size()).toBe(2);
@@ -101,12 +101,12 @@ describe('RedBlackTree', () => {
 
     test('should handle removing all nodes sequentially', () => {
       [5, 3, 7, 1, 9].forEach(v => tree.insert(v, v));
-      
+
       [5, 3, 7, 1, 9].forEach(v => {
         tree.remove(v);
         expect(tree.find(v)).toBeUndefined();
       });
-      
+
       expect(tree.isEmpty()).toBe(true);
     });
   });
@@ -118,9 +118,9 @@ describe('RedBlackTree', () => {
       tree.insert(7, 7);
 
       expect(tree.isEmpty()).toBe(false);
-      
+
       tree.clear();
-      
+
       expect(tree.isEmpty()).toBe(true);
       expect(tree.size()).toBe(0);
     });
@@ -151,17 +151,17 @@ describe('RedBlackTree', () => {
     });
 
     test('should handle rapid insertions and deletions', () => {
-      for(let i = 0; i < 100; i++) {
+      for (let i = 0; i < 100; i++) {
         tree.insert(i, i);
       }
       expect(tree.size()).toBe(100);
 
-      for(let i = 0; i < 50; i++) {
+      for (let i = 0; i < 50; i++) {
         tree.remove(i);
       }
       expect(tree.size()).toBe(50);
 
-      for(let i = 0; i < 25; i++) {
+      for (let i = 0; i < 25; i++) {
         tree.insert(i, i);
       }
       expect(tree.size()).toBe(75);
@@ -197,7 +197,7 @@ describe('RedBlackTree', () => {
     test('should maintain order after multiple operations', () => {
       const nums = [5, 3, 7, 1, 9, 2, 8, 4, 6];
       nums.forEach(n => tree.insert(n, n * 10));
-      
+
       const values: number[] = [];
       tree.forEach((_, value) => values.push(value));
       expect(values).toEqual([10, 20, 30, 40, 50, 60, 70, 80, 90]);

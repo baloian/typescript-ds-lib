@@ -7,6 +7,7 @@ export interface Map<K, V> {
   find(key: K): V | undefined;
   delete(key: K): void;
   remove(key: K): void;
+  forEach(callback: (key: K, value: V) => void): void;
   clear(): void;
   isEmpty(): boolean;
   size(): number;
@@ -46,5 +47,9 @@ export class Map<K, V> implements Map<K, V> {
 
   isEmpty(): boolean {
     return this.rbTree.isEmpty();
+  }
+
+  forEach(callback: (key: K, value: V) => void): void {
+    this.rbTree.forEach(callback);
   }
 }

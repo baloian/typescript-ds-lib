@@ -24,6 +24,7 @@ A binary search tree (BST) implementation in TypeScript that stores values in an
 `min()` - Returns the minimum value stored in the tree.  
 `max()` - Returns the maximum value stored in the tree.  
 `remove(value: T)` - Removes a value from the binary search tree if it exists.  
+`forEach(callback: (element: T) => void, traversal: 'inorder' | 'preorder' | 'postorder' = 'inorder')` - Executes a callback function for each element in the BST.  
 `isEmpty()` - Checks if the binary search tree is empty.  
 `clear()` - Removes all nodes from the binary search tree.  
 `count()` - Returns the total number of nodes in the binary search tree.  

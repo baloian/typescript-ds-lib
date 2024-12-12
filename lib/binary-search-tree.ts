@@ -7,6 +7,7 @@ export interface BinarySearchTree<T> {
   find(element: T): boolean;
   min(): T | undefined;
   max(): T | undefined;
+  forEach(callback: (element: T) => void, traversal?: 'inorder' | 'preorder' | 'postorder'): void;
   isEmpty(): boolean;
   clear(): void;
   count(): number;
@@ -147,6 +148,46 @@ export class BinarySearchTree<T> implements BinarySearchTree<T> {
   private isEqual(a: T, b: T): boolean {
     // Two values are equal if neither is less than the other
     return !this.comparator(a, b) && !this.comparator(b, a);
+  }
+
+  /**
+   * Executes a callback function for each element in the BST in-order traversal
+   */
+  forEach(callback: (element: T) => void, traversal: 'inorder' | 'preorder' | 'postorder' = 'inorder'): void {
+    switch (traversal) {
+      case 'inorder':
+        this.inorderTraversal(this.root, callback);
+        break;
+      case 'preorder':
+        this.preorderTraversal(this.root, callback);
+        break;
+      case 'postorder':
+        this.postorderTraversal(this.root, callback);
+        break;
+      default:
+        this.inorderTraversal(this.root, callback);
+    }
+  }
+
+  private inorderTraversal(node: TreeNode<T> | null, callback: (element: T) => void): void {
+    if (node === null) return;
+    this.inorderTraversal(node.left, callback);
+    callback(node.value);
+    this.inorderTraversal(node.right, callback);
+  }
+
+  private preorderTraversal(node: TreeNode<T> | null, callback: (element: T) => void): void {
+    if (node === null) return;
+    callback(node.value);
+    this.preorderTraversal(node.left, callback);
+    this.preorderTraversal(node.right, callback);
+  }
+
+  private postorderTraversal(node: TreeNode<T> | null, callback: (element: T) => void): void {
+    if (node === null) return;
+    this.postorderTraversal(node.left, callback);
+    this.postorderTraversal(node.right, callback);
+    callback(node.value);
   }
 
   /**

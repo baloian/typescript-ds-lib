@@ -243,6 +243,44 @@ console.log(queue.front());  // 2
 ```
 
 
+# Red-Black Tree
+A self-balancing binary search tree (Red-Black key-value Tree) implementation in TypeScript that maintains balance through color properties and rotation operations, ensuring O(log n) time complexity for basic operations.
+
+## Constructor
+`constructor(comparator: Comparator<K> = (a: K, b: K) => a < b)` - Creates a new red-black tree with the given comparator.
+
+## Methods
+`insert(key: K, value: V)` - Inserts a new key-value pair into the tree while maintaining red-black properties.  
+`remove(key: K)` - Removes a key-value pair from the tree if it exists while maintaining red-black properties.  
+`find(key: K)` - Searches for a key in the tree and returns true if found.  
+`min()` - Returns the minimum value stored in the tree.  
+`max()` - Returns the maximum value stored in the tree.  
+`isEmpty()` - Checks if the tree is empty.  
+`clear()` - Removes all nodes from the tree.  
+`size()` - Returns the total number of nodes in the tree.  
+
+### Example Usage
+```typescript
+import { RedBlackTree } from 'typescript-ds-lib';
+
+const rbt: RedBlackTree<number, string> = new RedBlackTree<number, string>();
+
+rbt.insert(10, "ten");
+rbt.insert(5, "five");
+rbt.insert(15, "fifteen");
+rbt.insert(3, "three");
+rbt.insert(7, "seven");
+
+console.log(rbt.find(5));   // "five"
+console.log(rbt.min());     // "three"
+console.log(rbt.max());     // "fifteen"
+console.log(rbt.size());    // 5
+
+rbt.remove(5);
+console.log(rbt.find(5));   // undefined
+```
+
+
 # Set
 A set implementation in TypeScript that maintains a collection of unique elements, implemented as a red-black tree for efficient operations.
 
@@ -358,41 +396,4 @@ console.log(matrix.size());     // { rows: 3, cols: 3 }
 
 const transposed = matrix.transpose();
 console.log(transposed.get(0, 0));  // 1
-```
-
-# Red-Black Tree
-A self-balancing binary search tree (Red-Black key-value Tree) implementation in TypeScript that maintains balance through color properties and rotation operations, ensuring O(log n) time complexity for basic operations.
-
-## Constructor
-`constructor(comparator: Comparator<K> = (a: K, b: K) => a < b)` - Creates a new red-black tree with the given comparator.
-
-## Methods
-`insert(key: K, value: V)` - Inserts a new key-value pair into the tree while maintaining red-black properties.  
-`remove(key: K)` - Removes a key-value pair from the tree if it exists while maintaining red-black properties.  
-`find(key: K)` - Searches for a key in the tree and returns true if found.  
-`min()` - Returns the minimum value stored in the tree.  
-`max()` - Returns the maximum value stored in the tree.  
-`isEmpty()` - Checks if the tree is empty.  
-`clear()` - Removes all nodes from the tree.  
-`size()` - Returns the total number of nodes in the tree.  
-
-### Example Usage
-```typescript
-import { RedBlackTree } from 'typescript-ds-lib';
-
-const rbt: RedBlackTree<number, string> = new RedBlackTree<number, string>();
-
-rbt.insert(10, "ten");
-rbt.insert(5, "five");
-rbt.insert(15, "fifteen");
-rbt.insert(3, "three");
-rbt.insert(7, "seven");
-
-console.log(rbt.find(5));   // "five"
-console.log(rbt.min());     // "three"
-console.log(rbt.max());     // "fifteen"
-console.log(rbt.size());    // 5
-
-rbt.remove(5);
-console.log(rbt.find(5));   // undefined
 ```

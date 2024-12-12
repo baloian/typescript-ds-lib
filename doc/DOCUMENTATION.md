@@ -302,8 +302,10 @@ A set implementation in TypeScript that maintains a collection of unique element
 
 ## Methods
 `insert(value: T)` - Adds a new element to the set if it doesn't already exist.  
+`insertList(values: T[])` - Adds multiple elements to the set if they don't already exist.  
 `remove(value: T)` - Removes an element from the set if it exists.  
 `find(value: T)` - Checks if an element exists in the set.  
+`forEach(callback: (element: T) => void)` - Executes a callback function for each element in the set.  
 `isEmpty()` - Checks if the set is empty.  
 `clear()` - Removes all elements from the set.  
 `size()` - Returns the number of elements in the set.  

@@ -10,10 +10,12 @@ TypeScript data structure implementations without external dependencies. Why to 
 - Comes with Comparator (for custom types)
 - `hashCode()` and `equals()` are supported
 
+
 ## Install
 ```
 npm install typescript-ds-lib
 ```
+
 
 ## Usage
 ```typescript
@@ -31,6 +33,11 @@ console.log(stack.top());   // 2
 console.log(stack.size());  // 2
 ```
 
+
+## Documentation and Examples
+See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md) for more details and examples.
+
+
 ## Data Structures
 - Stack
 - Queue
@@ -45,9 +52,6 @@ console.log(stack.size());  // 2
 - Matrix
 - Graph (coming soon)
 
-
-## Documentation and Examples
-See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md) for more details and examples.
 
 ## Contributions
 Contributions are welcome and can be made by submitting GitHub pull requests

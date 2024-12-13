@@ -36,8 +36,8 @@ export class HashTable<K, V> implements HashTable<K, V> {
   }
 
   insert(key: K, value: V): void {
-    const index = hashTableHash(key, this.capacity);
-    const newNode = new HashNode(key, value);
+    const index = hashTableHash<K>(key, this.capacity);
+    const newNode = new HashNode<K, V>(key, value);
     if (!this.table[index]) {
       this.table[index] = newNode;
       this.count++;
@@ -45,7 +45,7 @@ export class HashTable<K, V> implements HashTable<K, V> {
     }
     let current = this.table[index];
     while (current) {
-      if (keysEqual(current.key, key)) {
+      if (keysEqual<K>(current.key, key)) {
         current.value = value;
         return;
       }
@@ -59,10 +59,10 @@ export class HashTable<K, V> implements HashTable<K, V> {
   }
 
   get(key: K): V | undefined {
-    const index = hashTableHash(key, this.capacity);
+    const index = hashTableHash<K>(key, this.capacity);
     let current = this.table[index];
     while (current) {
-      if (keysEqual(current.key, key)) {
+      if (keysEqual<K>(current.key, key)) {
         return current.value;
       }
       current = current.next;
@@ -71,11 +71,11 @@ export class HashTable<K, V> implements HashTable<K, V> {
   }
 
   remove(key: K): boolean {
-    const index = hashTableHash(key, this.capacity);
+    const index = hashTableHash<K>(key, this.capacity);
     let current = this.table[index];
     let prev: HashNode<K, V> | null = null;
     while (current) {
-      if (keysEqual(current.key, key)) {
+      if (keysEqual<K>(current.key, key)) {
         if (prev) {
           prev.next = current.next;
         } else {

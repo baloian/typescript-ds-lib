@@ -1,42 +1,46 @@
-export function hashTableHash<K>(key: K, capacity: number): number {
-  if (typeof (key as any).hashCode === 'function') {
-    return (key as any).hashCode();
-  }
-
+function valueToString<V>(value: V): string {
   let stringKey: string;
-  switch (typeof key) {
+  switch (typeof value) {
     case 'number':
-      // If the number is a safe integer, use Knuth's multiplicative method.
-      if (Number.isSafeInteger(key)) {
-        const knuthConstant = 2654435761;
-        return (Math.abs(key * knuthConstant) >>> 0) % capacity;
-      }
-      stringKey = key.toString();
+      stringKey = value.toString();
       break;
     case 'object':
-      if (key === null) {
+      if (value === null) {
         stringKey = 'null';
-      } else if (typeof (key as any).toString === 'function') {
-        stringKey = (key as any).toString();
+      } else if (typeof (value as any).toString === 'function') {
+        stringKey = (value as any).toString();
       } else {
-        stringKey = JSON.stringify(key);
+        stringKey = JSON.stringify(value);
       }
       break;
     case 'string':
-      stringKey = key;
+      stringKey = value;
       break;
     case 'function':
-      stringKey = key.toString();
+      stringKey = value.toString();
       break;
     case 'symbol':
-      stringKey = key.toString();
+      stringKey = value.toString();
       break;
     case 'undefined':
       stringKey = 'null';
       break;
     default:
-      stringKey = String(key);
+      stringKey = String(value);
   }
+  return stringKey;
+}
+
+
+export function hashTableHash<K>(key: K, capacity: number): number {
+  if (typeof (key as any).hashCode === 'function') {
+    return (key as any).hashCode();
+  }
+  if (typeof key === 'number' && Number.isSafeInteger(key)) {
+    const knuthConstant = 2654435761;
+    return (Math.abs(key * knuthConstant) >>> 0) % capacity;
+  }
+  const stringKey: string = valueToString<K>(key);
   let hash = 0;
   // DJB2 hash algorithm
   for (let i = 0; i < stringKey.length; i++) {

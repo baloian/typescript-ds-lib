@@ -30,9 +30,10 @@ export class HashTable<K, V> implements HashTable<K, V> {
   private readonly capacity: number;
 
   constructor(capacity: number = 32) {
-    this.table = new Array(capacity).fill(null);
+    // Handle negative or zero capacity by using default capacity
+    this.capacity = capacity <= 0 ? 32 : capacity;
+    this.table = new Array(this.capacity).fill(null);
     this.count = 0;
-    this.capacity = capacity;
   }
 
   insert(key: K, value: V): void {

@@ -43,6 +43,7 @@ console.log(stack.size());  // 2
 - Map
 - Hash Table
 - Matrix
+- Graph (coming soon)
 
 
 ## Documentation and Examples

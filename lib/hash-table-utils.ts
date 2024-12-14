@@ -1,14 +1,13 @@
 export class HashTableUtils {
   private static valueToString<V>(value: V): string {
+    if (value === null || value === undefined) return 'null';
     let stringKey: string;
     switch (typeof value) {
       case 'number':
         stringKey = value.toString();
         break;
       case 'object':
-        if (value === null) {
-          stringKey = 'null';
-        } else if (typeof (value as any).toString === 'function') {
+        if (typeof (value as any).toString === 'function') {
           stringKey = (value as any).toString();
         } else {
           stringKey = JSON.stringify(value);
@@ -23,9 +22,6 @@ export class HashTableUtils {
       case 'symbol':
         stringKey = value.toString();
         break;
-      case 'undefined':
-        stringKey = 'null';
-        break;
       default:
         stringKey = String(value);
     }
@@ -33,7 +29,7 @@ export class HashTableUtils {
   }
 
   static hash<K>(key: K, capacity: number): number {
-    if (typeof (key as any).hashCode === 'function') {
+    if (key && typeof (key as any).hashCode === 'function') {
       return (key as any).hashCode();
     }
     if (typeof key === 'number' && Number.isSafeInteger(key)) {
@@ -51,17 +47,15 @@ export class HashTableUtils {
   }
 
   static keysEqual<K>(key1: K, key2: K): boolean {
-    // Check if keys have equals method and use it for comparison
-    if (typeof (key1 as any).equals === 'function') {
+    if (key1 && key2 && typeof (key1 as any).equals === 'function') {
       return (key1 as any).equals(key2);
     }
     if (key1 === key2) return true;
-    if (key1 == null || key2 == null) return false;
-
-    if (typeof key1 !== 'object' && typeof key2 !== 'object') {
-      return key1 === key2;
-    }
+    if (typeof key1 === 'number' && typeof key2 === 'number' && isNaN(key1) && isNaN(key2)) return true;
+    if (typeof key1 !== 'object' && typeof key2 !== 'object') return key1 === key2;
     if (key1 instanceof Date && key2 instanceof Date) {
+      // Handle invalid dates
+      if (isNaN(key1.getTime()) && isNaN(key2.getTime())) return true;
       return key1.getTime() === key2.getTime();
     }
     if (key1 instanceof RegExp && key2 instanceof RegExp) {
@@ -71,6 +65,10 @@ export class HashTableUtils {
       return key1.length === key2.length &&
         key1.every((val, idx) => HashTableUtils.keysEqual(val, key2[idx]));
     }
+    if (key1 === null && key2 === null) return true;
+    if (key1 === undefined && key2 === undefined) return true;
+    if (key1 === null || key1 === undefined || key2 === null || key2 === undefined) return false;
+
     if (typeof key1 === 'object' && typeof key2 === 'object') {
       const keys1 = Object.keys(key1);
       const keys2 = Object.keys(key2);

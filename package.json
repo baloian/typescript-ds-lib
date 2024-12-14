@@ -26,5 +26,21 @@
     "@types/node": "^22.10.1",
     "ts-jest": "^29.2.5",
     "typescript": "^5.7.2"
-  }
+  },
+  "keywords": [
+    "typescript",
+    "data-structures",
+    "algorithms",
+    "binary-search-tree",
+    "linked-list",
+    "hash-table",
+    "queue",
+    "stack",
+    "deque",
+    "priority-queue",
+    "red-black-tree",
+    "set",
+    "map",
+    "matrix"
+  ]
 }

@@ -39,24 +39,29 @@ export class HashTable<K, V> implements HashTable<K, V> {
   insert(key: K, value: V): void {
     const index = HashTableUtils.hash<K>(key, this.capacity);
     const newNode = new HashNode<K, V>(key, value);
+    // Handle empty bucket case
     if (!this.table[index]) {
       this.table[index] = newNode;
       this.count++;
       return;
     }
-    let current = this.table[index];
-    while (current) {
-      if (HashTableUtils.keysEqual<K>(current.key, key)) {
-        current.value = value;
-        return;
-      }
-      if (!current.next) {
-        current.next = newNode;
-        this.count++;
+    // Check first node for key match
+    if (HashTableUtils.keysEqual<K>(this.table[index]!.key, key)) {
+      this.table[index]!.value = value;
+      return;
+    }
+    // Traverse chain to find key or last node
+    let current = this.table[index]!;
+    while (current.next) {
+      if (HashTableUtils.keysEqual<K>(current.next.key, key)) {
+        current.next.value = value;
         return;
       }
       current = current.next;
     }
+    // Key not found, append new node
+    current.next = newNode;
+    this.count++;
   }
 
   get(key: K): V | undefined {

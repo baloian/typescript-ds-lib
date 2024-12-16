@@ -14,7 +14,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "prepare": "npm run build",
-    "test": "rm -rf dist && tsc && jest"
+    "test": "rm -rf dist && tsc && jest",
+    "benchmark": "ts-node benchmarks/run.ts"
   },
   "repository": {
     "type": "git",

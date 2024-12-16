@@ -28,6 +28,16 @@ export class HashTableUtils {
     return stringKey;
   }
 
+  static hashFunction(str: string): number {
+    // DJB2a hash algorithm. See: http://www.cse.yorku.ca/~oz/hash.html
+    let hash = 5381;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
+    }
+    // Convert the hash to an unsigned 32-bit integer to match C's unsigned long.
+    return hash >>> 0;
+  }
+
   static hash<K>(key: K, capacity: number): number {
     if (key && typeof (key as any).hashCode === 'function') {
       return (key as any).hashCode();
@@ -37,13 +47,7 @@ export class HashTableUtils {
       return (Math.abs(key * knuthConstant) >>> 0) % capacity;
     }
     const stringKey: string = this.valueToString<K>(key);
-    let hash = 0;
-    // DJB2 hash algorithm
-    for (let i = 0; i < stringKey.length; i++) {
-      hash = ((hash << 5) + hash) + stringKey.charCodeAt(i);
-      hash = hash >>> 0; // Convert to 32-bit unsigned integer
-    }
-    return hash % capacity;
+    return this.hashFunction(stringKey) % capacity;
   }
 
   static keysEqual<K>(key1: K, key2: K): boolean {

@@ -32,8 +32,8 @@ export class HashTableUtils {
     // DJB2a (variant using xor rather than +) hash algorithm.
     // See: http://www.cse.yorku.ca/~oz/hash.html
     let hash = 5381;
-    for (let i = 0; i < str.length; i++) {
-      hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
+    for (const char of str) {
+      hash = ((hash << 5) + hash) ^ char.charCodeAt(0);
     }
     // Convert the hash to an unsigned 32-bit integer to match C's unsigned long.
     return hash >>> 0;

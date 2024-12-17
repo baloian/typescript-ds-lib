@@ -28,22 +28,41 @@ export class HashTableUtils {
     return stringKey;
   }
 
+  // Thomas Wang, Integer Hash Functions.
+  static wangHash32(key: number): number {
+    key = key >>> 0;
+    key = ~key + (key << 15);
+    key = key ^ (key >>> 12);
+    key = key + (key << 2);
+    key = key ^ (key >>> 4);
+    // Ensure multiplication wraps to 32 bits
+    key = ((key << 11) + (key << 3) + key) >>> 0;
+    key = key ^ (key >>> 16);
+    return key >>> 0;
+  }
+
+  /*
+   * DJB2a (variant using xor rather than +) hash algorithm.
+   * See: http://www.cse.yorku.ca/~oz/hash.html
+   */
+  static hashFunction(str: string): number {
+    let hash = 5381;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
+    }
+    // Convert the hash to an unsigned 32-bit integer to match C's unsigned long.
+    return hash >>> 0;
+  }
+
   static hash<K>(key: K, capacity: number): number {
     if (key && typeof (key as any).hashCode === 'function') {
       return (key as any).hashCode();
     }
     if (typeof key === 'number' && Number.isSafeInteger(key)) {
-      const knuthConstant = 2654435761;
-      return (Math.abs(key * knuthConstant) >>> 0) % capacity;
+      return HashTableUtils.wangHash32(key) % capacity;
     }
     const stringKey: string = this.valueToString<K>(key);
-    let hash = 0;
-    // DJB2 hash algorithm
-    for (let i = 0; i < stringKey.length; i++) {
-      hash = ((hash << 5) + hash) + stringKey.charCodeAt(i);
-      hash = hash >>> 0; // Convert to 32-bit unsigned integer
-    }
-    return hash % capacity;
+    return this.hashFunction(stringKey) % capacity;
   }
 
   static keysEqual<K>(key1: K, key2: K): boolean {

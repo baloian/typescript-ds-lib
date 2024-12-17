@@ -48,10 +48,11 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 - Deque
 - Set
 - Map
-- Hash Table
+- Hash Table (unordered map)
 - Matrix
 - Graph (coming soon)
 
+**Note:** The `Map` data structure is implemented as a Red-Black Tree and the `Set` data structure is implemented as a Binary Search Tree.
 
 ## Contributions
 Contributions are welcome and can be made by submitting GitHub pull requests

@@ -29,34 +29,38 @@ export class HashTable<K, V> implements HashTable<K, V> {
   private count: number;
   private readonly capacity: number;
 
-  constructor(capacity: number = 32) {
+  constructor(capacity: number = 4096) {
     // Handle negative or zero capacity by using default capacity
-    this.capacity = capacity <= 0 ? 32 : capacity;
+    this.capacity = capacity <= 0 ? 4096 : capacity;
     this.table = new Array(this.capacity).fill(null);
     this.count = 0;
   }
 
   insert(key: K, value: V): void {
-    const index = HashTableUtils.hash<K>(key, this.capacity);
-    const newNode = new HashNode<K, V>(key, value);
+    const index: number = HashTableUtils.hash<K>(key, this.capacity);
+    // Handle empty bucket case.
     if (!this.table[index]) {
-      this.table[index] = newNode;
+      this.table[index] = new HashNode<K, V>(key, value);
       this.count++;
       return;
     }
+    // Check first node for key match. If it matches, update the value.
+    if (HashTableUtils.keysEqual<K>(this.table[index]!.key, key)) {
+      this.table[index]!.value = value;
+      return;
+    }
+    // Traverse chain to find key or last node. If it matches, update the value.
     let current = this.table[index];
-    while (current) {
-      if (HashTableUtils.keysEqual<K>(current.key, key)) {
-        current.value = value;
-        return;
-      }
-      if (!current.next) {
-        current.next = newNode;
-        this.count++;
+    while (current.next) {
+      if (HashTableUtils.keysEqual<K>(current.next.key, key)) {
+        current.next.value = value;
         return;
       }
       current = current.next;
     }
+    // Key not found, append new node.
+    current.next = new HashNode<K, V>(key, value);
+    this.count++;
   }
 
   get(key: K): V | undefined {

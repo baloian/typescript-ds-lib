@@ -66,10 +66,10 @@ export class HashTableUtils {
   }
 
   static keysEqual<K>(key1: K, key2: K): boolean {
-    if (key1 === key2) return true;
     if (key1 && key2 && typeof (key1 as any).equals === 'function') {
       return (key1 as any).equals(key2);
     }
+    if (key1 === key2) return true;
     if (typeof key1 === 'number' && typeof key2 === 'number' && isNaN(key1) && isNaN(key2)) return true;
     if (typeof key1 !== 'object' && typeof key2 !== 'object') return key1 === key2;
     if (key1 instanceof Date && key2 instanceof Date) {

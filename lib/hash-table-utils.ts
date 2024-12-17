@@ -41,9 +41,11 @@ export class HashTableUtils {
     return key >>> 0;
   }
 
+  /*
+   * DJB2a (variant using xor rather than +) hash algorithm.
+   * See: http://www.cse.yorku.ca/~oz/hash.html
+   */
   static hashFunction(str: string): number {
-    // DJB2a (variant using xor rather than +) hash algorithm.
-    // See: http://www.cse.yorku.ca/~oz/hash.html
     let hash = 5381;
     for (const char of str) {
       hash = ((hash << 5) + hash) ^ char.charCodeAt(0);

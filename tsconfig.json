@@ -13,6 +13,7 @@
     "lib": ["ES2022"]
   },
   "exclude": [
+    "benchmarks",
     "dist",
     "node_modules",
     "doc",

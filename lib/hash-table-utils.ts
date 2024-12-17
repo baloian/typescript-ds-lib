@@ -47,8 +47,8 @@ export class HashTableUtils {
    */
   static hashFunction(str: string): number {
     let hash = 5381;
-    for (const char of str) {
-      hash = ((hash << 5) + hash) ^ char.charCodeAt(0);
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
     }
     // Convert the hash to an unsigned 32-bit integer to match C's unsigned long.
     return hash >>> 0;

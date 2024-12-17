@@ -36,7 +36,7 @@ export class HashTableUtils {
     key = key + (key << 2);
     key = key ^ (key >>> 4);
     // Ensure multiplication wraps to 32 bits
-    key = (key * 2057) >>> 0;
+    key = ((key << 11) + (key << 3) + key) >>> 0;
     key = key ^ (key >>> 16);
     return key >>> 0;
   }

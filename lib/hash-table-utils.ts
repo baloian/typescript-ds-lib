@@ -28,6 +28,19 @@ export class HashTableUtils {
     return stringKey;
   }
 
+  // Thomas Wang, Integer Hash Functions.
+  static wangHash32(key: number): number {
+    key = key >>> 0;
+    key = ~key + (key << 15);
+    key = key ^ (key >>> 12);
+    key = key + (key << 2);
+    key = key ^ (key >>> 4);
+    // Ensure multiplication wraps to 32 bits
+    key = (key * 2057) >>> 0;
+    key = key ^ (key >>> 16);
+    return key >>> 0;
+  }
+
   static hashFunction(str: string): number {
     // DJB2a (variant using xor rather than +) hash algorithm.
     // See: http://www.cse.yorku.ca/~oz/hash.html
@@ -44,8 +57,7 @@ export class HashTableUtils {
       return (key as any).hashCode();
     }
     if (typeof key === 'number' && Number.isSafeInteger(key)) {
-      const knuthConstant = 2654435761;
-      return (Math.abs(key * knuthConstant) >>> 0) % capacity;
+      return HashTableUtils.wangHash32(key) % capacity;
     }
     const stringKey: string = this.valueToString<K>(key);
     return this.hashFunction(stringKey) % capacity;

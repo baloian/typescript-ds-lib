@@ -38,10 +38,9 @@ export class HashTable<K, V> implements HashTable<K, V> {
 
   insert(key: K, value: V): void {
     const index = HashTableUtils.hash<K>(key, this.capacity);
-    const newNode = new HashNode<K, V>(key, value);
     // Handle empty bucket case
     if (!this.table[index]) {
-      this.table[index] = newNode;
+      this.table[index] = new HashNode<K, V>(key, value);
       this.count++;
       return;
     }
@@ -60,7 +59,7 @@ export class HashTable<K, V> implements HashTable<K, V> {
       current = current.next;
     }
     // Key not found, append new node
-    current.next = newNode;
+    current.next = new HashNode<K, V>(key, value);
     this.count++;
   }
 

@@ -46,8 +46,8 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 - Binary Search Tree
 - Red-Black Tree
 - Deque
-- Set
-- Map
+- Set (implemented as a Binary Search Tree)
+- Map (implemented as a Red-Black Tree)
 - Hash Table
 - Matrix
 - Graph (coming soon)

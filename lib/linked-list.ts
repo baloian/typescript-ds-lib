@@ -59,7 +59,7 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
    * Adds an element to the end of the list
    */
   pushBack(element: T): void {
-    const newNode = new Node(element);
+    const newNode: Node<T> = new Node(element);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
@@ -74,7 +74,7 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
    * Adds an element to the front of the list
    */
   pushFront(element: T): void {
-    const newNode = new Node(element);
+    const newNode: Node<T> = new Node(element);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
@@ -99,9 +99,9 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
       this.length = 0;
       return value;
     }
-    let current = this.head;
-    while (current.next !== this.tail) {
-      current = current.next!;
+    let current: Node<T> | null = this.head;
+    while (current?.next !== this.tail) {
+      current = current!.next;
     }
     const value = this.tail!.value;
     current.next = null;
@@ -141,8 +141,8 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
       this.pushBack(element);
       return true;
     }
-    const newNode = new Node(element);
-    let current = this.head;
+    const newNode: Node<T> = new Node(element);
+    let current: Node<T> | null = this.head;
     let prev: Node<T> | null = null;
     let index: number = 0;
     while (index < position) {
@@ -167,10 +167,10 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
       this.pushFront(element);
       return true;
     }
-    let current = this.head;
-    while (current.next !== null) {
+    let current: Node<T> | null = this.head;
+    while (current?.next !== null) {
       if (condition(current.next.value)) {
-        const newNode = new Node(element);
+        const newNode: Node<T> = new Node(element);
         newNode.next = current.next;
         current.next = newNode;
         this.length++;
@@ -185,10 +185,10 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
    * Inserts an element after the first element that satisfies the condition. Returns true if successful, false if no matching element found
    */
   insertAfter(element: T, condition: (element: T) => boolean): boolean {
-    let current = this.head;
+    let current: Node<T> | null = this.head;
     while (current !== null) {
       if (condition(current.value)) {
-        const newNode = new Node(element);
+        const newNode: Node<T> = new Node(element);
         newNode.next = current.next;
         current.next = newNode;
         if (current === this.tail) {
@@ -222,7 +222,7 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
         return true;
       }
       prev = current;
-      current = current.next;
+      current = current!.next;
     }
     return false;
   }
@@ -263,7 +263,7 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
    * Executes a provided function once for each element in the list
    */
   forEach(callback: (element: T) => void): void {
-    let current = this.head;
+    let current: Node<T> | null = this.head;
     while (current !== null) {
       callback(current.value);
       current = current.next;

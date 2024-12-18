@@ -1,5 +1,6 @@
 import { Comparator } from '../types';
 import { BinarySearchTree } from './binary-search-tree';
+import { BaseCollection } from './base-collection';
 
 
 export interface Set<T> {
@@ -8,16 +9,14 @@ export interface Set<T> {
   remove(element: T): void;
   find(element: T): boolean;
   forEach(callback: (element: T) => void): void;
-  isEmpty(): boolean;
-  size(): number;
-  clear(): void;
 }
 
 
-export class Set<T> implements Set<T> {
+export class Set<T> extends BaseCollection<T> implements Set<T> {
   private bst: BinarySearchTree<T>;
 
   constructor(comparator: Comparator<T> = (a: T, b: T) => a < b) {
+    super();
     this.bst = new BinarySearchTree<T>(comparator);
   }
 

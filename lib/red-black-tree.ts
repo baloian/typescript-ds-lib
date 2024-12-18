@@ -1,4 +1,5 @@
 import { Comparator } from '../types';
+import { BaseCollection } from './base-collection';
 
 
 export interface RedBlackTree<K, V> {
@@ -8,9 +9,6 @@ export interface RedBlackTree<K, V> {
   min(): V | undefined;
   max(): V | undefined;
   forEach(callback: (key: K, value: V) => void): void;
-  isEmpty(): boolean;
-  size(): number;
-  clear(): void;
 }
 
 
@@ -39,12 +37,13 @@ class RBNode<K, V> {
 }
 
 
-export class RedBlackTree<K, V> implements RedBlackTree<K, V> {
+export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTree<K, V> {
   private root: RBNode<K, V> | null;
   private nodeCount: number;
   private comparator: Comparator<K>;
 
   constructor(comparator: Comparator<K> = (a: K, b: K) => a < b) {
+    super();
     this.root = null;
     this.nodeCount = 0;
     this.comparator = comparator;

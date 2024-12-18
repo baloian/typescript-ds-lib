@@ -1,3 +1,4 @@
+import { BaseCollection } from "./base-collection";
 import { LinkedList } from "./linked-list";
 
 
@@ -5,14 +6,16 @@ export interface Stack<T> {
   push(element: T): void;
   pop(): T | undefined;
   top(): T | undefined;
-  isEmpty(): boolean;
-  size(): number;
-  clear(): void;
 }
 
 
-export class Stack<T> implements Stack<T> {
-  private llData: LinkedList<T> = new LinkedList<T>();
+export class Stack<T> extends BaseCollection<T> implements Stack<T> {
+  private llData: LinkedList<T>;
+
+  constructor() {
+    super();
+    this.llData = new LinkedList<T>();
+  }
 
   /**
    * Adds an element to the top of the stack.

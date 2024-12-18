@@ -2,6 +2,7 @@ export * from './types';
 export { BinarySearchTree } from './lib/binary-search-tree';
 export { Deque } from './lib/deque';
 export { HashTable } from './lib/hash-table';
+export { Heap } from './lib/heap';
 export { LinkedList } from './lib/linked-list';
 export { Map } from './lib/map';
 export { Matrix } from './lib/matrix';

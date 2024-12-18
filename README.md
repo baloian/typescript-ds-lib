@@ -9,6 +9,7 @@ TypeScript data structure implementations without external dependencies. Why to 
 - Lightweight
 - Comes with Comparator (for custom types)
 - `hashCode()` and `equals()` are supported
+- Well documented
 
 
 ## Install

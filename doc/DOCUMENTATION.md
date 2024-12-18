@@ -3,6 +3,7 @@ This library provides a collection of commonly used data structures implemented 
 - [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#binary-search-tree)
 - [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#deque)
 - [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#hash-table)
+- [Heap](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#heap)
 - [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#linked-list)
 - [Map](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#map)
 - [Matrix](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#matrix)  
@@ -115,6 +116,21 @@ console.log(hashTable.size());         // 3
 
 hashTable.remove("one");
 ```
+
+
+# Heap
+A heap implementation in TypeScript that maintains elements in a heap structure, where each element has a priority value determining its position in the heap.
+
+## Constructor
+`constructor(comparator: Comparator<T> = (a: T, b: T) => a < b)` - Creates a new heap with the given comparator.
+
+## Methods
+`push(value: T)` - Adds an element to the heap.  
+`pop()` - Removes and returns the element with the highest priority.  
+`top()` - Returns the element with the highest priority without removing it.  
+`isEmpty()` - Checks if the heap is empty.  
+`clear()` - Removes all elements from the heap.  
+`size()` - Returns the number of elements in the heap.  
 
 
 # Linked List

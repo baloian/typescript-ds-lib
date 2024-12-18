@@ -39,17 +39,18 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 
 
 ## Data Structures
-- Stack
-- Queue
-- Priority Queue
-- Linked List
 - Binary Search Tree
-- Red-Black Tree
 - Deque
-- Set
-- Map
 - Hash Table (unordered map)
+- Heap
+- Linked List
+- Map
 - Matrix
+- Priority Queue
+- Queue
+- Red-Black Tree
+- Set
+- Stack
 - Graph (coming soon)
 
 **Note:** The `Map` data structure is implemented as a Red-Black Tree and the `Set` data structure is implemented as a Binary Search Tree.

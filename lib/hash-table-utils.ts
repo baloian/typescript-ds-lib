@@ -46,7 +46,7 @@ export class HashTableUtils {
    * See: http://www.cse.yorku.ca/~oz/hash.html
    */
   static hashFunction(str: string): number {
-    let hash = 5381;
+    let hash: number = 5381;
     for (let i = 0; i < str.length; i++) {
       hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
     }

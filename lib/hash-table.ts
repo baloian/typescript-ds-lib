@@ -50,8 +50,8 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
       return;
     }
     // Traverse chain to find key or last node. If it matches, update the value.
-    let current = this.table[index];
-    while (current.next) {
+    let current: HashNode<K, V> | null = this.table[index];
+    while (current?.next) {
       if (HashTableUtils.keysEqual<K>(current.next.key, key)) {
         current.next.value = value;
         return;
@@ -64,8 +64,8 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
   }
 
   get(key: K): V | undefined {
-    const index = HashTableUtils.hash<K>(key, this.capacity);
-    let current = this.table[index];
+    const index: number = HashTableUtils.hash<K>(key, this.capacity);
+    let current: HashNode<K, V> | null = this.table[index];
     while (current) {
       if (HashTableUtils.keysEqual<K>(current.key, key)) {
         return current.value;
@@ -76,8 +76,8 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
   }
 
   remove(key: K): boolean {
-    const index = HashTableUtils.hash<K>(key, this.capacity);
-    let current = this.table[index];
+    const index: number = HashTableUtils.hash<K>(key, this.capacity);
+    let current: HashNode<K, V> | null = this.table[index];
     let prev: HashNode<K, V> | null = null;
     while (current) {
       if (HashTableUtils.keysEqual<K>(current.key, key)) {
@@ -97,7 +97,7 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
 
   forEach(callback: (key: K, value: V) => void): void {
     for (const node of this.table) {
-      let current = node;
+      let current: HashNode<K, V> | null = node;
       while (current) {
         callback(current.key, current.value);
         current = current.next;

@@ -89,7 +89,7 @@ A hash table implementation in TypeScript that provides efficient key-value pair
 
 
 ## Constructor
-`constructor(capacity: number = 32)` - Creates a new hash table with the specified capacity.
+`constructor(capacity: number = 4096)` - Creates a new hash table with the specified capacity.
 
 ## Methods
 `insert(key: K, value: V)` - Inserts or updates a key-value pair in the hash table.  

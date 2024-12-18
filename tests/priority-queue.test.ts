@@ -2,130 +2,241 @@ import { PriorityQueue } from '../lib/priority-queue';
 
 describe('PriorityQueue', () => {
   let pq: PriorityQueue<string>;
+  let numPq: PriorityQueue<number>;
 
   beforeEach(() => {
-    pq = new PriorityQueue<string>();
+    pq = new PriorityQueue<string>((a: string, b: string) => a < b);
+    numPq = new PriorityQueue<number>((a: number, b: number) => a < b);
   });
 
-  test('should create empty priority queue', () => {
-    expect(pq.isEmpty()).toBe(true);
-    expect(pq.size()).toBe(0);
+  describe('initialization', () => {
+    test('should create empty priority queue', () => {
+      expect(pq.isEmpty()).toBe(true);
+      expect(pq.size()).toBe(0);
+      expect(numPq.isEmpty()).toBe(true);
+      expect(numPq.size()).toBe(0);
+    });
   });
 
-  test('should push elements with priority', () => {
-    pq.push('low', 1);
-    pq.push('high', 3); 
-    pq.push('medium', 2);
-    expect(pq.size()).toBe(3);
-    expect(pq.front()).toBe('high');
+  describe('push operations', () => {
+    test('should push string elements', () => {
+      pq.push('first');
+      pq.push('second');
+      pq.push('third');
+      expect(pq.size()).toBe(3);
+      expect(pq.front()).toBe('first');
+    });
+
+    test('should push number elements', () => {
+      numPq.push(3);
+      numPq.push(1);
+      numPq.push(2);
+      expect(numPq.size()).toBe(3);
+      expect(numPq.front()).toBe(1);
+    });
+
+    test('should maintain order when pushing strings', () => {
+      pq.push('c');
+      pq.push('a');
+      pq.push('b');
+      expect(pq.pop()).toBe('a');
+      expect(pq.pop()).toBe('b');
+      expect(pq.pop()).toBe('c');
+    });
+
+    test('should maintain order when pushing numbers', () => {
+      numPq.push(30);
+      numPq.push(10);
+      numPq.push(20);
+      expect(numPq.pop()).toBe(10);
+      expect(numPq.pop()).toBe(20);
+      expect(numPq.pop()).toBe(30);
+    });
   });
 
-  test('should maintain priority order when pushing', () => {
-    pq.push('third', 1);
-    pq.push('first', 3);
-    pq.push('second', 2);
-    expect(pq.pop()).toBe('first');
-    expect(pq.pop()).toBe('second');
-    expect(pq.pop()).toBe('third');
+  describe('pop operations', () => {
+    test('should pop string elements in order', () => {
+      pq.push('c');
+      pq.push('a');
+      pq.push('b');
+      expect(pq.pop()).toBe('a');
+      expect(pq.size()).toBe(2);
+      expect(pq.pop()).toBe('b');
+      expect(pq.pop()).toBe('c');
+      expect(pq.isEmpty()).toBe(true);
+    });
+
+    test('should pop number elements in order', () => {
+      numPq.push(300);
+      numPq.push(100);
+      numPq.push(200);
+      expect(numPq.pop()).toBe(100);
+      expect(numPq.size()).toBe(2);
+      expect(numPq.pop()).toBe(200);
+      expect(numPq.pop()).toBe(300);
+      expect(numPq.isEmpty()).toBe(true);
+    });
+
+    test('should return undefined when popping empty queues', () => {
+      expect(pq.pop()).toBeUndefined();
+      expect(numPq.pop()).toBeUndefined();
+    });
   });
 
-  test('should pop elements in priority order', () => {
-    pq.push('low', 1);
-    pq.push('high', 3);
-    pq.push('medium', 2);
-    expect(pq.pop()).toBe('high');
-    expect(pq.size()).toBe(2);
-    expect(pq.pop()).toBe('medium');
-    expect(pq.pop()).toBe('low');
-    expect(pq.isEmpty()).toBe(true);
+  describe('front operations', () => {
+    test('should return front string element without removing it', () => {
+      pq.push('b');
+      pq.push('a');
+      expect(pq.front()).toBe('a');
+      expect(pq.size()).toBe(2);
+    });
+
+    test('should return front number element without removing it', () => {
+      numPq.push(20);
+      numPq.push(10);
+      expect(numPq.front()).toBe(10);
+      expect(numPq.size()).toBe(2);
+    });
+
+    test('should return undefined when checking front of empty queues', () => {
+      expect(pq.front()).toBeUndefined();
+      expect(numPq.front()).toBeUndefined();
+    });
   });
 
-  test('should return undefined when popping empty queue', () => {
-    expect(pq.pop()).toBeUndefined();
+  describe('clear operations', () => {
+    test('should clear all string elements from queue', () => {
+      pq.push('a');
+      pq.push('b');
+      pq.push('c');
+      pq.clear();
+      expect(pq.isEmpty()).toBe(true);
+      expect(pq.size()).toBe(0);
+    });
+
+    test('should clear all number elements from queue', () => {
+      numPq.push(1);
+      numPq.push(2);
+      numPq.push(3);
+      numPq.clear();
+      expect(numPq.isEmpty()).toBe(true);
+      expect(numPq.size()).toBe(0);
+    });
+
+    test('should handle pushing strings after clearing', () => {
+      pq.push('x');
+      pq.push('y');
+      pq.clear();
+      pq.push('z');
+      expect(pq.size()).toBe(1);
+      expect(pq.front()).toBe('z');
+    });
+
+    test('should handle pushing numbers after clearing', () => {
+      numPq.push(1);
+      numPq.push(2);
+      numPq.clear();
+      numPq.push(3);
+      expect(numPq.size()).toBe(1);
+      expect(numPq.front()).toBe(3);
+    });
   });
 
-  test('should return front element without removing it', () => {
-    pq.push('low', 1);
-    pq.push('high', 3);
-    expect(pq.front()).toBe('high');
-    expect(pq.size()).toBe(2);
+  describe('ordering behavior', () => {
+    test('should handle string elements in order', () => {
+      pq.push('a');
+      pq.push('b');
+      pq.push('c');
+      expect(pq.pop()).toBe('a');
+      expect(pq.pop()).toBe('b');
+      expect(pq.pop()).toBe('c');
+    });
+
+    test('should handle number elements in order', () => {
+      numPq.push(10);
+      numPq.push(20);
+      numPq.push(30);
+      expect(numPq.pop()).toBe(10);
+      expect(numPq.pop()).toBe(20);
+      expect(numPq.pop()).toBe(30);
+    });
+
+    test('should handle mixed string insertions', () => {
+      pq.push('c');
+      pq.push('a');
+      pq.push('b');
+      pq.push('d');
+      pq.push('e');
+      expect(pq.pop()).toBe('a');
+      expect(pq.pop()).toBe('b');
+      expect(pq.pop()).toBe('c');
+      expect(pq.pop()).toBe('d');
+      expect(pq.pop()).toBe('e');
+    });
+
+    test('should handle mixed number insertions', () => {
+      numPq.push(30);
+      numPq.push(10);
+      numPq.push(20);
+      numPq.push(40);
+      numPq.push(50);
+      expect(numPq.pop()).toBe(10);
+      expect(numPq.pop()).toBe(20);
+      expect(numPq.pop()).toBe(30);
+      expect(numPq.pop()).toBe(40);
+      expect(numPq.pop()).toBe(50);
+    });
   });
 
-  test('should return undefined when checking front of empty queue', () => {
-    expect(pq.front()).toBeUndefined();
-  });
-
-  test('should clear all elements from queue', () => {
-    pq.push('low', 1);
-    pq.push('high', 3);
-    pq.push('medium', 2);
-    pq.clear();
-    expect(pq.isEmpty()).toBe(true);
-    expect(pq.size()).toBe(0);
-  });
-
-  test('should handle elements with same priority in FIFO order', () => {
-    pq.push('first', 1);
-    pq.push('second', 1);
-    pq.push('third', 1);
-    expect(pq.pop()).toBe('first');
-    expect(pq.pop()).toBe('second');
-    expect(pq.pop()).toBe('third');
-  });
-
-  test('should handle negative priorities', () => {
-    pq.push('lowest', -2);
-    pq.push('middle', 0);
-    pq.push('highest', 2);
-    expect(pq.pop()).toBe('highest');
-    expect(pq.pop()).toBe('middle');
-    expect(pq.pop()).toBe('lowest');
-  });
-
-  test('should handle mixed priority insertions', () => {
-    pq.push('medium1', 2);
-    pq.push('low1', 1);
-    pq.push('high', 3);
-    pq.push('medium2', 2);
-    pq.push('low2', 1);
-    expect(pq.pop()).toBe('high');
-    expect(pq.pop()).toBe('medium1');
-    expect(pq.pop()).toBe('medium2');
-    expect(pq.pop()).toBe('low1');
-    expect(pq.pop()).toBe('low2');
-  });
-
-  test('should maintain size correctly after operations', () => {
-    expect(pq.size()).toBe(0);
-    pq.push('a', 1);
-    expect(pq.size()).toBe(1);
-    pq.push('b', 2);
-    expect(pq.size()).toBe(2);
-    pq.pop();
-    expect(pq.size()).toBe(1);
-    pq.clear();
-    expect(pq.size()).toBe(0);
-  });
-
-  test('should handle pushing after clearing', () => {
-    pq.push('a', 1);
-    pq.push('b', 2);
-    pq.clear();
-    pq.push('c', 3);
-    expect(pq.size()).toBe(1);
-    expect(pq.front()).toBe('c');
-  });
-
-  test('should handle large number of elements', () => {
-    for (let i = 0; i < 1000; i++) {
-      pq.push(`item${i}`, Math.floor(Math.random() * 100));
-    }
-    let lastPriority = Infinity;
-    let count = 0;
-    while (!pq.isEmpty()) {
-      count++;
+  describe('size management', () => {
+    test('should maintain size correctly after string operations', () => {
+      expect(pq.size()).toBe(0);
+      pq.push('x');
+      expect(pq.size()).toBe(1);
+      pq.push('y');
+      expect(pq.size()).toBe(2);
       pq.pop();
-    }
-    expect(count).toBe(1000);
+      expect(pq.size()).toBe(1);
+      pq.clear();
+      expect(pq.size()).toBe(0);
+    });
+
+    test('should maintain size correctly after number operations', () => {
+      expect(numPq.size()).toBe(0);
+      numPq.push(1);
+      expect(numPq.size()).toBe(1);
+      numPq.push(2);
+      expect(numPq.size()).toBe(2);
+      numPq.pop();
+      expect(numPq.size()).toBe(1);
+      numPq.clear();
+      expect(numPq.size()).toBe(0);
+    });
+  });
+
+  describe('performance', () => {
+    test('should handle large number of string elements', () => {
+      for (let i = 0; i < 1000; i++) {
+        pq.push(`item${i.toString().padStart(4, '0')}`);
+      }
+      let count = 0;
+      while (!pq.isEmpty()) {
+        count++;
+        pq.pop();
+      }
+      expect(count).toBe(1000);
+    });
+
+    test('should handle large number of number elements', () => {
+      for (let i = 0; i < 1000; i++) {
+        numPq.push(i);
+      }
+      let count = 0;
+      while (!numPq.isEmpty()) {
+        count++;
+        numPq.pop();
+      }
+      expect(count).toBe(1000);
+    });
   });
 });

@@ -1,4 +1,4 @@
-import { LinkedList } from './linked-list';
+import { Heap } from './heap';
 import { BaseCollection } from './base-collection';
 
 
@@ -10,61 +10,53 @@ export interface PriorityQueue<T> {
 
 
 export class PriorityQueue<T> extends BaseCollection<T> implements PriorityQueue<T> {
-  private list: LinkedList<{ element: T; priority: number }>;
+  private heap: Heap<T>;
 
-  constructor() {
+  constructor(comparator: (a: T, b: T) => boolean = (a: T, b: T) => a > b) {
     super();
-    this.list = new LinkedList<{ element: T; priority: number }>();
+    this.heap = new Heap<T>(comparator);
   }
 
   /**
    * Adds an element with a priority to the queue.
    * Lower priority numbers have higher precedence.
    */
-  push(element: T, priority: number): void {
-    const item = { element, priority };
-    if (this.list.isEmpty()) {
-      this.list.pushBack(item);
-      return;
-    }
-    if (!this.list.insertBefore(item, (current) => current.priority < priority)) {
-      this.list.pushBack(item);
-    }
+  push(element: T): void {
+    this.heap.push(element);
   }
 
   /**
    * Removes and returns the highest priority element from the queue, or undefined if queue is empty.
    */
   pop(): T | undefined {
-    const item = this.list.popFront();
-    return item?.element;
+    return this.heap.pop();
   }
 
   /**
    * Returns the highest priority element without removing it, or undefined if queue is empty.
    */
   front(): T | undefined {
-    return this.list.front()?.element;
+    return this.heap.top();
   }
 
   /**
    * Checks if the queue is empty. Returns true if empty, false otherwise.
    */
   isEmpty(): boolean {
-    return this.list.isEmpty();
+    return this.heap.isEmpty();
   }
 
   /**
    * Returns the number of elements in the queue.
    */
   size(): number {
-    return this.list.size();
+    return this.heap.size();
   }
 
   /**
    * Removes all elements from the queue.
    */
   clear(): void {
-    this.list.clear();
+    this.heap.clear();
   }
 }

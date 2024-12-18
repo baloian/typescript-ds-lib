@@ -214,10 +214,10 @@ console.log(map.size());           // 2
 A priority queue implementation in TypeScript that maintains elements in a heap structure, where each element has a priority value determining its position in the queue.
 
 ## Constructor
-`constructor()` - Creates a new priority queue.
+`constructor(comparator: Comparator<T> = (a: T, b: T) => a > b)` - Creates a new priority queue with the given comparator .
 
 ## Methods
-`push(value: T, priority: number)` - Adds an element with the specified priority to the queue.  
+`push(value: T)` - Adds an element to the priority queue.  
 `pop()` - Removes and returns the element with the highest priority.  
 `front()` - Returns the highest priority element without removing it.  
 `isEmpty()` - Checks if the priority queue is empty.  
@@ -228,17 +228,17 @@ A priority queue implementation in TypeScript that maintains elements in a heap 
 ```typescript
 import { PriorityQueue } from 'typescript-ds-lib';
 
-const pq: PriorityQueue<string> = new PriorityQueue<string>();
+const pq: PriorityQueue<number> = new PriorityQueue<number>();
 
-pq.push('Task 1', 2);    // Normal priority
-pq.push('Task 2', 3);    // High priority
-pq.push('Task 3', 1);    // Low priority
+pq.push(10);    // Will be third priority
+pq.push(30);    // Will be first priority
+pq.push(20);    // Will be second priority
 
-console.log(pq.front()); // "Task 2" (highest priority)
+console.log(pq.front()); // 30 (highest value has highest priority)
 console.log(pq.size());  // 3
 
-pq.pop();                // Removes "Task 2"
-console.log(pq.front()); // "Task 1" (next highest priority)
+pq.pop();                // Removes 30
+console.log(pq.front()); // 20 (next highest value)
 ```
 
 

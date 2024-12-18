@@ -1,4 +1,5 @@
 import { HashTableUtils } from './hash-table-utils';
+import { BaseCollection } from './base-collection';
 
 
 export interface HashTable<K, V> {
@@ -6,9 +7,6 @@ export interface HashTable<K, V> {
   get(key: K): V | undefined;
   remove(key: K): boolean;
   forEach(callback: (key: K, value: V) => void): void;
-  size(): number;
-  isEmpty(): boolean;
-  clear(): void;
 }
 
 
@@ -25,12 +23,13 @@ class HashNode<K, V> {
 }
 
 
-export class HashTable<K, V> implements HashTable<K, V> {
+export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V> {
   private table: Array<HashNode<K, V> | null>;
   private count: number;
   private readonly capacity: number;
 
   constructor(capacity: number = 4096) {
+    super();
     // Handle negative or zero capacity by using default capacity
     this.capacity = capacity <= 0 ? 4096 : capacity;
     this.table = new Array(this.capacity).fill(null);

@@ -1,4 +1,5 @@
 import { Comparator } from '../types';
+import { BaseCollection } from './base-collection';
 
 
 export interface BinarySearchTree<T> {
@@ -8,8 +9,6 @@ export interface BinarySearchTree<T> {
   min(): T | undefined;
   max(): T | undefined;
   forEach(callback: (element: T) => void, traversal?: 'inorder' | 'preorder' | 'postorder'): void;
-  isEmpty(): boolean;
-  clear(): void;
   count(): number;
 }
 
@@ -27,11 +26,12 @@ class TreeNode<T> {
 }
 
 
-export class BinarySearchTree<T> implements BinarySearchTree<T> {
+export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySearchTree<T> {
   private root: TreeNode<T> | null;
   private comparator: Comparator<T>;
 
   constructor(comparator: Comparator<T> = (a: T, b: T) => a < b) {
+    super();
     this.root = null;
     this.comparator = comparator;
   }
@@ -205,7 +205,15 @@ export class BinarySearchTree<T> implements BinarySearchTree<T> {
   }
 
   /**
-   * Returns the number of nodes in the BST
+   * Returns the number of nodes in the BST.
+   */
+  size(): number {
+    return this.countNodes(this.root);
+  }
+
+  /**
+   * Returns the number of nodes in the BST.
+   * TODO: I should remove this method and use size() instead.
    */
   count(): number {
     return this.countNodes(this.root);

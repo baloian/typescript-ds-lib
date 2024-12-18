@@ -27,7 +27,7 @@ A binary search tree (BST) implementation in TypeScript that stores values in an
 `forEach(callback: (element: T) => void, traversal: 'inorder' | 'preorder' | 'postorder' = 'inorder')` - Executes a callback function for each element in the BST.  
 `isEmpty()` - Checks if the binary search tree is empty.  
 `clear()` - Removes all nodes from the binary search tree.  
-`count()` - Returns the total number of nodes in the binary search tree.  
+`size()` - Returns the total number of nodes in the binary search tree.  
 
 ### Example Usage
 ```typescript

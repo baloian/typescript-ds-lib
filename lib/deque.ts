@@ -1,4 +1,5 @@
 import { LinkedList } from './linked-list';
+import { BaseCollection } from './base-collection';
 
 
 export interface Deque<T> {
@@ -8,16 +9,14 @@ export interface Deque<T> {
   popBack(): T | undefined;
   front(): T | undefined;
   back(): T | undefined;
-  isEmpty(): boolean;
-  size(): number;
-  clear(): void;
 }
 
 
-export class Deque<T> implements Deque<T> {
+export class Deque<T> extends BaseCollection<T> implements Deque<T> {
   private items: LinkedList<T>;
 
   constructor() {
+    super();
     this.items = new LinkedList<T>();
   }
 

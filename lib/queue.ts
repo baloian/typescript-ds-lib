@@ -1,20 +1,19 @@
 import { LinkedList } from './linked-list';
+import { BaseCollection } from './base-collection';
 
 
 export interface Queue<T> {
   push(element: T): void;
   pop(): T | undefined;
   front(): T | undefined;
-  isEmpty(): boolean;
-  size(): number;
-  clear(): void;
 }
 
 
-export class Queue<T> implements Queue<T> {
+export class Queue<T> extends BaseCollection<T> implements Queue<T> {
   private items: LinkedList<T>;
 
   constructor() {
+    super();
     this.items = new LinkedList<T>();
   }
 

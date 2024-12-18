@@ -1,3 +1,6 @@
+import { BaseCollection } from './base-collection';
+
+
 export interface LinkedList<T> {
   pushBack(element: T): void;
   pushFront(element: T): void;
@@ -12,9 +15,6 @@ export interface LinkedList<T> {
   removeAt(position: number): T | undefined;
   forEach(callback: (element: T) => void): void;
   get(position: number): T | undefined;
-  isEmpty(): boolean;
-  size(): number;
-  clear(): void;
 }
 
 
@@ -29,12 +29,13 @@ class Node<T> {
 }
 
 
-export class LinkedList<T> implements LinkedList<T> {
+export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
   private head: Node<T> | null;
   private tail: Node<T> | null;
   private length: number;
 
   constructor() {
+    super();
     this.head = null;
     this.tail = null;
     this.length = 0;

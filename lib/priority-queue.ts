@@ -1,20 +1,19 @@
 import { LinkedList } from './linked-list';
+import { BaseCollection } from './base-collection';
 
 
 export interface PriorityQueue<T> {
   push(element: T, priority: number): void;
   pop(): T | undefined;
   front(): T | undefined;
-  isEmpty(): boolean;
-  size(): number;
-  clear(): void;
 }
 
 
-export class PriorityQueue<T> implements PriorityQueue<T> {
+export class PriorityQueue<T> extends BaseCollection<T> implements PriorityQueue<T> {
   private list: LinkedList<{ element: T; priority: number }>;
 
   constructor() {
+    super();
     this.list = new LinkedList<{ element: T; priority: number }>();
   }
 

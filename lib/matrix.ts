@@ -1,3 +1,6 @@
+import { BaseCollection } from './base-collection';
+
+
 export interface Matrix<T> {
   // Basic operations
   get(row: number, col: number): T | undefined;
@@ -7,12 +10,8 @@ export interface Matrix<T> {
 
   // Bulk operations
   fill(value: T): void;
-  clear(): void;
   resize(rows: number, cols: number): void;
 
-  // State checks
-  isEmpty(): boolean;
-  size(): number;
   isSquare(): boolean;
   isSymmetric(): boolean;
 
@@ -51,12 +50,13 @@ export interface Matrix<T> {
 }
 
 
-export class Matrix<T> implements Matrix<T> {
+export class Matrix<T> extends BaseCollection<T> implements Matrix<T> {
   private data: T[][];
   private numRows: number;
   private numCols: number;
 
   constructor(rows: number, cols: number) {
+    super();
     this.numRows = rows;
     this.numCols = cols;
     this.data = Array(rows).fill(null).map(() => Array(cols).fill(undefined));

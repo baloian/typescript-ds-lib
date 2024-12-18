@@ -1,5 +1,6 @@
 import { Comparator } from '../types';
 import { RedBlackTree } from './red-black-tree';
+import { BaseCollection } from './base-collection';
 
 
 export interface Map<K, V> {
@@ -8,16 +9,14 @@ export interface Map<K, V> {
   delete(key: K): void;
   remove(key: K): void;
   forEach(callback: (key: K, value: V) => void): void;
-  clear(): void;
-  isEmpty(): boolean;
-  size(): number;
 }
 
 
-export class Map<K, V> implements Map<K, V> {
+export class Map<K, V> extends BaseCollection<V> implements Map<K, V> {
   private rbTree: RedBlackTree<K, V>;
 
   constructor(comparator: Comparator<K> = (a: K, b: K) => a < b) {
+    super();
     this.rbTree = new RedBlackTree<K, V>(comparator);
   }
 

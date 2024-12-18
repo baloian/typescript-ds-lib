@@ -50,7 +50,7 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   }
 
   private rotateLeft(node: RBNode<K, V>): void {
-    const rightChild = node.right!;
+    const rightChild: RBNode<K, V> | null = node.right!;
     node.right = rightChild.left;
     if (rightChild.left !== null) {
       rightChild.left.parent = node;
@@ -68,7 +68,7 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   }
 
   private rotateRight(node: RBNode<K, V>): void {
-    const leftChild = node.left!;
+    const leftChild: RBNode<K, V> | null = node.left!;
     node.left = leftChild.right;
     if (leftChild.right !== null) {
       leftChild.right.parent = node;
@@ -88,7 +88,7 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   private fixInsert(node: RBNode<K, V>): void {
     while (node !== this.root && node.parent?.color === Color.RED) {
       if (node.parent === node.parent.parent?.left) {
-        const uncle = node.parent.parent.right;
+        const uncle: RBNode<K, V> | null = node.parent.parent.right;
 
         if (uncle?.color === Color.RED) {
           node.parent.color = Color.BLACK;
@@ -105,7 +105,7 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
           this.rotateRight(node.parent!.parent!);
         }
       } else {
-        const uncle = node.parent.parent?.left;
+        const uncle: RBNode<K, V> | null | undefined = node.parent.parent?.left;
         if (uncle?.color === Color.RED) {
           node.parent.color = Color.BLACK;
           uncle.color = Color.BLACK;
@@ -126,9 +126,9 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   }
 
   insert(key: K, value: V): void {
-    const newNode = new RBNode(key, value);
+    const newNode: RBNode<K, V> = new RBNode(key, value);
     let parent: RBNode<K, V> | null = null;
-    let current = this.root;
+    let current: RBNode<K, V> | null = this.root;
     while (current !== null) {
       parent = current;
       if (this.comparator(key, current.key)) {
@@ -157,7 +157,7 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   }
 
   private findNode(key: K): RBNode<K, V> | null {
-    let current = this.root;
+    let current: RBNode<K, V> | null = this.root;
     while (current !== null) {
       if (this.isEqual(key, current.key)) {
         return current;
@@ -168,13 +168,13 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   }
 
   find(key: K): V | undefined {
-    const node = this.findNode(key);
+    const node: RBNode<K, V> | null = this.findNode(key);
     return node ? node.value : undefined;
   }
 
   private findMinNode(node: RBNode<K, V>): RBNode<K, V> {
-    let current = node;
-    while (current.left !== null) {
+    let current: RBNode<K, V> | null = node;
+    while (current?.left !== null) {
       current = current.left;
     }
     return current;
@@ -186,8 +186,8 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   }
 
   private findMaxNode(node: RBNode<K, V>): RBNode<K, V> {
-    let current = node;
-    while (current.right !== null) {
+    let current: RBNode<K, V> | null = node;
+    while (current?.right !== null) {
       current = current.right;
     }
     return current;
@@ -199,7 +199,7 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   }
 
   remove(key: K): void {
-    const node = this.findNode(key);
+    const node: RBNode<K, V> | null = this.findNode(key);
     if (node) {
       this.nodeCount--;
       this.deleteNode(node);
@@ -208,8 +208,8 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
 
   private deleteNode(node: RBNode<K, V>): void {
     let x: RBNode<K, V> | null;
-    let y = node;
-    let originalColor = y.color;
+    let y: RBNode<K, V> | null = node;
+    let originalColor: Color = y.color;
 
     if (node.left === null) {
       x = node.right;

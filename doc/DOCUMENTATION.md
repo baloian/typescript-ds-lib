@@ -95,9 +95,9 @@ A hash table implementation in TypeScript that provides efficient key-value pair
 `get(key: K)` - Retrieves the value associated with the given key.  
 `remove(key: K)` - Removes a key-value pair from the hash table.  
 `forEach(callback: (key: K, value: V) => void)` - Executes a callback function for each key-value pair in the hash table.  
+`isEmpty()` - Checks if the hash table is empty. 
 `clear()` - Removes all key-value pairs from the hash table.  
 `size()` - Returns the number of key-value pairs in the hash table.  
-`isEmpty()` - Checks if the hash table is empty. 
 
 ### Example Usage
 ```typescript
@@ -170,9 +170,9 @@ A map implementation in TypeScript that maintains key-value pairs in sorted orde
 `find(key: K)` - Retrieves the value associated with the given key.  
 `remove(key: K)` - Removes a key-value pair from the map.  
 `forEach(callback: (key: K, value: V) => void)` - Executes a callback function for each key-value pair in the map.  
+`isEmpty()` - Checks if the map is empty.  
 `clear()` - Removes all key-value pairs from the map.  
 `size()` - Returns the number of key-value pairs in the map.  
-`isEmpty()` - Checks if the map is empty.  
 
 
 ### Example Usage
@@ -376,9 +376,6 @@ A matrix implementation in TypeScript that provides operations for matrix manipu
 `add(matrix: Matrix<T>): Matrix<T>` - Adds another matrix to this matrix and returns the result. Matrices must have same dimensions.  
 `multiply(matrix: Matrix<T>): Matrix<T>` - Multiplies this matrix by another matrix and returns the result. Number of columns in first matrix must equal rows in second.  
 `transpose(): Matrix<T>` - Returns a new matrix that is the transpose of this matrix (rows become columns and vice versa).  
-`isEmpty(): boolean` - Checks if the matrix has zero dimensions (rows or columns is 0).  
-`clear(): void` - Resets all elements in the matrix to undefined.  
-`size(): number` - Returns the total number of elements in the matrix (rows * columns).  
 `fill(value: T): void` - Fills the entire matrix with the given value.  
 `clone(): Matrix<T>` - Returns a deep copy of the matrix with all values copied.  
 `toArray(): T[][]` - Returns a copy of the internal 2D array representation.  
@@ -400,7 +397,10 @@ A matrix implementation in TypeScript that provides operations for matrix manipu
 `isSymmetric(): boolean` - Checks if the matrix is symmetric (equal to its transpose).  
 `scalarMultiply(scalar: number): Matrix<T>` - Multiplies each element in the matrix by a scalar value.  
 `subtract(other: Matrix<T>): Matrix<T>` - Subtracts another matrix from this matrix and returns the result.  
-`equals(other: Matrix<T>): boolean` - Checks if this matrix is equal to another matrix.
+`equals(other: Matrix<T>): boolean` - Checks if this matrix is equal to another matrix.  
+`isEmpty(): boolean` - Checks if the matrix is empty.  
+`clear(): void` - Resets all elements in the matrix to undefined.  
+`size(): number` - Returns the total number of elements in the matrix (rows * columns).  
 
 ### Example Usage
 ```typescript

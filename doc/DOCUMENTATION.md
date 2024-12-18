@@ -5,12 +5,12 @@ This library provides a collection of commonly used data structures implemented 
 - [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#hash-table)
 - [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#linked-list)
 - [Map](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#map)
+- [Matrix](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#matrix)  
 - [Priority Queue](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#priority-queue)
 - [Queue](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#queue)
 - [Red-Black Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#red-black-tree)
 - [Set](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#set)
 - [Stack](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#stack)
-- [Matrix](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#matrix)
 
 # Binary Search Tree
 A binary search tree (BST) implementation in TypeScript that stores values in an ordered tree structure, with smaller values to the left and larger values to the right.

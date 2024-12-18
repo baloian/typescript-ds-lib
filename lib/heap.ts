@@ -33,8 +33,8 @@ export class Heap<T> extends BaseCollection<T> implements Heap<T> {
     if (this.isEmpty()) {
       return undefined;
     }
-    const root = this.items[0];
-    const lastElement = this.items.pop()!;
+    const root: T = this.items[0];
+    const lastElement: T = this.items.pop()!;
     if (!this.isEmpty()) {
       this.items[0] = lastElement;
       this.heapifyDown(0);
@@ -75,7 +75,7 @@ export class Heap<T> extends BaseCollection<T> implements Heap<T> {
    */
   private heapifyUp(index: number): void {
     while (index > 0) {
-      const parentIndex = Math.floor((index - 1) / 2);
+      const parentIndex: number = Math.floor((index - 1) / 2);
       if (this.comparator(this.items[index], this.items[parentIndex])) {
         [this.items[index], this.items[parentIndex]] = 
         [this.items[parentIndex], this.items[index]];
@@ -91,24 +91,20 @@ export class Heap<T> extends BaseCollection<T> implements Heap<T> {
    */
   private heapifyDown(index: number): void {
     while (true) {
-      let smallestIndex = index;
-      const leftChild = 2 * index + 1;
-      const rightChild = 2 * index + 2;
-
+      let smallestIndex: number = index;
+      const leftChild: number = 2 * index + 1;
+      const rightChild: number = 2 * index + 2;
       if (leftChild < this.items.length && 
           this.comparator(this.items[leftChild], this.items[smallestIndex])) {
         smallestIndex = leftChild;
       }
-
       if (rightChild < this.items.length && 
           this.comparator(this.items[rightChild], this.items[smallestIndex])) {
         smallestIndex = rightChild;
       }
-
       if (smallestIndex === index) {
         break;
       }
-
       [this.items[index], this.items[smallestIndex]] = 
       [this.items[smallestIndex], this.items[index]];
       index = smallestIndex;

@@ -1,5 +1,6 @@
 import { Heap } from './heap';
 import { BaseCollection } from './base-collection';
+import { Comparator } from '../types';
 
 
 export interface PriorityQueue<T> {
@@ -12,7 +13,7 @@ export interface PriorityQueue<T> {
 export class PriorityQueue<T> extends BaseCollection<T> implements PriorityQueue<T> {
   private heap: Heap<T>;
 
-  constructor(comparator: (a: T, b: T) => boolean = (a: T, b: T) => a > b) {
+  constructor(comparator: Comparator<T> = (a: T, b: T) => a > b) {
     super();
     this.heap = new Heap<T>(comparator);
   }

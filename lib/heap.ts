@@ -1,3 +1,4 @@
+import { Comparator } from '../types';
 import { BaseCollection } from './base-collection';
 
 
@@ -10,9 +11,9 @@ export interface Heap<T> {
 
 export class Heap<T> extends BaseCollection<T> implements Heap<T> {
   private items: T[];
-  private comparator: (a: T, b: T) => boolean;
+  private comparator: Comparator<T>;
 
-  constructor(comparator: (a: T, b: T) => boolean = (a: T, b: T) => a < b) {
+  constructor(comparator: Comparator<T> = (a: T, b: T) => a < b) {
     super();
     this.items = [];
     this.comparator = comparator;

@@ -94,6 +94,7 @@ A hash table implementation in TypeScript that provides efficient key-value pair
 `insert(key: K, value: V)` - Inserts or updates a key-value pair in the hash table.  
 `get(key: K)` - Retrieves the value associated with the given key.  
 `remove(key: K)` - Removes a key-value pair from the hash table.  
+`forEach(callback: (key: K, value: V) => void)` - Executes a callback function for each key-value pair in the hash table.  
 `clear()` - Removes all key-value pairs from the hash table.  
 `size()` - Returns the number of key-value pairs in the hash table.  
 `isEmpty()` - Checks if the hash table is empty. 

@@ -5,6 +5,7 @@ export interface HashTable<K, V> {
   insert(key: K, value: V): void;
   get(key: K): V | undefined;
   remove(key: K): boolean;
+  forEach(callback: (key: K, value: V) => void): void;
   size(): number;
   isEmpty(): boolean;
   clear(): void;
@@ -93,6 +94,16 @@ export class HashTable<K, V> implements HashTable<K, V> {
       current = current.next;
     }
     return false;
+  }
+
+  forEach(callback: (key: K, value: V) => void): void {
+    for (const node of this.table) {
+      let current = node;
+      while (current) {
+        callback(current.key, current.value);
+        current = current.next;
+      }
+    }
   }
 
   size(): number {

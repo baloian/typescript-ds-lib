@@ -211,4 +211,73 @@ describe('HashTable', () => {
       expect(largeTable.size()).toBe(operations);
     });
   });
+
+  describe('forEach Method', () => {
+    test('should iterate over all entries', () => {
+      const table = new HashTable<string, number>(32);
+      const entries: [string, number][] = [
+        ['a', 1],
+        ['b', 2],
+        ['c', 3]
+      ];
+
+      entries.forEach(([key, value]) => table.insert(key, value));
+
+      const visitedEntries: [string, number][] = [];
+      table.forEach((key, value) => {
+        visitedEntries.push([key, value]);
+      });
+
+      expect(visitedEntries.length).toBe(entries.length);
+      entries.forEach(([key, value]) => {
+        expect(visitedEntries).toContainEqual([key, value]);
+      });
+    });
+
+    test('should handle empty table', () => {
+      const emptyTable = new HashTable<string, number>();
+      const mockCallback = jest.fn();
+
+      emptyTable.forEach(mockCallback);
+      expect(mockCallback).not.toHaveBeenCalled();
+    });
+
+    test('should handle table with collisions', () => {
+      const smallTable = new HashTable<string, number>(32);
+      const entries = [
+        ['a', 1],
+        ['b', 2],
+        ['c', 3],
+        ['d', 4]
+      ];
+
+      entries.forEach(([key, value]) => smallTable.insert(key as string, value as number));
+
+      const visitedEntries: [string, number][] = [];
+      smallTable.forEach((key, value) => {
+        visitedEntries.push([key, value]);
+      });
+
+      expect(visitedEntries.length).toBe(entries.length);
+      entries.forEach(([key, value]) => {
+        expect(visitedEntries).toContainEqual([key, value]);
+      });
+    });
+
+    test('should provide correct this context', () => {
+      const table = new HashTable<string, number>(32);
+      table.insert('a', 1);
+      table.insert('b', 2);
+
+      const context = { multiplier: 2 };
+      const results: number[] = [];
+
+      table.forEach(function(this: typeof context, key: string, value: number) {
+        results.push(value * this.multiplier);
+      }.bind(context));
+
+      expect(results).toContain(2); // 1 * 2
+      expect(results).toContain(4); // 2 * 2
+    });
+  });
 });

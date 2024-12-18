@@ -27,7 +27,7 @@ describe('Heap', () => {
       heap.push(7);
       heap.push(1);
 
-      expect(heap.peek()).toBe(1);
+      expect(heap.top()).toBe(1);
       expect(heap.size()).toBe(4);
     });
 
@@ -77,7 +77,7 @@ describe('Heap', () => {
       heap.clear();
       expect(heap.isEmpty()).toBe(true);
       expect(heap.size()).toBe(0);
-      expect(heap.peek()).toBeUndefined();
+      expect(heap.top()).toBeUndefined();
     });
 
     test('should handle pop on single element heap', () => {
@@ -109,12 +109,12 @@ describe('Heap', () => {
       heap.push(5);
       heap.push(3);
 
-      expect(heap.peek()).toBe(3);
+      expect(heap.top()).toBe(3);
       expect(heap.size()).toBe(2);
     });
 
     test('should return undefined when peeking empty heap', () => {
-      expect(heap.peek()).toBeUndefined();
+      expect(heap.top()).toBeUndefined();
     });
 
     test('should correctly report size after operations', () => {

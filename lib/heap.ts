@@ -4,7 +4,7 @@ import { BaseCollection } from './base-collection';
 export interface Heap<T> {
   push(element: T): void;
   pop(): T | undefined; 
-  peek(): T | undefined;
+  top(): T | undefined;
 }
 
 
@@ -45,7 +45,7 @@ export class Heap<T> extends BaseCollection<T> implements Heap<T> {
   /**
    * Returns the root element without removing it, or undefined if heap is empty.
    */
-  peek(): T | undefined {
+  top(): T | undefined {
     return this.items[0];
   }
 

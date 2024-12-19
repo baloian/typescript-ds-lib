@@ -317,7 +317,7 @@ console.log(rbt.find(5));   // undefined
 A set implementation in TypeScript that maintains a collection of unique elements, implemented as a hash table (modified to only store keys).
 
 ## Constructor
-`constructor(capacity: number = 4096)` - Creates a new set with the given capacity.
+`constructor(capacity: number = 81920)` - Creates a new set with the given capacity.
 
 ## Methods
 `insert(value: T)` - Adds a new element to the set if it doesn't already exist.  

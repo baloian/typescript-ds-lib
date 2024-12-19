@@ -6,7 +6,6 @@ export interface Set<T> {
   insert(element: T): void;
   insertList(elements: T[]): void;
   remove(element: T): boolean;
-  delete(element: T): boolean;
   find(element: T): boolean;
   has(element: T): boolean;
   forEach(callback: (element: T) => void): void;
@@ -107,10 +106,6 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
       current = current.next;
     }
     return false;
-  }
-
-  delete(value: T): boolean {
-    return this.remove(value);
   }
 
   forEach(callback: (element: T) => void): void {

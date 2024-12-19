@@ -314,7 +314,7 @@ console.log(rbt.find(5));   // undefined
 
 
 # Set
-A set implementation in TypeScript that maintains a collection of unique elements, implemented as a red-black tree for efficient operations.
+A set implementation in TypeScript that maintains a collection of unique elements, implemented as a binary search tree for efficient operations.
 
 ## Constructor
 `constructor(comparator: Comparator<T> = (a: T, b: T) => a < b)` - Creates a new set with the given comparator.

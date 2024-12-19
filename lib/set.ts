@@ -7,6 +7,7 @@ export interface Set<T> {
   insertList(elements: T[]): void;
   remove(element: T): void;
   find(element: T): boolean;
+  has(element: T): boolean;
   forEach(callback: (element: T) => void): void;
 }
 
@@ -80,6 +81,10 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
     return false;
   }
 
+  has(value: T): boolean {
+    return this.find(value);
+  }
+
   /**
    * Removes a value from the set.
    */
@@ -99,6 +104,16 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
       }
       prev = current;
       current = current.next;
+    }
+  }
+
+  forEach(callback: (element: T) => void): void {
+    for (const node of this.table) {
+      let current: Node<T> | null = node;
+      while (current) {
+        callback(current.value);
+        current = current.next;
+      }
     }
   }
 

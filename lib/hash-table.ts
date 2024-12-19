@@ -1,4 +1,4 @@
-import { HashTableUtils } from './hash-table-utils';
+import { HashUtils } from './hash-utils';
 import { BaseCollection } from './base-collection';
 
 
@@ -37,7 +37,7 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
   }
 
   insert(key: K, value: V): void {
-    const index: number = HashTableUtils.hash<K>(key, this.capacity);
+    const index: number = HashUtils.hash<K>(key, this.capacity);
     // Handle empty bucket case.
     if (!this.table[index]) {
       this.table[index] = new HashNode<K, V>(key, value);
@@ -45,14 +45,14 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
       return;
     }
     // Check first node for key match. If it matches, update the value.
-    if (HashTableUtils.keysEqual<K>(this.table[index]!.key, key)) {
+    if (HashUtils.equals<K>(this.table[index]!.key, key)) {
       this.table[index]!.value = value;
       return;
     }
     // Traverse chain to find key or last node. If it matches, update the value.
     let current: HashNode<K, V> | null = this.table[index];
     while (current?.next) {
-      if (HashTableUtils.keysEqual<K>(current.next.key, key)) {
+      if (HashUtils.equals<K>(current.next.key, key)) {
         current.next.value = value;
         return;
       }
@@ -64,10 +64,10 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
   }
 
   get(key: K): V | undefined {
-    const index: number = HashTableUtils.hash<K>(key, this.capacity);
+    const index: number = HashUtils.hash<K>(key, this.capacity);
     let current: HashNode<K, V> | null = this.table[index];
     while (current) {
-      if (HashTableUtils.keysEqual<K>(current.key, key)) {
+      if (HashUtils.equals<K>(current.key, key)) {
         return current.value;
       }
       current = current.next;
@@ -76,11 +76,11 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
   }
 
   remove(key: K): boolean {
-    const index: number = HashTableUtils.hash<K>(key, this.capacity);
+    const index: number = HashUtils.hash<K>(key, this.capacity);
     let current: HashNode<K, V> | null = this.table[index];
     let prev: HashNode<K, V> | null = null;
     while (current) {
-      if (HashTableUtils.keysEqual<K>(current.key, key)) {
+      if (HashUtils.equals<K>(current.key, key)) {
         if (prev) {
           prev.next = current.next;
         } else {

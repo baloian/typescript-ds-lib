@@ -1,4 +1,4 @@
-export class HashTableUtils {
+export class HashUtils {
   private static valueToString<V>(value: V): string {
     if (value === null || value === undefined) return 'null';
     let stringKey: string;
@@ -45,7 +45,7 @@ export class HashTableUtils {
    * DJB2a (variant using xor rather than +) hash algorithm.
    * See: http://www.cse.yorku.ca/~oz/hash.html
    */
-  static hashFunction(str: string): number {
+  static djb2aHash(str: string): number {
     let hash: number = 5381;
     for (let i = 0; i < str.length; i++) {
       hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
@@ -59,40 +59,56 @@ export class HashTableUtils {
       return (key as any).hashCode();
     }
     if (typeof key === 'number' && Number.isSafeInteger(key)) {
-      return HashTableUtils.wangHash32(key) % capacity;
+      return HashUtils.wangHash32(key) % capacity;
     }
     const stringKey: string = this.valueToString<K>(key);
-    return this.hashFunction(stringKey) % capacity;
+    return HashUtils.djb2aHash(stringKey) % capacity;
   }
 
-  static keysEqual<K>(key1: K, key2: K): boolean {
-    if (key1 && key2 && typeof (key1 as any).equals === 'function') {
+  static equals<K>(key1: K, key2: K): boolean {
+    if (key1 === key2) return true;
+    if (key1 == null || key2 == null) return key1 === key2;
+
+    // Check for custom equals method
+    if (typeof (key1 as any).equals === 'function') {
       return (key1 as any).equals(key2);
     }
-    if (key1 === key2) return true;
-    if (typeof key1 === 'number' && typeof key2 === 'number' && isNaN(key1) && isNaN(key2)) return true;
-    if (typeof key1 !== 'object' && typeof key2 !== 'object') return key1 === key2;
-    if (key1 instanceof Date && key2 instanceof Date) {
-      // Handle invalid dates
-      if (isNaN(key1.getTime()) && isNaN(key2.getTime())) return true;
-      return key1.getTime() === key2.getTime();
-    }
-    if (key1 instanceof RegExp && key2 instanceof RegExp) {
-      return key1.toString() === key2.toString();
-    }
-    if (Array.isArray(key1) && Array.isArray(key2)) {
-      return key1.length === key2.length &&
-        key1.every((val, idx) => HashTableUtils.keysEqual(val, key2[idx]));
-    }
-    if (key1 === null && key2 === null) return true;
-    if (key1 === undefined && key2 === undefined) return true;
-    if (key1 === null || key1 === undefined || key2 === null || key2 === undefined) return false;
 
+    const type1 = typeof key1;
+    const type2 = typeof key2;
+
+    // Handle primitives
+    if (type1 !== 'object' && type2 !== 'object') {
+      if (type1 === 'number' && type2 === 'number') {
+        return key1 === key2 || (isNaN(key1 as number) && isNaN(key2 as number));
+      }
+      return key1 === key2;
+    }
+
+    // Handle special object types
+    if (key1 instanceof Date) {
+      return key2 instanceof Date &&
+        (key1.getTime() === key2.getTime() || (isNaN(key1.getTime()) && isNaN(key2.getTime())));
+    }
+
+    if (key1 instanceof RegExp) {
+      return key2 instanceof RegExp && key1.toString() === key2.toString();
+    }
+
+    if (Array.isArray(key1)) {
+      if (!Array.isArray(key2) || key1.length !== key2.length) return false;
+      for (let i = 0; i < key1.length; i++) {
+        if (!HashUtils.equals(key1[i], key2[i])) return false;
+      }
+      return true;
+    }
+
+    // Handle plain objects
     if (typeof key1 === 'object' && typeof key2 === 'object') {
       const keys1 = Object.keys(key1);
       const keys2 = Object.keys(key2);
       return keys1.length === keys2.length &&
-        keys1.every(k => k in key2 && HashTableUtils.keysEqual((key1 as any)[k], (key2 as any)[k]));
+        keys1.every(k => k in key2 && HashUtils.equals((key1 as any)[k], (key2 as any)[k]));
     }
     return false;
   }

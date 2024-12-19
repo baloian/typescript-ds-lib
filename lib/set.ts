@@ -28,9 +28,9 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
   private count: number;
   private readonly capacity: number;
 
-  constructor(capacity: number = 8192) {
+  constructor(capacity: number = 81920) {
     super();
-    this.capacity = capacity <= 0 ? 8192 : capacity;
+    this.capacity = capacity <= 0 ? 81920 : capacity;
     this.table = new Array(this.capacity).fill(null);
     this.count = 0;
   }

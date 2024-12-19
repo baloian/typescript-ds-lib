@@ -65,7 +65,7 @@ export class HashUtils {
     return HashUtils.djb2aHash(stringKey) % capacity;
   }
 
-  static keysEqual<K>(key1: K, key2: K): boolean {
+  static equals<K>(key1: K, key2: K): boolean {
     if (key1 && key2 && typeof (key1 as any).equals === 'function') {
       return (key1 as any).equals(key2);
     }
@@ -82,7 +82,7 @@ export class HashUtils {
     }
     if (Array.isArray(key1) && Array.isArray(key2)) {
       return key1.length === key2.length &&
-        key1.every((val, idx) => HashUtils.keysEqual(val, key2[idx]));
+        key1.every((val, idx) => HashUtils.equals(val, key2[idx]));
     }
     if (key1 === null && key2 === null) return true;
     if (key1 === undefined && key2 === undefined) return true;
@@ -92,7 +92,7 @@ export class HashUtils {
       const keys1 = Object.keys(key1);
       const keys2 = Object.keys(key2);
       return keys1.length === keys2.length &&
-        keys1.every(k => k in key2 && HashUtils.keysEqual((key1 as any)[k], (key2 as any)[k]));
+        keys1.every(k => k in key2 && HashUtils.equals((key1 as any)[k], (key2 as any)[k]));
     }
     return false;
   }

@@ -12,6 +12,14 @@ describe('Set', () => {
       expect(set.isEmpty()).toBe(true);
       expect(set.size()).toBe(0);
     });
+
+    test('should handle invalid capacity', () => {
+      const negativeSet = new Set<number>(-1);
+      const zeroSet = new Set<number>(0);
+
+      expect(negativeSet.size()).toBe(0);
+      expect(zeroSet.size()).toBe(0);
+    });
   });
 
   describe('Single Element Operations', () => {
@@ -34,14 +42,14 @@ describe('Set', () => {
       set.insert(2);
       set.insert(3);
 
-      set.remove(2);
+      expect(set.remove(2)).toBe(true);
       expect(set.size()).toBe(2);
       expect(set.find(2)).toBe(false);
       expect(set.find(1)).toBe(true);
       expect(set.find(3)).toBe(true);
 
-      // Removing non-existent element should not affect set
-      set.remove(4);
+      // Removing non-existent element should return false
+      expect(set.remove(4)).toBe(false);
       expect(set.size()).toBe(2);
     });
 
@@ -137,6 +145,31 @@ describe('Set', () => {
       expect(stringSet.size()).toBe(2);
       expect(stringSet.find('hello')).toBe(true);
       expect(stringSet.find('nonexistent')).toBe(false);
+    });
+
+    test('should handle special values', () => {
+      const mixedSet = new Set<any>();
+
+      // Test null and undefined
+      mixedSet.insert(null);
+      mixedSet.insert(undefined);
+      expect(mixedSet.size()).toBe(2);
+      expect(mixedSet.find(null)).toBe(true);
+      expect(mixedSet.find(undefined)).toBe(true);
+
+      // Test NaN
+      mixedSet.insert(NaN);
+      expect(mixedSet.find(NaN)).toBe(true);
+
+      // Test objects and arrays
+      const obj = { a: 1 };
+      const arr = [1, 2];
+      mixedSet.insert(obj);
+      mixedSet.insert(arr);
+      expect(mixedSet.find(obj)).toBe(true);
+      expect(mixedSet.find(arr)).toBe(true);
+      expect(mixedSet.find({ a: 1 })).toBe(true); // Deep equality
+      expect(mixedSet.find([1, 2])).toBe(true); // Deep equality
     });
   });
 });

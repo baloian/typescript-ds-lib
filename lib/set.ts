@@ -37,6 +37,8 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
 
   /**
    * Adds a value to the set if it's not already present.
+   *
+   * TODO: Dinamically resize the table if the collision factor is too high.
    */
   insert(value: T): void {
     const index: number = HashUtils.hash<T>(value, this.capacity);

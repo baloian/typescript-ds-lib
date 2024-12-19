@@ -104,9 +104,9 @@ describe('Set', () => {
 
     test('should handle delete() alias correctly', () => {
       set.insert(1);
-      expect(set.delete(1)).toBe(true);
+      expect(set.remove(1)).toBe(true);
       expect(set.size()).toBe(0);
-      expect(set.delete(1)).toBe(false);
+      expect(set.remove(1)).toBe(false);
     });
   });
 

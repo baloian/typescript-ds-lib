@@ -5,7 +5,8 @@ import { HashUtils } from './hash-utils';
 export interface Set<T> {
   insert(element: T): void;
   insertList(elements: T[]): void;
-  remove(element: T): void;
+  remove(element: T): boolean;
+  delete(element: T): boolean;
   find(element: T): boolean;
   has(element: T): boolean;
   forEach(callback: (element: T) => void): void;
@@ -88,7 +89,7 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
   /**
    * Removes a value from the set.
    */
-  remove(value: T): void {
+  remove(value: T): boolean {
     const index: number = HashUtils.hash<T>(value, this.capacity);
     let current: Node<T> | null = this.table[index];
     let prev: Node<T> | null = null;
@@ -100,11 +101,16 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
           this.table[index] = current.next;
         }
         this.count--;
-        return;
+        return true;
       }
       prev = current;
       current = current.next;
     }
+    return false;
+  }
+
+  delete(value: T): boolean {
+    return this.remove(value);
   }
 
   forEach(callback: (element: T) => void): void {

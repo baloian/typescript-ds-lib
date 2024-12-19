@@ -1,4 +1,4 @@
-export class HashTableUtils {
+export class HashUtils {
   private static valueToString<V>(value: V): string {
     if (value === null || value === undefined) return 'null';
     let stringKey: string;
@@ -45,7 +45,7 @@ export class HashTableUtils {
    * DJB2a (variant using xor rather than +) hash algorithm.
    * See: http://www.cse.yorku.ca/~oz/hash.html
    */
-  static hashFunction(str: string): number {
+  static djb2aHash(str: string): number {
     let hash: number = 5381;
     for (let i = 0; i < str.length; i++) {
       hash = ((hash << 5) + hash) ^ str.charCodeAt(i);
@@ -59,10 +59,10 @@ export class HashTableUtils {
       return (key as any).hashCode();
     }
     if (typeof key === 'number' && Number.isSafeInteger(key)) {
-      return HashTableUtils.wangHash32(key) % capacity;
+      return HashUtils.wangHash32(key) % capacity;
     }
     const stringKey: string = this.valueToString<K>(key);
-    return this.hashFunction(stringKey) % capacity;
+    return HashUtils.djb2aHash(stringKey) % capacity;
   }
 
   static keysEqual<K>(key1: K, key2: K): boolean {
@@ -82,7 +82,7 @@ export class HashTableUtils {
     }
     if (Array.isArray(key1) && Array.isArray(key2)) {
       return key1.length === key2.length &&
-        key1.every((val, idx) => HashTableUtils.keysEqual(val, key2[idx]));
+        key1.every((val, idx) => HashUtils.keysEqual(val, key2[idx]));
     }
     if (key1 === null && key2 === null) return true;
     if (key1 === undefined && key2 === undefined) return true;
@@ -92,7 +92,7 @@ export class HashTableUtils {
       const keys1 = Object.keys(key1);
       const keys2 = Object.keys(key2);
       return keys1.length === keys2.length &&
-        keys1.every(k => k in key2 && HashTableUtils.keysEqual((key1 as any)[k], (key2 as any)[k]));
+        keys1.every(k => k in key2 && HashUtils.keysEqual((key1 as any)[k], (key2 as any)[k]));
     }
     return false;
   }

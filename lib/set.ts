@@ -92,15 +92,20 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
    */
   remove(value: T): boolean {
     const index: number = HashUtils.hash<T>(value, this.capacity);
-    let current: Node<T> | null = this.table[index];
-    let prev: Node<T> | null = null;
+    // Handle empty bucket case
+    if (!this.table[index])  return false;
+    // Handle first node case
+    if (HashUtils.equals<T>(this.table[index]!.value, value)) {
+      this.table[index] = this.table[index]!.next;
+      this.count--;
+      return true;
+    }
+    // Handle remaining nodes
+    let current = this.table[index]!.next;
+    let prev = this.table[index]!;
     while (current) {
       if (HashUtils.equals<T>(current.value, value)) {
-        if (prev) {
-          prev.next = current.next;
-        } else {
-          this.table[index] = current.next;
-        }
+        prev.next = current.next;
         this.count--;
         return true;
       }

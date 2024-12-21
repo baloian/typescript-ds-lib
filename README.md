@@ -62,7 +62,7 @@ Native JavaScript `Map` and `Set` are implemented as Hash Table and Hash Set res
 When to use the library's `Map` and `Set`?  
 - If CPU consumption is important for you as RBT and BST do not do any kind of CPU intensive hashing.
 - If your goal is to have a balanced tree with O(log n) complexity for all the operations in Map.
-- If memory efficiency is important for you as RBT and BST are more memory efficient than Hash Table.
+- If memory efficiency is important for you as RBT and BST are more memory efficient than Hash Table and HashSet.
 
 You can consider the library's `Map` and `Set` as ordered map and set, and native JavaScript `Map` and `Set` as unordered map and set.
 

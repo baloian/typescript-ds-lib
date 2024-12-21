@@ -49,10 +49,6 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
     }
     let current = this.root;
     while (true) {
-      if (this.isEqual(value, current.value)) {
-        // Value already exists, don't insert
-        return;
-      }
       if (this.comparator(value, current.value)) {
         if (current.left === null) {
           current.left = newNode;
@@ -60,6 +56,8 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
           break;
         }
         current = current.left;
+      } else if (this.isEqual(value, current.value)) {
+        return;
       } else {
         if (current.right === null) {
           current.right = newNode;

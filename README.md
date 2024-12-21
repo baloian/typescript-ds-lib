@@ -56,7 +56,7 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 
 
 ## Map-Set vs Native JavaScript Map-Set
-The library's `Map` and `Set` data structures are implemented as Red-Black Tree and Binary Search Tree respectively.  
+The library's `Map` and `Set` data structures are implemented as Red-Black Tree and Binary Search Tree respectively.
 Native JavaScript `Map` and `Set` are implemented as Hash Table and Hash Set respectively.
 
 When to use the library's `Map` and `Set`?  

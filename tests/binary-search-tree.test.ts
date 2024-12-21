@@ -10,7 +10,7 @@ describe('BinarySearchTree', () => {
   describe('Basic Operations', () => {
     test('should create empty tree', () => {
       expect(bst.isEmpty()).toBe(true);
-      expect(bst.count()).toBe(0);
+      expect(bst.size()).toBe(0);
     });
 
     test('should insert and search values', () => {
@@ -22,7 +22,7 @@ describe('BinarySearchTree', () => {
       expect(bst.find(3)).toBe(true);
       expect(bst.find(7)).toBe(true);
       expect(bst.find(1)).toBe(false);
-      expect(bst.count()).toBe(3);
+      expect(bst.size()).toBe(3);
       expect(bst.isEmpty()).toBe(false);
     });
 
@@ -36,7 +36,7 @@ describe('BinarySearchTree', () => {
       expect(bst.find(5)).toBe(false);
       expect(bst.min()).toBeUndefined();
       expect(bst.max()).toBeUndefined();
-      expect(bst.count()).toBe(0);
+      expect(bst.size()).toBe(0);
     });
   });
 
@@ -68,7 +68,7 @@ describe('BinarySearchTree', () => {
       expect(bst.find(3)).toBe(false);
       expect(bst.find(5)).toBe(true);
       expect(bst.find(7)).toBe(true);
-      expect(bst.count()).toBe(2);
+      expect(bst.size()).toBe(2);
     });
 
     test('should remove nodes with one child', () => {
@@ -80,7 +80,7 @@ describe('BinarySearchTree', () => {
       expect(bst.find(3)).toBe(false);
       expect(bst.find(5)).toBe(true);
       expect(bst.find(2)).toBe(true);
-      expect(bst.count()).toBe(2);
+      expect(bst.size()).toBe(2);
     });
 
     test('should remove nodes with two children', () => {
@@ -95,7 +95,7 @@ describe('BinarySearchTree', () => {
       expect(bst.find(5)).toBe(true);
       expect(bst.find(8)).toBe(true);
       expect(bst.find(6)).toBe(true);
-      expect(bst.count()).toBe(4);
+      expect(bst.size()).toBe(4);
     });
 
     test('should handle removing root node', () => {
@@ -107,7 +107,7 @@ describe('BinarySearchTree', () => {
       expect(bst.find(5)).toBe(false);
       expect(bst.find(3)).toBe(true);
       expect(bst.find(7)).toBe(true);
-      expect(bst.count()).toBe(2);
+      expect(bst.size()).toBe(2);
     });
 
     test('should handle removing non-existent values', () => {
@@ -115,23 +115,23 @@ describe('BinarySearchTree', () => {
       bst.insert(3);
 
       bst.remove(7);
-      expect(bst.count()).toBe(2);
+      expect(bst.size()).toBe(2);
       expect(bst.find(5)).toBe(true);
       expect(bst.find(3)).toBe(true);
     });
   });
 
   describe('Special Cases', () => {
-    test('should maintain order with duplicate values', () => {
+    test('should not allow duplicate values', () => {
       const bst = new BinarySearchTree<number>();
       bst.insert(5);
-      bst.insert(5);
-      bst.insert(5);
+      bst.insert(5); // Should not insert
+      bst.insert(5); // Should not insert
 
-      expect(bst.count()).toBe(3);
+      expect(bst.size()).toBe(1);
       bst.remove(5);
-      expect(bst.count()).toBe(2);
-      expect(bst.find(5)).toBe(true);
+      expect(bst.size()).toBe(0);
+      expect(bst.find(5)).toBe(false);
     });
 
     test('should work with custom comparator', () => {

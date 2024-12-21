@@ -314,15 +314,15 @@ console.log(rbt.find(5));   // undefined
 
 
 # Set
-A set implementation in TypeScript that maintains a collection of unique elements, implemented as a hash table (modified to only store keys).
+A set implementation in TypeScript that maintains a collection of unique elements, implemented as a binary search tree.
 
 ## Constructor
-`constructor(capacity: number = 81920)` - Creates a new set with the given capacity.
+`constructor(comparator: Comparator<T> = (a: T, b: T) => a < b)` - Creates a new set with the given comparator.
 
 ## Methods
 `insert(value: T)` - Adds a new element to the set if it doesn't already exist.  
 `insertList(values: T[])` - Adds multiple elements to the set if they don't already exist.  
-`remove(value: T)` - Removes an element from the set if it exists. Returns true if the element was removed, false otherwise or if the element didn't exist.  
+`remove(value: T)` - Removes an element from the set if it exists.  
 `find(value: T)` - Checks if an element exists in the set.  
 `has(value: T)` - Checks if an element exists in the set.  
 `forEach(callback: (element: T) => void)` - Executes a callback function for each element in the set.  
@@ -341,11 +341,16 @@ set.insert(2);    // set: {1,2}
 set.insert(2);    // set: {1,2} (no duplicate added)
 set.insert(3);    // set: {1,2,3}
 
-console.log(set.find(2));  // true
+console.log(set.has(2));   // true
 console.log(set.size());   // 3
 
-set.remove(1);             // set: {2,3}
-console.log(set.find(1));  // false
+set.remove(2);             // set: {1,3}
+console.log(set.has(2));   // false
+
+// Iterate through elements
+set.forEach(element => {
+  console.log(element);    // Prints: 1, 3
+});
 ```
 
 

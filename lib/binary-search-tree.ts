@@ -9,7 +9,6 @@ export interface BinarySearchTree<T> {
   min(): T | undefined;
   max(): T | undefined;
   forEach(callback: (element: T) => void, traversal?: 'inorder' | 'preorder' | 'postorder'): void;
-  count(): number;
 }
 
 
@@ -29,33 +28,42 @@ class TreeNode<T> {
 export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySearchTree<T> {
   private root: TreeNode<T> | null;
   private comparator: Comparator<T>;
+  private nodeCount: number;
 
   constructor(comparator: Comparator<T> = (a: T, b: T) => a < b) {
     super();
     this.root = null;
     this.comparator = comparator;
+    this.nodeCount = 0;
   }
 
   /**
-   * Inserts a value into the BST
+   * Inserts a value into the BST if it doesn't already exist
    */
   insert(value: T): void {
     const newNode = new TreeNode(value);
     if (!this.root) {
       this.root = newNode;
+      this.nodeCount++;
       return;
     }
     let current = this.root;
     while (true) {
+      if (this.isEqual(value, current.value)) {
+        // Value already exists, don't insert
+        return;
+      }
       if (this.comparator(value, current.value)) {
         if (current.left === null) {
           current.left = newNode;
+          this.nodeCount++;
           break;
         }
         current = current.left;
       } else {
         if (current.right === null) {
           current.right = newNode;
+          this.nodeCount++;
           break;
         }
         current = current.right;
@@ -122,6 +130,7 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
       return node;
     } else {
       // Node to delete found
+      this.nodeCount--;
       // Case 1: Leaf node
       if (node.left === null && node.right === null) {
         return null;
@@ -133,6 +142,7 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
       const minNode = this.findMin(node.right);
       node.value = minNode.value;
       node.right = this.removeNode(node.right, minNode.value);
+      this.nodeCount++; // Increment back since the recursive call decremented
       return node;
     }
   }
@@ -202,25 +212,13 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
    */
   clear(): void {
     this.root = null;
+    this.nodeCount = 0;
   }
 
   /**
    * Returns the number of nodes in the BST.
    */
   size(): number {
-    return this.countNodes(this.root);
-  }
-
-  /**
-   * Returns the number of nodes in the BST.
-   * TODO: I should remove this method and use size() instead.
-   */
-  count(): number {
-    return this.countNodes(this.root);
-  }
-
-  private countNodes(node: TreeNode<T> | null): number {
-    if (node === null) return 0;
-    return 1 + this.countNodes(node.left) + this.countNodes(node.right);
+    return this.nodeCount;
   }
 }

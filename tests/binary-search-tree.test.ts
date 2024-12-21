@@ -56,6 +56,23 @@ describe('BinarySearchTree', () => {
       expect(bst.min()).toBeUndefined();
       expect(bst.max()).toBeUndefined();
     });
+
+    test('should handle min/max with unbalanced tree', () => {
+      bst.insert(10);
+      bst.insert(8);
+      bst.insert(6);
+      bst.insert(4);
+      bst.insert(2);
+
+      expect(bst.min()).toBe(2);
+      expect(bst.max()).toBe(10);
+
+      bst.remove(2);
+      expect(bst.min()).toBe(4);
+
+      bst.remove(10);
+      expect(bst.max()).toBe(8);
+    });
   });
 
   describe('Remove Operations', () => {
@@ -119,6 +136,39 @@ describe('BinarySearchTree', () => {
       expect(bst.find(5)).toBe(true);
       expect(bst.find(3)).toBe(true);
     });
+
+    test('should handle complex removal scenario', () => {
+      // Create a more complex tree structure
+      bst.insert(10);
+      bst.insert(5);
+      bst.insert(15);
+      bst.insert(3);
+      bst.insert(7);
+      bst.insert(13);
+      bst.insert(17);
+      bst.insert(1);
+      bst.insert(4);
+      bst.insert(6);
+      bst.insert(8);
+
+      // Remove nodes in specific order to test different cases
+      bst.remove(5);  // Remove node with two children
+      expect(bst.size()).toBe(10);
+
+      const result: number[] = [];
+      bst.forEach((value) => result.push(value));
+      expect(result).toEqual([1, 3, 4, 6, 7, 8, 10, 13, 15, 17]);
+
+      bst.remove(15); // Remove another node with two children
+      bst.remove(1);  // Remove leaf node
+      bst.remove(17); // Remove node with no left child
+      bst.remove(3);  // Remove node with one child
+
+      const finalResult: number[] = [];
+      bst.forEach((value) => finalResult.push(value));
+      expect(finalResult).toEqual([4, 6, 7, 8, 10, 13]);
+      expect(bst.size()).toBe(6);
+    });
   });
 
   describe('Special Cases', () => {
@@ -142,6 +192,23 @@ describe('BinarySearchTree', () => {
 
       expect(reverseBst.min()).toBe(7);
       expect(reverseBst.max()).toBe(3);
+    });
+
+    test('should handle complex operations with custom comparator', () => {
+      const customBst = new BinarySearchTree<string>((a, b) => a.length < b.length || (a.length === b.length && a < b));
+
+      customBst.insert("cat");
+      customBst.insert("dog");
+      customBst.insert("elephant");
+      customBst.insert("fox");
+      customBst.insert("butterfly");
+
+      expect(customBst.min()).toBe("cat");
+      expect(customBst.max()).toBe("butterfly");
+
+      const result: string[] = [];
+      customBst.forEach((value) => result.push(value));
+      expect(result).toEqual(["cat", "dog", "fox", "elephant", "butterfly"]);
     });
   });
 
@@ -186,6 +253,38 @@ describe('BinarySearchTree', () => {
       const result: number[] = [];
       bst.forEach((value) => result.push(value));
       expect(result).toEqual([]);
+    });
+
+    test('should handle complex traversal scenarios', () => {
+      // Create an unbalanced tree
+      bst.insert(10);
+      bst.insert(5);
+      bst.insert(15);
+      bst.insert(3);
+      bst.insert(7);
+      bst.insert(13);
+      bst.insert(17);
+      bst.insert(1);
+
+      const inOrder: number[] = [];
+      const preOrder: number[] = [];
+      const postOrder: number[] = [];
+
+      bst.forEach((value) => inOrder.push(value), 'inorder');
+      bst.forEach((value) => preOrder.push(value), 'preorder');
+      bst.forEach((value) => postOrder.push(value), 'postorder');
+
+      expect(inOrder).toEqual([1, 3, 5, 7, 10, 13, 15, 17]);
+      expect(preOrder).toEqual([10, 5, 3, 1, 7, 15, 13, 17]);
+      expect(postOrder).toEqual([1, 3, 7, 5, 13, 17, 15, 10]);
+
+      // Remove some nodes and verify traversal still works
+      bst.remove(5);
+      bst.remove(15);
+
+      const newInOrder: number[] = [];
+      bst.forEach((value) => newInOrder.push(value));
+      expect(newInOrder).toEqual([1, 3, 7, 10, 13, 17]);
     });
   });
 });

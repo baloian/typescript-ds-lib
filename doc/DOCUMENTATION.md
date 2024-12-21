@@ -193,9 +193,9 @@ A map implementation in TypeScript that maintains key-value pairs in sorted orde
 
 ### Example Usage
 ```typescript
-import { Map } from 'typescript-ds-lib';
+import { Map as OrderedMap } from 'typescript-ds-lib';
 
-const map: Map<string, number> = new Map<string, number>();
+const map: OrderedMap<string, number> = new OrderedMap<string, number>();
 
 map.insert('apple', 1);
 map.insert('banana', 2);
@@ -205,7 +205,7 @@ console.log(map.find('banana'));   // 2
 console.log(map.find('apple'));    // 1
 console.log(map.size());           // 3
 
-map.delete('apple');
+map.remove('apple');
 console.log(map.size());           // 2
 ```
 
@@ -332,9 +332,9 @@ A set implementation in TypeScript that maintains a collection of unique element
 
 ### Example Usage
 ```typescript
-import { Set } from 'typescript-ds-lib';
+import { Set as OrderedSet } from 'typescript-ds-lib';
 
-const set: Set<number> = new Set<number>();
+const set: OrderedSet<number> = new OrderedSet<number>();
 
 set.insert(1);    // set: {1}
 set.insert(2);    // set: {1,2}

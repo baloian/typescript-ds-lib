@@ -280,4 +280,75 @@ describe('HashTable', () => {
       expect(results).toContain(4); // 2 * 2
     });
   });
+
+  describe('equals Method', () => {
+    test('should consider empty tables equal', () => {
+      const table1 = new HashTable<string, number>();
+      const table2 = new HashTable<string, number>();
+      expect(table1.equals(table2)).toBe(true);
+    });
+
+    test('should consider tables with same key-value pairs equal', () => {
+      const table1 = new HashTable<string, number>();
+      const table2 = new HashTable<string, number>();
+
+      table1.insert('a', 1);
+      table1.insert('b', 2);
+      table1.insert('c', 3);
+
+      table2.insert('a', 1);
+      table2.insert('b', 2);
+      table2.insert('c', 3);
+
+      expect(table1.equals(table2)).toBe(true);
+    });
+
+    test('should consider tables with different values unequal', () => {
+      const table1 = new HashTable<string, number>();
+      const table2 = new HashTable<string, number>();
+
+      table1.insert('a', 1);
+      table1.insert('b', 2);
+
+      table2.insert('a', 1);
+      table2.insert('b', 3);
+
+      expect(table1.equals(table2)).toBe(false);
+    });
+
+    test('should consider tables with different sizes unequal', () => {
+      const table1 = new HashTable<string, number>();
+      const table2 = new HashTable<string, number>();
+
+      table1.insert('a', 1);
+      table1.insert('b', 2);
+
+      table2.insert('a', 1);
+
+      expect(table1.equals(table2)).toBe(false);
+    });
+
+    test('should handle comparison with null/undefined', () => {
+      const table = new HashTable<string, number>();
+      table.insert('a', 1);
+
+      expect(table.equals(null as any)).toBe(false);
+      expect(table.equals(undefined as any)).toBe(false);
+    });
+
+    test('should handle tables with collisions', () => {
+      const table1 = new HashTable<string, number>(2);
+      const table2 = new HashTable<string, number>(2);
+
+      table1.insert('a', 1);
+      table1.insert('b', 2);
+      table1.insert('c', 3);
+
+      table2.insert('a', 1);
+      table2.insert('b', 2);
+      table2.insert('c', 3);
+
+      expect(table1.equals(table2)).toBe(true);
+    });
+  });
 });

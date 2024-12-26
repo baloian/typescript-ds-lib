@@ -53,6 +53,7 @@ export class Map<K, V> extends BaseCollection<V> implements Map<K, V> {
   }
 
   equals(other: Map<K, V>): boolean {
+    if (!other || !(other instanceof Map)) return false;
     return this.rbTree.equals(other.rbTree);
   }
 }

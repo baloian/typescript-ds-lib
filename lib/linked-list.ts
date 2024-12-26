@@ -31,7 +31,7 @@ class Node<T> {
 
 
 export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
-  head: Node<T> | null;
+  private head: Node<T> | null;
   private tail: Node<T> | null;
   private length: number;
 
@@ -318,6 +318,7 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
    * Checks if two lists are equal.
    */
   equals(other: LinkedList<T>): boolean {
+    if (!other || !(other instanceof LinkedList)) return false;
     if (this.size() !== other.size()) return false;
     let current: Node<T> | null = this.head;
     let otherCurrent: Node<T> | null = other.head;

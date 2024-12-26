@@ -117,6 +117,7 @@ export class Heap<T> extends BaseCollection<T> implements Heap<T> {
    * Checks if two heaps are equal.
    */
   equals(other: Heap<T>): boolean {
+    if (!other || !(other instanceof Heap)) return false;
     if (this.size() !== other.size()) return false;
     return this.items.every((value, index) => Utils.equals(value, other.items[index]));
   }

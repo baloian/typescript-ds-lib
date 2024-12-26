@@ -39,7 +39,7 @@ class RBNode<K, V> {
 
 
 export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTree<K, V> {
-  root: RBNode<K, V> | null;
+  private root: RBNode<K, V> | null;
   private nodeCount: number;
   private comparator: Comparator<K>;
 
@@ -350,8 +350,10 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
 
   /**
    * Checks if two red-black trees are equal.
+   * Returns false if comparing with null/undefined.
    */
   equals(other: RedBlackTree<K, V>): boolean {
+    if (!other || !(other instanceof RedBlackTree)) return false;
     if (this.size() !== other.size()) return false;
 
     // Compare trees by doing an inorder traversal of both

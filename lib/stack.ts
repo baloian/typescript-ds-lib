@@ -63,6 +63,7 @@ export class Stack<T> extends BaseCollection<T> implements Stack<T> {
    * Checks if two stacks are equal.
    */
   equals(other: Stack<T>): boolean {
+    if (!other || !(other instanceof Stack)) return false;
     return this.llData.equals(other.llData);
   }
 }

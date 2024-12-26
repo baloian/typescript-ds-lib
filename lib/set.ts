@@ -84,6 +84,7 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
    * Checks if two sets are equal.
    */
   equals(other: Set<T>): boolean {
+    if (!other || !(other instanceof Set)) return false;
     return this.tree.equals(other.tree);
   }
 }

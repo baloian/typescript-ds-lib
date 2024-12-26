@@ -87,6 +87,7 @@ export class Deque<T> extends BaseCollection<T> implements Deque<T> {
    * Checks if two deques are equal.
    */
   equals(other: Deque<T>): boolean {
+    if (!other || !(other instanceof Deque)) return false;
     return this.items.equals(other.items);
   }
 }

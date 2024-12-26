@@ -65,6 +65,7 @@ export class PriorityQueue<T> extends BaseCollection<T> implements PriorityQueue
    * Checks if two priority queues are equal.
    */
   equals(other: PriorityQueue<T>): boolean {
+    if (!other || !(other instanceof PriorityQueue)) return false;
     return this.heap.equals(other.heap);
   }
 }

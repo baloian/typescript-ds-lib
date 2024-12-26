@@ -63,6 +63,7 @@ export class Queue<T> extends BaseCollection<T> implements Queue<T> {
    * Checks if two queues are equal.
    */
   equals(other: Queue<T>): boolean {
+    if (!other || !(other instanceof Queue)) return false;
     return this.items.equals(other.items);
   }
 }

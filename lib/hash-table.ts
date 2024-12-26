@@ -123,14 +123,20 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
    * Checks if two hash tables are equal.
    */
   equals(other: HashTable<K, V>): boolean {
-    /*
-    return this.size() === other.size() && this.table.every((value, index) => {
-      if (value) {
-        return Utils.equals(value.key, other.get(index));
-      }
+    if (!other || !(other instanceof HashTable)) {
       return false;
+    }
+    if (this.size() !== other.size()) {
+      return false;
+    }
+    // Check each key-value pair in this table exists in other table
+    let isEqual = true;
+    this.forEach((key, value) => {
+      const otherValue = other.get(key);
+      if (!Utils.equals(value, otherValue)) {
+        isEqual = false;
+      }
     });
-    */
-    return false;
+    return isEqual;
   }
 }

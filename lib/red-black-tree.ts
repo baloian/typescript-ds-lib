@@ -355,13 +355,14 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   equals(other: RedBlackTree<K, V>): boolean {
     if (!other || !(other instanceof RedBlackTree)) return false;
     if (this.size() !== other.size()) return false;
-    const areNodesEqual = (node1: RBNode<K, V> | null, node2: RBNode<K, V> | null): boolean => {
-      if (node1 === null && node2 === null) return true;
-      if (node1 === null || node2 === null) return false;
-      if (!this.isEqual(node1.key, node2.key) ||
-        !Utils.equals(node1.value, node2.value)) return false;
-      return areNodesEqual(node1.left, node2.left) && areNodesEqual(node1.right, node2.right);
-    };
-    return areNodesEqual(this.root, other.root);
+    return this.areTreesEqual(this.root, other.root);
+  }
+
+  private areTreesEqual(node1: RBNode<K, V> | null, node2: RBNode<K, V> | null): boolean {
+    if (node1 === null && node2 === null) return true;
+    if (node1 === null || node2 === null) return false;
+    if (!this.isEqual(node1.key, node2.key) ||
+    !Utils.equals(node1.value, node2.value)) return false;
+    return this.areTreesEqual(node1.left, node2.left) && this.areTreesEqual(node1.right, node2.right);
   }
 }

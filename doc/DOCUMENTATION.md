@@ -29,6 +29,7 @@ A binary search tree (BST) implementation in TypeScript that stores values in an
 `isEmpty()` - Checks if the binary search tree is empty.  
 `clear()` - Removes all nodes from the binary search tree.  
 `size()` - Returns the total number of nodes in the binary search tree.  
+`equals(other: BinarySearchTree<T>): boolean` - Checks if this binary search tree is equal to another binary search tree.  
 
 ### Example Usage
 ```typescript
@@ -62,6 +63,7 @@ A double-ended queue (Deque) implementation in TypeScript that allows insertion 
 `isEmpty()` - Checks if the deque is empty.  
 `clear()` - Removes all elements from the deque.  
 `size()` - Returns the total number of elements in the deque.  
+`equals(other: Deque<T>): boolean` - Checks if this deque is equal to another deque.  
 
 ### Example Usage
 ```typescript
@@ -99,6 +101,7 @@ A hash table implementation in TypeScript that provides efficient key-value pair
 `isEmpty()` - Checks if the hash table is empty. 
 `clear()` - Removes all key-value pairs from the hash table.  
 `size()` - Returns the number of key-value pairs in the hash table.  
+`equals(other: HashTable<K, V>): boolean` - Checks if this hash table is equal to another hash table.  
 
 ### Example Usage
 ```typescript
@@ -131,7 +134,7 @@ A heap implementation in TypeScript that maintains elements in a heap structure,
 `isEmpty()` - Checks if the heap is empty.  
 `clear()` - Removes all elements from the heap.  
 `size()` - Returns the number of elements in the heap.  
-
+`equals(other: Heap<T>): boolean` - Checks if this heap is equal to another heap.  
 
 # Linked List
 A singly linked list implementation in TypeScript that stores elements in a sequence of nodes, where each node points to the next node in the sequence.
@@ -156,6 +159,7 @@ A singly linked list implementation in TypeScript that stores elements in a sequ
 `isEmpty()` - Checks if the linked list is empty.  
 `clear()` - Removes all elements from the linked list.  
 `size()` - Returns the total number of elements in the linked list.  
+`equals(other: LinkedList<T>): boolean` - Checks if this linked list is equal to another linked list.  
 
 ### Example Usage
 ```typescript
@@ -189,7 +193,7 @@ A map implementation in TypeScript that maintains key-value pairs in sorted orde
 `isEmpty()` - Checks if the map is empty.  
 `clear()` - Removes all key-value pairs from the map.  
 `size()` - Returns the number of key-value pairs in the map.  
-
+`equals(other: Map<K, V>): boolean` - Checks if this map is equal to another map.  
 
 ### Example Usage
 ```typescript
@@ -223,6 +227,7 @@ A priority queue implementation in TypeScript that maintains elements in a heap 
 `isEmpty()` - Checks if the priority queue is empty.  
 `clear()` - Removes all elements from the priority queue.  
 `size()` - Returns the number of elements in the priority queue.  
+`equals(other: PriorityQueue<T>): boolean` - Checks if this priority queue is equal to another priority queue.  
 
 ### Example Usage
 ```typescript
@@ -255,6 +260,7 @@ A queue implementation in TypeScript that follows the First-In-First-Out (FIFO) 
 `isEmpty()` - Checks if the queue is empty.  
 `clear()` - Removes all elements from the queue.  
 `size()` - Returns the number of elements in the queue.  
+`equals(other: Queue<T>): boolean` - Checks if this queue is equal to another queue.  
 
 ### Example Usage
 ```typescript
@@ -290,6 +296,7 @@ A self-balancing binary search tree (Red-Black key-value Tree) implementation in
 `isEmpty()` - Checks if the tree is empty.  
 `clear()` - Removes all nodes from the tree.  
 `size()` - Returns the total number of nodes in the tree.  
+`equals(other: RedBlackTree<K, V>): boolean` - Checks if this red-black tree is equal to another red-black tree.  
 
 ### Example Usage
 ```typescript
@@ -329,6 +336,7 @@ A set implementation in TypeScript that maintains a collection of unique element
 `isEmpty()` - Checks if the set is empty.  
 `clear()` - Removes all elements from the set.  
 `size()` - Returns the number of elements in the set.  
+`equals(other: Set<T>): boolean` - Checks if this set is equal to another set.  
 
 ### Example Usage
 ```typescript
@@ -367,6 +375,7 @@ A stack implementation in TypeScript that follows the Last-In-First-Out (LIFO) p
 `isEmpty()` - Checks if the stack is empty.  
 `clear()` - Removes all elements from the stack.  
 `size()` - Returns the number of elements in the stack.  
+`equals(other: Stack<T>): boolean` - Checks if this stack is equal to another stack.  
 
 ### Example Usage
 ```typescript

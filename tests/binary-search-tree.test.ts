@@ -212,6 +212,91 @@ describe('BinarySearchTree', () => {
     });
   });
 
+  describe('Equals Operations', () => {
+    test('should consider empty trees equal', () => {
+      const bst1 = new BinarySearchTree<number>();
+      const bst2 = new BinarySearchTree<number>();
+      expect(bst1.equals(bst2)).toBe(true);
+    });
+
+    test('should consider identical trees equal', () => {
+      const bst1 = new BinarySearchTree<number>();
+      const bst2 = new BinarySearchTree<number>();
+
+      [5, 3, 7, 1, 9].forEach(val => {
+        bst1.insert(val);
+        bst2.insert(val);
+      });
+
+      expect(bst1.equals(bst2)).toBe(true);
+    });
+
+    test('should consider trees with different values unequal', () => {
+      const bst1 = new BinarySearchTree<number>();
+      const bst2 = new BinarySearchTree<number>();
+
+      bst1.insert(5);
+      bst1.insert(3);
+      bst1.insert(7);
+
+      bst2.insert(5);
+      bst2.insert(3);
+      bst2.insert(8);
+
+      expect(bst1.equals(bst2)).toBe(false);
+    });
+
+    test('should consider trees with different sizes unequal', () => {
+      const bst1 = new BinarySearchTree<number>();
+      const bst2 = new BinarySearchTree<number>();
+
+      bst1.insert(5);
+      bst1.insert(3);
+      bst1.insert(7);
+
+      bst2.insert(5);
+      bst2.insert(3);
+
+      expect(bst1.equals(bst2)).toBe(false);
+    });
+
+    test('should work with custom comparator', () => {
+      const bst1 = new BinarySearchTree<string>((a, b) => a.length < b.length);
+      const bst2 = new BinarySearchTree<string>((a, b) => a.length < b.length);
+
+      ["cat", "elephant", "dog"].forEach(val => {
+        bst1.insert(val);
+        bst2.insert(val);
+      });
+
+      expect(bst1.equals(bst2)).toBe(true);
+
+      bst2.insert("butterfly");
+      expect(bst1.equals(bst2)).toBe(false);
+    });
+
+    test('should handle complex tree structures', () => {
+      const bst1 = new BinarySearchTree<number>();
+      const bst2 = new BinarySearchTree<number>();
+
+      // Create identical complex structures
+      [10, 5, 15, 3, 7, 13, 17, 1, 4, 6, 8].forEach(val => {
+        bst1.insert(val);
+        bst2.insert(val);
+      });
+
+      expect(bst1.equals(bst2)).toBe(true);
+
+      // Modify one tree
+      bst1.remove(7);
+      expect(bst1.equals(bst2)).toBe(false);
+
+      // Make the same modification to the other tree
+      bst2.remove(7);
+      expect(bst1.equals(bst2)).toBe(true);
+    });
+  });
+
   describe('Traversal Operations', () => {
     test('should traverse tree in-order', () => {
       bst.insert(5);

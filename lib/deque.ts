@@ -82,4 +82,11 @@ export class Deque<T> extends BaseCollection<T> implements Deque<T> {
   clear(): void {
     this.items.clear();
   }
+
+  /**
+   * Checks if two deques are equal.
+   */
+  equals(other: Deque<T>): boolean {
+    return this.items.equals(other.items);
+  }
 }

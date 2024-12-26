@@ -79,4 +79,11 @@ export class Set<T> extends BaseCollection<T> implements Set<T> {
   size(): number {
     return this.tree.size();
   }
+
+  /**
+   * Checks if two sets are equal.
+   */
+  equals(other: Set<T>): boolean {
+    return this.tree.equals(other.tree);
+  }
 }

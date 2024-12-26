@@ -58,4 +58,11 @@ export class Queue<T> extends BaseCollection<T> implements Queue<T> {
   clear(): void {
     this.items.clear();
   }
+
+  /**
+   * Checks if two queues are equal.
+   */
+  equals(other: Queue<T>): boolean {
+    return this.items.equals(other.items);
+  }
 }

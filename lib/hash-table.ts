@@ -1,5 +1,6 @@
 import { HashUtils } from './hash-utils';
 import { BaseCollection } from './base-collection';
+import { Utils } from './utils';
 
 
 export interface HashTable<K, V> {
@@ -45,14 +46,14 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
       return;
     }
     // Check first node for key match. If it matches, update the value.
-    if (HashUtils.equals<K>(this.table[index]!.key, key)) {
+    if (Utils.equals<K>(this.table[index]!.key, key)) {
       this.table[index]!.value = value;
       return;
     }
     // Traverse chain to find key or last node. If it matches, update the value.
     let current: HashNode<K, V> | null = this.table[index];
     while (current?.next) {
-      if (HashUtils.equals<K>(current.next.key, key)) {
+      if (Utils.equals<K>(current.next.key, key)) {
         current.next.value = value;
         return;
       }
@@ -67,7 +68,7 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
     const index: number = HashUtils.hash<K>(key, this.capacity);
     let current: HashNode<K, V> | null = this.table[index];
     while (current) {
-      if (HashUtils.equals<K>(current.key, key)) {
+      if (Utils.equals<K>(current.key, key)) {
         return current.value;
       }
       current = current.next;
@@ -80,7 +81,7 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
     let current: HashNode<K, V> | null = this.table[index];
     let prev: HashNode<K, V> | null = null;
     while (current) {
-      if (HashUtils.equals<K>(current.key, key)) {
+      if (Utils.equals<K>(current.key, key)) {
         if (prev) {
           prev.next = current.next;
         } else {
@@ -116,5 +117,20 @@ export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V
   clear(): void {
     this.table = new Array(this.capacity).fill(null);
     this.count = 0;
+  }
+
+  /**
+   * Checks if two hash tables are equal.
+   */
+  equals(other: HashTable<K, V>): boolean {
+    /*
+    return this.size() === other.size() && this.table.every((value, index) => {
+      if (value) {
+        return Utils.equals(value.key, other.get(index));
+      }
+      return false;
+    });
+    */
+    return false;
   }
 }

@@ -1,5 +1,6 @@
 import { Comparator } from '../types';
 import { BaseCollection } from './base-collection';
+import { Utils } from './utils';
 
 
 export interface Heap<T> {
@@ -110,5 +111,13 @@ export class Heap<T> extends BaseCollection<T> implements Heap<T> {
       [this.items[smallestIndex], this.items[index]];
       index = smallestIndex;
     }
+  }
+
+  /**
+   * Checks if two heaps are equal.
+   */
+  equals(other: Heap<T>): boolean {
+    if (this.size() !== other.size()) return false;
+    return this.items.every((value, index) => Utils.equals(value, other.items[index]));
   }
 }

@@ -13,4 +13,9 @@ export abstract class BaseCollection<T> {
    * Removes all elements from the collection.
    */
   abstract clear(): void;
+
+  /**
+   * Checks if two collections are equal.
+   */
+  abstract equals(other: BaseCollection<T>): boolean;
 }

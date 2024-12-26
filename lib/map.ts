@@ -51,4 +51,8 @@ export class Map<K, V> extends BaseCollection<V> implements Map<K, V> {
   forEach(callback: (key: K, value: V) => void): void {
     this.rbTree.forEach(callback);
   }
+
+  equals(other: Map<K, V>): boolean {
+    return this.rbTree.equals(other.rbTree);
+  }
 }

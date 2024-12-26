@@ -1,4 +1,5 @@
 import { BaseCollection } from './base-collection';
+import { Utils } from './utils';
 
 
 export interface LinkedList<T> {
@@ -30,7 +31,7 @@ class Node<T> {
 
 
 export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
-  private head: Node<T> | null;
+  head: Node<T> | null;
   private tail: Node<T> | null;
   private length: number;
 
@@ -311,5 +312,20 @@ export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
     this.head = null;
     this.tail = null;
     this.length = 0;
+  }
+
+  /**
+   * Checks if two lists are equal.
+   */
+  equals(other: LinkedList<T>): boolean {
+    if (this.size() !== other.size()) return false;
+    let current: Node<T> | null = this.head;
+    let otherCurrent: Node<T> | null = other.head;
+    while (current !== null) {
+      if (!Utils.equals(current.value, otherCurrent!.value)) return false;
+      current = current.next;
+      otherCurrent = otherCurrent!.next;
+    }
+    return true;
   }
 }

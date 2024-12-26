@@ -219,4 +219,16 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
   size(): number {
     return this.nodeCount;
   }
+
+  /**
+   * Checks if two BSTs are equal.
+   */
+  equals(other: BinarySearchTree<T>): boolean {
+    if (this.size() !== other.size()) return false;
+    const thisValues: T[] = [];
+    const otherValues: T[] = [];
+    this.forEach((value) => thisValues.push(value));
+    other.forEach((value) => otherValues.push(value));
+    return thisValues.every((value, index) => this.isEqual(value, otherValues[index]));
+  }
 }

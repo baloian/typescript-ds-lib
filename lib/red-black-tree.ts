@@ -1,5 +1,6 @@
 import { Comparator } from '../types';
 import { BaseCollection } from './base-collection';
+import { Utils } from './utils';
 
 
 export interface RedBlackTree<K, V> {
@@ -38,7 +39,7 @@ class RBNode<K, V> {
 
 
 export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTree<K, V> {
-  private root: RBNode<K, V> | null;
+  root: RBNode<K, V> | null;
   private nodeCount: number;
   private comparator: Comparator<K>;
 
@@ -345,5 +346,20 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
 
   forEach(callback: (key: K, value: V) => void): void {
     this.inorderTraversal(this.root, callback);
+  }
+
+  /**
+   * Checks if two red-black trees are equal.
+   */
+  equals(other: RedBlackTree<K, V>): boolean {
+    if (this.size() !== other.size()) return false;
+    let current: RBNode<K, V> | null = this.root;
+    let otherCurrent: RBNode<K, V> | null = other.root;
+    while (current !== null) {
+      if (!Utils.equals(current.value, otherCurrent!.value)) return false;
+      current = current.left;
+      otherCurrent = otherCurrent!.left;
+    }
+    return true;
   }
 }

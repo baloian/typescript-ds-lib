@@ -4,9 +4,9 @@ export class Utils {
     if (key1 == null || key2 == null) return key1 === key2;
 
     // Check for custom equals method
-    //if (typeof (key1 as any).equals === 'function') {
-    //  return (key1 as any).equals(key2);
-    //}
+    if (typeof (key1 as any).equals === 'function') {
+      return (key1 as any).equals(key2);
+    }
 
     const type1 = typeof key1;
     const type2 = typeof key2;

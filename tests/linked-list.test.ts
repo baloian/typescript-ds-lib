@@ -381,4 +381,67 @@ describe('LinkedList', () => {
       expect(doubled).toEqual([2, 4, 6]);
     });
   });
+
+  describe('Equality', () => {
+    test('should consider empty lists equal', () => {
+      const list1 = new LinkedList<number>();
+      const list2 = new LinkedList<number>();
+      expect(list1.equals(list2)).toBe(true);
+    });
+
+    test('should consider lists with same elements in same order equal', () => {
+      const list1 = new LinkedList<number>();
+      const list2 = new LinkedList<number>();
+
+      [1, 2, 3].forEach(n => {
+        list1.pushBack(n);
+        list2.pushBack(n);
+      });
+
+      expect(list1.equals(list2)).toBe(true);
+    });
+
+    test('should consider lists with different elements unequal', () => {
+      const list1 = new LinkedList<number>();
+      const list2 = new LinkedList<number>();
+
+      list1.pushBack(1);
+      list1.pushBack(2);
+      list2.pushBack(1);
+      list2.pushBack(3);
+
+      expect(list1.equals(list2)).toBe(false);
+    });
+
+    test('should consider lists with same elements in different order unequal', () => {
+      const list1 = new LinkedList<number>();
+      const list2 = new LinkedList<number>();
+
+      list1.pushBack(1);
+      list1.pushBack(2);
+      list2.pushBack(2);
+      list2.pushBack(1);
+
+      expect(list1.equals(list2)).toBe(false);
+    });
+
+    test('should consider lists with different sizes unequal', () => {
+      const list1 = new LinkedList<number>();
+      const list2 = new LinkedList<number>();
+
+      list1.pushBack(1);
+      list1.pushBack(2);
+      list2.pushBack(1);
+
+      expect(list1.equals(list2)).toBe(false);
+    });
+
+    test('should handle comparison with null/undefined', () => {
+      const list1 = new LinkedList<number>();
+      list1.pushBack(1);
+
+      expect(list1.equals(null as any)).toBe(false);
+      expect(list1.equals(undefined as any)).toBe(false);
+    });
+  });
 });

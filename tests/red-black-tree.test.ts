@@ -203,4 +203,54 @@ describe('RedBlackTree', () => {
       expect(values).toEqual([10, 20, 30, 40, 50, 60, 70, 80, 90]);
     });
   });
+
+  describe('Equality', () => {
+    test('should consider empty trees equal', () => {
+      const tree1 = new RedBlackTree<number, number>();
+      const tree2 = new RedBlackTree<number, number>();
+      expect(tree1.equals(tree2)).toBe(true);
+    });
+
+    test('should consider trees with same key-value pairs equal', () => {
+      const tree1 = new RedBlackTree<number, number>();
+      const tree2 = new RedBlackTree<number, number>();
+
+      [5, 3, 7, 1, 9].forEach(v => {
+        tree1.insert(v, v * 10);
+        tree2.insert(v, v * 10);
+      });
+
+      expect(tree1.equals(tree2)).toBe(true);
+    });
+
+    test('should consider trees with different values unequal', () => {
+      const tree1 = new RedBlackTree<number, number>();
+      const tree2 = new RedBlackTree<number, number>();
+
+      [5, 3, 7].forEach(v => tree1.insert(v, v * 10));
+      [5, 3, 7].forEach(v => tree2.insert(v, v * 20));
+
+      expect(tree1.equals(tree2)).toBe(false);
+    });
+
+    test('should consider trees with different keys unequal', () => {
+      const tree1 = new RedBlackTree<number, number>();
+      const tree2 = new RedBlackTree<number, number>();
+
+      [5, 3, 7].forEach(v => tree1.insert(v, v));
+      [5, 3, 8].forEach(v => tree2.insert(v, v));
+
+      expect(tree1.equals(tree2)).toBe(false);
+    });
+
+    test('should consider trees with different sizes unequal', () => {
+      const tree1 = new RedBlackTree<number, number>();
+      const tree2 = new RedBlackTree<number, number>();
+
+      [5, 3, 7].forEach(v => tree1.insert(v, v));
+      [5, 3].forEach(v => tree2.insert(v, v));
+
+      expect(tree1.equals(tree2)).toBe(false);
+    });
+  });
 });

@@ -51,4 +51,61 @@ describe('Queue', () => {
     expect(queue.isEmpty()).toBe(true);
     expect(queue.size()).toBe(0);
   });
+
+  describe('equality', () => {
+    test('should consider empty queues equal', () => {
+      const queue1 = new Queue<number>();
+      const queue2 = new Queue<number>();
+      expect(queue1.equals(queue2)).toBe(true);
+    });
+
+    test('should consider queues with same elements in same order equal', () => {
+      const queue1 = new Queue<number>();
+      const queue2 = new Queue<number>();
+
+      queue1.push(1);
+      queue1.push(2);
+      queue1.push(3);
+
+      queue2.push(1);
+      queue2.push(2);
+      queue2.push(3);
+
+      expect(queue1.equals(queue2)).toBe(true);
+    });
+
+    test('should consider queues with different elements unequal', () => {
+      const queue1 = new Queue<number>();
+      const queue2 = new Queue<number>();
+
+      queue1.push(1);
+      queue1.push(2);
+      queue1.push(3);
+
+      queue2.push(1);
+      queue2.push(2);
+      queue2.push(4);
+
+      expect(queue1.equals(queue2)).toBe(false);
+    });
+
+    test('should consider queues with different sizes unequal', () => {
+      const queue1 = new Queue<number>();
+      const queue2 = new Queue<number>();
+
+      queue1.push(1);
+      queue1.push(2);
+      queue2.push(1);
+
+      expect(queue1.equals(queue2)).toBe(false);
+    });
+
+    test('should handle comparison with null/undefined', () => {
+      const queue1 = new Queue<number>();
+      queue1.push(1);
+
+      expect(queue1.equals(null as any)).toBe(false);
+      expect(queue1.equals(undefined as any)).toBe(false);
+    });
+  });
 });

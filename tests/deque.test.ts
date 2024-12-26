@@ -84,4 +84,69 @@ describe('Deque', () => {
     deque.popFront();
     expect(deque.size()).toBe(0);
   });
+
+  describe('Equals Operations', () => {
+    test('should consider empty deques equal', () => {
+      const deque1 = new Deque<number>();
+      const deque2 = new Deque<number>();
+      expect(deque1.equals(deque2)).toBe(true);
+    });
+
+    test('should consider identical deques equal', () => {
+      const deque1 = new Deque<number>();
+      const deque2 = new Deque<number>();
+
+      [1, 2, 3].forEach(val => {
+        deque1.pushBack(val);
+        deque2.pushBack(val);
+      });
+
+      expect(deque1.equals(deque2)).toBe(true);
+    });
+
+    test('should consider deques with different values unequal', () => {
+      const deque1 = new Deque<number>();
+      const deque2 = new Deque<number>();
+
+      deque1.pushBack(1);
+      deque1.pushBack(2);
+      deque1.pushBack(3);
+
+      deque2.pushBack(1);
+      deque2.pushBack(2);
+      deque2.pushBack(4);
+
+      expect(deque1.equals(deque2)).toBe(false);
+    });
+
+    test('should consider deques with different sizes unequal', () => {
+      const deque1 = new Deque<number>();
+      const deque2 = new Deque<number>();
+
+      deque1.pushBack(1);
+      deque1.pushBack(2);
+
+      deque2.pushBack(1);
+      deque2.pushBack(2);
+      deque2.pushBack(3);
+
+      expect(deque1.equals(deque2)).toBe(false);
+    });
+
+    test('should work with complex data types', () => {
+      const deque1 = new Deque<string>();
+      const deque2 = new Deque<string>();
+
+      ["cat", "dog", "elephant"].forEach(val => {
+        deque1.pushBack(val);
+        deque2.pushBack(val);
+      });
+
+      expect(deque1.equals(deque2)).toBe(true);
+
+      deque2.popBack();
+      deque2.pushBack("lion");
+      expect(deque1.equals(deque2)).toBe(false);
+    });
+  });
 });

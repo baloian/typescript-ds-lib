@@ -179,4 +179,59 @@ describe('Heap', () => {
       expect(maxHeap.pop()).toBe(5);
     });
   });
+
+  describe('equality', () => {
+    test('should consider empty heaps equal', () => {
+      const heap1 = new Heap<number>();
+      const heap2 = new Heap<number>();
+      expect(heap1.equals(heap2)).toBe(true);
+    });
+
+    test('should consider heaps with same elements equal', () => {
+      const heap1 = new Heap<number>();
+      const heap2 = new Heap<number>();
+
+      [5, 3, 7, 1].forEach(n => {
+        heap1.push(n);
+        heap2.push(n);
+      });
+
+      expect(heap1.equals(heap2)).toBe(true);
+    });
+
+    test('should consider heaps with different elements unequal', () => {
+      const heap1 = new Heap<number>();
+      const heap2 = new Heap<number>();
+
+      heap1.push(1);
+      heap1.push(2);
+      heap2.push(1);
+      heap2.push(3);
+
+      expect(heap1.equals(heap2)).toBe(false);
+    });
+
+    test('should consider heaps with different sizes unequal', () => {
+      const heap1 = new Heap<number>();
+      const heap2 = new Heap<number>();
+
+      heap1.push(1);
+      heap1.push(2);
+      heap2.push(1);
+
+      expect(heap1.equals(heap2)).toBe(false);
+    });
+
+    test('should handle equality with custom comparators', () => {
+      const heap1 = new Heap<number>((a, b) => a > b);
+      const heap2 = new Heap<number>((a, b) => a > b);
+
+      [5, 3, 7, 1].forEach(n => {
+        heap1.push(n);
+        heap2.push(n);
+      });
+
+      expect(heap1.equals(heap2)).toBe(true);
+    });
+  });
 });

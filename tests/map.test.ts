@@ -194,6 +194,75 @@ describe('Map', () => {
     });
   });
 
+  describe('equality', () => {
+    test('should consider empty maps equal', () => {
+      const map1 = new Map<string, number>();
+      const map2 = new Map<string, number>();
+      expect(map1.equals(map2)).toBe(true);
+    });
+
+    test('should consider maps with same key-value pairs equal', () => {
+      const map1 = new Map<string, number>();
+      const map2 = new Map<string, number>();
+
+      map1.insert('a', 1);
+      map1.insert('b', 2);
+      map1.insert('c', 3);
+
+      map2.insert('a', 1);
+      map2.insert('b', 2);
+      map2.insert('c', 3);
+
+      expect(map1.equals(map2)).toBe(true);
+    });
+
+    test('should consider maps with different values for same keys unequal', () => {
+      const map1 = new Map<string, number>();
+      const map2 = new Map<string, number>();
+
+      map1.insert('a', 1);
+      map1.insert('b', 2);
+
+      map2.insert('a', 1);
+      map2.insert('b', 3);
+
+      expect(map1.equals(map2)).toBe(false);
+    });
+
+    test('should consider maps with different keys unequal', () => {
+      const map1 = new Map<string, number>();
+      const map2 = new Map<string, number>();
+
+      map1.insert('a', 1);
+      map1.insert('b', 2);
+
+      map2.insert('a', 1);
+      map2.insert('c', 2);
+
+      expect(map1.equals(map2)).toBe(false);
+    });
+
+    test('should consider maps with different sizes unequal', () => {
+      const map1 = new Map<string, number>();
+      const map2 = new Map<string, number>();
+
+      map1.insert('a', 1);
+      map1.insert('b', 2);
+
+      map2.insert('a', 1);
+
+      expect(map1.equals(map2)).toBe(false);
+    });
+
+    test('should handle comparison with null/undefined', () => {
+      const map1 = new Map<string, number>();
+      map1.insert('a', 1);
+
+      expect(map1.equals(null as any)).toBe(false);
+      expect(map1.equals(undefined as any)).toBe(false);
+    });
+  });
+
   describe('edge cases', () => {
     test('should handle special characters in keys', () => {
       const specialKeys = ['!@#$', '   ', '\n\t', ''];

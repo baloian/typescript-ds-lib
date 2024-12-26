@@ -158,4 +158,59 @@ describe('Stack', () => {
       expect(stack.isEmpty()).toBe(true);
     });
   });
+
+  describe('equality', () => {
+    test('should consider empty stacks equal', () => {
+      const stack1 = new Stack<number>();
+      const stack2 = new Stack<number>();
+      expect(stack1.equals(stack2)).toBe(true);
+    });
+
+    test('should consider stacks with same elements in same order equal', () => {
+      const stack1 = new Stack<number>();
+      const stack2 = new Stack<number>();
+
+      [1, 2, 3].forEach(v => {
+        stack1.push(v);
+        stack2.push(v);
+      });
+
+      expect(stack1.equals(stack2)).toBe(true);
+    });
+
+    test('should consider stacks with different sizes unequal', () => {
+      const stack1 = new Stack<number>();
+      const stack2 = new Stack<number>();
+
+      stack1.push(1);
+      stack1.push(2);
+      stack2.push(1);
+
+      expect(stack1.equals(stack2)).toBe(false);
+    });
+
+    test('should consider stacks with same size but different elements unequal', () => {
+      const stack1 = new Stack<number>();
+      const stack2 = new Stack<number>();
+
+      stack1.push(1);
+      stack1.push(2);
+      stack2.push(1);
+      stack2.push(3);
+
+      expect(stack1.equals(stack2)).toBe(false);
+    });
+
+    test('should consider stacks with same elements in different order unequal', () => {
+      const stack1 = new Stack<number>();
+      const stack2 = new Stack<number>();
+
+      stack1.push(1);
+      stack1.push(2);
+      stack2.push(2);
+      stack2.push(1);
+
+      expect(stack1.equals(stack2)).toBe(false);
+    });
+  });
 });

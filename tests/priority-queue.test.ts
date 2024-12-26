@@ -239,4 +239,77 @@ describe('PriorityQueue', () => {
       expect(count).toBe(1000);
     });
   });
+
+  describe('equality', () => {
+    test('should consider empty queues equal', () => {
+      const pq1 = new PriorityQueue<string>((a, b) => a < b);
+      const pq2 = new PriorityQueue<string>((a, b) => a < b);
+      expect(pq1.equals(pq2)).toBe(true);
+    });
+
+    test('should consider queues with same elements in same order equal', () => {
+      const pq1 = new PriorityQueue<string>((a, b) => a < b);
+      const pq2 = new PriorityQueue<string>((a, b) => a < b);
+
+      pq1.push('a');
+      pq1.push('b');
+      pq1.push('c');
+
+      pq2.push('a');
+      pq2.push('b');
+      pq2.push('c');
+
+      expect(pq1.equals(pq2)).toBe(true);
+    });
+
+    test('should consider queues with different elements unequal', () => {
+      const pq1 = new PriorityQueue<string>((a, b) => a < b);
+      const pq2 = new PriorityQueue<string>((a, b) => a < b);
+
+      pq1.push('a');
+      pq1.push('b');
+      pq1.push('c');
+
+      pq2.push('a');
+      pq2.push('b');
+      pq2.push('d');
+
+      expect(pq1.equals(pq2)).toBe(false);
+    });
+
+    test('should consider queues with different sizes unequal', () => {
+      const pq1 = new PriorityQueue<string>((a, b) => a < b);
+      const pq2 = new PriorityQueue<string>((a, b) => a < b);
+
+      pq1.push('a');
+      pq1.push('b');
+
+      pq2.push('a');
+      pq2.push('b');
+      pq2.push('c');
+
+      expect(pq1.equals(pq2)).toBe(false);
+    });
+
+    test('should handle comparison with null/undefined', () => {
+      const pq1 = new PriorityQueue<string>((a, b) => a < b);
+      pq1.push('a');
+
+      expect(pq1.equals(null as any)).toBe(false);
+      expect(pq1.equals(undefined as any)).toBe(false);
+    });
+
+    test('should consider queues with different comparators unequal', () => {
+      const pq1 = new PriorityQueue<string>((a, b) => a < b);
+      const pq2 = new PriorityQueue<string>((a, b) => a > b);
+
+      pq1.push('a');
+      pq1.push('b');
+
+      pq2.push('a');
+      pq2.push('b');
+
+      expect(pq1.equals(pq2)).toBe(false);
+    });
+  });
 });

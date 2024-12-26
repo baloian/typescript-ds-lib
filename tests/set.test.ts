@@ -227,4 +227,56 @@ describe('Set', () => {
       expect(result).toEqual([3, 2, 1]); // Should be in reverse order
     });
   });
+
+  describe('Equality', () => {
+    test('should consider empty sets equal', () => {
+      const set1 = new Set<number>();
+      const set2 = new Set<number>();
+      expect(set1.equals(set2)).toBe(true);
+    });
+
+    test('should consider sets with same elements equal', () => {
+      const set1 = new Set<number>();
+      const set2 = new Set<number>();
+
+      [1, 2, 3, 4, 5].forEach(n => {
+        set1.insert(n);
+        set2.insert(n);
+      });
+
+      expect(set1.equals(set2)).toBe(true);
+    });
+
+    test('should consider sets with different elements unequal', () => {
+      const set1 = new Set<number>();
+      const set2 = new Set<number>();
+
+      [1, 2, 3].forEach(n => set1.insert(n));
+      [1, 2, 4].forEach(n => set2.insert(n));
+
+      expect(set1.equals(set2)).toBe(false);
+    });
+
+    test('should consider sets with different sizes unequal', () => {
+      const set1 = new Set<number>();
+      const set2 = new Set<number>();
+
+      [1, 2, 3].forEach(n => set1.insert(n));
+      [1, 2].forEach(n => set2.insert(n));
+
+      expect(set1.equals(set2)).toBe(false);
+    });
+
+    test('should handle equality with custom comparators', () => {
+      const set1 = new Set<number>((a, b) => a > b);
+      const set2 = new Set<number>((a, b) => a > b);
+
+      [1, 2, 3].forEach(n => {
+        set1.insert(n);
+        set2.insert(n);
+      });
+
+      expect(set1.equals(set2)).toBe(true);
+    });
+  });
 });

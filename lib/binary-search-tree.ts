@@ -226,10 +226,14 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
   equals(other: BinarySearchTree<T>): boolean {
     if (!other || !(other instanceof BinarySearchTree)) return false;
     if (this.size() !== other.size()) return false;
-    const thisValues: T[] = [];
-    const otherValues: T[] = [];
-    this.forEach((value) => thisValues.push(value));
-    other.forEach((value) => otherValues.push(value));
-    return thisValues.every((value, index) => this.isEqual(value, otherValues[index]));
-    }
+    return this.areTreesEqual(this.root, other.root);
+  }
+
+  private areTreesEqual(node1: TreeNode<T> | null, node2: TreeNode<T> | null): boolean {
+    if (node1 === null && node2 === null) return true;
+    if (node1 === null || node2 === null) return false;
+    return this.isEqual(node1.value, node2.value) &&
+           this.areTreesEqual(node1.left, node2.left) &&
+           this.areTreesEqual(node1.right, node2.right);
+  }
 }

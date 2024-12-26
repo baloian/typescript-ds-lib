@@ -56,7 +56,9 @@ export class HashUtils {
 
   static hash<K>(key: K, capacity: number): number {
     if (key && typeof (key as any).hashCode === 'function') {
-      return (key as any).hashCode();
+      const hashValue = (key as any).hashCode();
+      return typeof hashValue === 'number' ? hashValue % capacity :
+        HashUtils.djb2aHash(String(hashValue)) % capacity;
     }
     if (typeof key === 'number' && Number.isSafeInteger(key)) {
       return HashUtils.wangHash32(key) % capacity;

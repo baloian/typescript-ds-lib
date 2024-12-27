@@ -8,7 +8,7 @@ TypeScript data structure implementations without external dependencies. Why to 
 - 0 Dependencies
 - Lightweight
 - Comes with Comparator (for custom types)
-- `equals()` method supported for all data structures
+- `equals()` method provided for all data structures
 - Well documented
 
 

@@ -8,15 +8,10 @@ export class Utils {
       return (key1 as any).equals(key2);
     }
 
-    const type1 = typeof key1;
-    const type2 = typeof key2;
-
-    // Handle primitives
-    if (type1 !== 'object' && type2 !== 'object') {
-      if (type1 === 'number' && type2 === 'number') {
-        return key1 === key2 || (isNaN(key1 as number) && isNaN(key2 as number));
-      }
-      return key1 === key2;
+    // Handle NaN values
+    if (typeof key1 === 'number' && typeof key2 === 'number') {
+      // NaN is the only value that isn't equal to itself.
+      return key1 === key2 || (isNaN(key1 as number) && isNaN(key2 as number));
     }
 
     // Handle special object types

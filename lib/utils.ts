@@ -24,20 +24,20 @@ export class Utils {
       return key2 instanceof RegExp && key1.toString() === key2.toString();
     }
 
-    if (Array.isArray(key1)) {
-      if (!Array.isArray(key2) || key1.length !== key2.length) return false;
-      for (let i = 0; i < key1.length; i++) {
-        if (!Utils.equals(key1[i], key2[i])) return false;
-      }
-      return true;
-    }
-
     // Handle plain objects
     if (typeof key1 === 'object' && typeof key2 === 'object') {
       const keys1 = Object.keys(key1);
       const keys2 = Object.keys(key2);
       return keys1.length === keys2.length &&
         keys1.every(k => k in key2 && Utils.equals((key1 as any)[k], (key2 as any)[k]));
+    }
+
+    if (Array.isArray(key1)) {
+      if (!Array.isArray(key2) || key1.length !== key2.length) return false;
+      for (let i = 0; i < key1.length; i++) {
+        if (!Utils.equals(key1[i], key2[i])) return false;
+      }
+      return true;
     }
     return false;
   }

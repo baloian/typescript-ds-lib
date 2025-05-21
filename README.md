@@ -69,9 +69,7 @@ You can consider the library's `Map` and `Set` as ordered map and set, and nativ
 
 ## Contributions
 Contributions are welcome and can be made by submitting GitHub pull requests
-to this repository. In general, the source code follows
-[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript) and the
-rules specified in `.eslintrc.json` file.
+to this repository.
 
 
 ## License

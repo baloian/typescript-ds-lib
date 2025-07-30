@@ -1,6 +1,8 @@
 export * from './types';
 export { BinarySearchTree } from './lib/binary-search-tree';
 export { Deque } from './lib/deque';
+export { MatrixGraph } from './lib/graph/matrix-graph';
+export { LinkedListGraph } from './lib/graph/linked-list-graph';
 export { HashTable } from './lib/hash-table';
 export { Heap } from './lib/heap';
 export { LinkedList } from './lib/linked-list';

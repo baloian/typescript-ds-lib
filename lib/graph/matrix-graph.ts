@@ -16,14 +16,11 @@ export class MatrixGraph<V, W = number> extends BaseGraph<V, W> {
   protected onVertexAdded(vertex: V): void {
     const newSize = this.vertexCount();
     const newMatrix = new Matrix<W | undefined>(newSize, newSize);
-
-    // Copy existing data
     for (let i = 0; i < this.adjacencyMatrix.rows(); i++) {
       for (let j = 0; j < this.adjacencyMatrix.columns(); j++) {
         newMatrix.set(i, j, this.adjacencyMatrix.get(i, j));
       }
     }
-
     this.adjacencyMatrix = newMatrix;
   }
 

@@ -93,13 +93,10 @@ Two types of graphs are supported:
 - `MatrixGraph` for dense graphs (many edges)
 - `LinkedListGraph` for sparse graphs (few edges)
 
-## Constructor
-`constructor()` - Creates a new graph. Use `MatrixGraph` for dense graphs (many edges) or `LinkedListGraph` for sparse graphs (few edges).
-
 ## Methods
-`addVertex(vertex: V)` - Adds a new vertex to the graph.
-`removeVertex(vertex: V)` - Removes a vertex from the graph.
-`addEdge(from: V, to: V, weight: W = 1 as W)` - Adds a new edge between two vertices with the specified weight.
+`addVertex(vertex: V)` - Adds a new vertex to the graph.  
+`removeVertex(vertex: V)` - Removes a vertex from the graph.  
+`addEdge(from: V, to: V, weight: W = 1 as W)` - Adds a new edge between two vertices with the specified weight.  
 `removeEdge(from: V, to: V)` - Removes an edge between two vertices.
 
 ### Example Usage

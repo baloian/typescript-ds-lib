@@ -2,6 +2,7 @@
 This library provides a collection of commonly used data structures implemented in TypeScript. Each data structure is designed to be type-safe and efficient.
 - [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#binary-search-tree)
 - [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#deque)
+- [Graph](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#graph)
 - [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#hash-table)
 - [Heap](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#heap)
 - [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#linked-list)
@@ -81,6 +82,39 @@ console.log(deque.size());   // 3
 
 deque.popFront();     // deque: [1,3]
 deque.popBack();      // deque: [1]
+```
+
+
+# Graph
+Work in progress.
+A graph implementation in TypeScript that provides operations for graph manipulation, such as adding and removing vertices and edges.
+
+Two types of graphs are supported:
+- `MatrixGraph` for dense graphs (many edges)
+- `LinkedListGraph` for sparse graphs (few edges)
+
+## Constructor
+`constructor()` - Creates a new graph. Use `MatrixGraph` for dense graphs (many edges) or `LinkedListGraph` for sparse graphs (few edges).
+
+## Methods
+`addVertex(vertex: V)` - Adds a new vertex to the graph.
+`removeVertex(vertex: V)` - Removes a vertex from the graph.
+`addEdge(from: V, to: V, weight: W = 1 as W)` - Adds a new edge between two vertices with the specified weight.
+`removeEdge(from: V, to: V)` - Removes an edge between two vertices.
+
+### Example Usage
+```typescript
+import { MatrixGraph, LinkedListGraph } from 'typescript-ds-lib';
+
+// LinkedList-based graph (good for sparse graphs)
+const sparseGraph = new LinkedListGraph<string, number>();
+sparseGraph.addEdge('A', 'B', 5);
+sparseGraph.addEdge('B', 'C', 3);
+
+// Matrix-based graph (good for dense graphs)
+const denseGraph = new MatrixGraph<string, number>();
+denseGraph.addEdge('A', 'B', 5);
+denseGraph.addEdge('B', 'C', 3);
 ```
 
 

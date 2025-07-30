@@ -42,6 +42,7 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 ## Data Structures
 - Binary Search Tree
 - Deque
+- Graph (coming soon)
 - Hash Table (unordered map)
 - Heap
 - Linked List
@@ -52,7 +53,6 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 - Red-Black Tree
 - Set
 - Stack
-- Graph (coming soon)
 
 
 ## `Map-Set` vs Native JavaScript `Map-Set`

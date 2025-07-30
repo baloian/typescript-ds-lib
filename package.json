@@ -1,6 +1,6 @@
 {
   "name": "typescript-ds-lib",
-  "version": "0.4.1",
+  "version": "0.4.5",
   "description": "A collection of TypeScript data structure implementations",
   "author": "Artiom Baloian <artiom.baloian@gmail.com>",
   "license": "MIT",
@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc",
+    "format": "prettier --write \"lib/**/*.ts\" \"test/**/*.ts\"",
     "prepare": "npm run build",
     "test": "rm -rf dist && tsc && jest",
     "benchmark": "ts-node benchmarks/run.ts"

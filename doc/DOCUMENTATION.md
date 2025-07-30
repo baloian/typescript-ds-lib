@@ -86,7 +86,8 @@ deque.popBack();      // deque: [1]
 
 
 # Graph
-Work in progress.
+**A beta version and partially tested.**
+
 A graph implementation in TypeScript that provides operations for graph manipulation, such as adding and removing vertices and edges.
 
 Two types of graphs are supported:

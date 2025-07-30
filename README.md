@@ -42,7 +42,7 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 ## Data Structures
 - Binary Search Tree
 - Deque
-- Graph (Initial implementation. Not yet fully tested)
+- Graph (beta version and partially tested)
 - Hash Table (unordered map)
 - Heap
 - Linked List

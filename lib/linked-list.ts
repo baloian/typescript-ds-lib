@@ -1,7 +1,6 @@
 import { BaseCollection } from './base-collection';
 import { Utils } from './utils';
 
-
 export interface LinkedList<T> {
   pushBack(element: T): void;
   pushFront(element: T): void;
@@ -18,7 +17,6 @@ export interface LinkedList<T> {
   get(position: number): T | undefined;
 }
 
-
 class Node<T> {
   value: T;
   next: Node<T> | null;
@@ -28,7 +26,6 @@ class Node<T> {
     this.next = null;
   }
 }
-
 
 export class LinkedList<T> extends BaseCollection<T> implements LinkedList<T> {
   private head: Node<T> | null;

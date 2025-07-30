@@ -48,7 +48,7 @@ describe('RedBlackTree', () => {
 
     test('should handle large number of insertions', () => {
       const values = Array.from({ length: 1000 }, (_, i) => i);
-      values.forEach(v => tree.insert(v, v));
+      values.forEach((v) => tree.insert(v, v));
       expect(tree.size()).toBe(1000);
 
       // Verify some random values
@@ -100,9 +100,9 @@ describe('RedBlackTree', () => {
     });
 
     test('should handle removing all nodes sequentially', () => {
-      [5, 3, 7, 1, 9].forEach(v => tree.insert(v, v));
+      [5, 3, 7, 1, 9].forEach((v) => tree.insert(v, v));
 
-      [5, 3, 7, 1, 9].forEach(v => {
+      [5, 3, 7, 1, 9].forEach((v) => {
         tree.remove(v);
         expect(tree.find(v)).toBeUndefined();
       });
@@ -196,7 +196,7 @@ describe('RedBlackTree', () => {
 
     test('should maintain order after multiple operations', () => {
       const nums = [5, 3, 7, 1, 9, 2, 8, 4, 6];
-      nums.forEach(n => tree.insert(n, n * 10));
+      nums.forEach((n) => tree.insert(n, n * 10));
 
       const values: number[] = [];
       tree.forEach((_, value) => values.push(value));
@@ -215,7 +215,7 @@ describe('RedBlackTree', () => {
       const tree1 = new RedBlackTree<number, number>();
       const tree2 = new RedBlackTree<number, number>();
 
-      [5, 3, 7, 1, 9].forEach(v => {
+      [5, 3, 7, 1, 9].forEach((v) => {
         tree1.insert(v, v * 10);
         tree2.insert(v, v * 10);
       });
@@ -227,8 +227,8 @@ describe('RedBlackTree', () => {
       const tree1 = new RedBlackTree<number, number>();
       const tree2 = new RedBlackTree<number, number>();
 
-      [5, 3, 7].forEach(v => tree1.insert(v, v * 10));
-      [5, 3, 7].forEach(v => tree2.insert(v, v * 20));
+      [5, 3, 7].forEach((v) => tree1.insert(v, v * 10));
+      [5, 3, 7].forEach((v) => tree2.insert(v, v * 20));
 
       expect(tree1.equals(tree2)).toBe(false);
     });
@@ -237,8 +237,8 @@ describe('RedBlackTree', () => {
       const tree1 = new RedBlackTree<number, number>();
       const tree2 = new RedBlackTree<number, number>();
 
-      [5, 3, 7].forEach(v => tree1.insert(v, v));
-      [5, 3, 8].forEach(v => tree2.insert(v, v));
+      [5, 3, 7].forEach((v) => tree1.insert(v, v));
+      [5, 3, 8].forEach((v) => tree2.insert(v, v));
 
       expect(tree1.equals(tree2)).toBe(false);
     });
@@ -247,8 +247,8 @@ describe('RedBlackTree', () => {
       const tree1 = new RedBlackTree<number, number>();
       const tree2 = new RedBlackTree<number, number>();
 
-      [5, 3, 7].forEach(v => tree1.insert(v, v));
-      [5, 3].forEach(v => tree2.insert(v, v));
+      [5, 3, 7].forEach((v) => tree1.insert(v, v));
+      [5, 3].forEach((v) => tree2.insert(v, v));
 
       expect(tree1.equals(tree2)).toBe(false);
     });

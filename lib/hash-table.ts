@@ -2,14 +2,12 @@ import { HashUtils } from './hash-utils';
 import { BaseCollection } from './base-collection';
 import { Utils } from './utils';
 
-
 export interface HashTable<K, V> {
   insert(key: K, value: V): void;
   get(key: K): V | undefined;
   remove(key: K): boolean;
   forEach(callback: (key: K, value: V) => void): void;
 }
-
 
 class HashNode<K, V> {
   key: K;
@@ -22,7 +20,6 @@ class HashNode<K, V> {
     this.next = null;
   }
 }
-
 
 export class HashTable<K, V> extends BaseCollection<V> implements HashTable<K, V> {
   private table: Array<HashNode<K, V> | null>;

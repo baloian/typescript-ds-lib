@@ -25,7 +25,7 @@ export class LinkedListGraph<V, W = number> extends BaseGraph<V, W> {
     const fromList = this.adjacencyLists.get(from);
     if (fromList) {
       // Remove existing edge if it exists
-      fromList.removeIf(edge => edge.vertex === to);
+      fromList.removeIf((edge) => edge.vertex === to);
       fromList.pushBack({ vertex: to, weight });
     }
   }
@@ -33,7 +33,7 @@ export class LinkedListGraph<V, W = number> extends BaseGraph<V, W> {
   protected onEdgeRemoved(from: V, to: V): void {
     const fromList = this.adjacencyLists.get(from);
     if (fromList) {
-      fromList.removeIf(edge => edge.vertex === to);
+      fromList.removeIf((edge) => edge.vertex === to);
     }
   }
 
@@ -42,7 +42,7 @@ export class LinkedListGraph<V, W = number> extends BaseGraph<V, W> {
     if (!list) return [];
 
     const neighbors: V[] = [];
-    list.forEach(edge => neighbors.push(edge.vertex));
+    list.forEach((edge) => neighbors.push(edge.vertex));
     return neighbors;
   }
 
@@ -65,7 +65,7 @@ export class LinkedListGraph<V, W = number> extends BaseGraph<V, W> {
 
   protected onGetEdgeCount(): number {
     let count = 0;
-    this.adjacencyLists.forEach(list => {
+    this.adjacencyLists.forEach((list) => {
       count += list.size();
     });
     return count;

@@ -127,7 +127,7 @@ describe('Set', () => {
       set.insertList(elements);
 
       expect(set.size()).toBe(elements.length);
-      elements.forEach(el => {
+      elements.forEach((el) => {
         expect(set.find(el)).toBe(true);
       });
 
@@ -166,28 +166,30 @@ describe('Set', () => {
   describe('Iteration', () => {
     test('should iterate over elements with forEach', () => {
       const elements = [1, 2, 3, 4, 5];
-      elements.forEach(el => set.insert(el));
+      elements.forEach((el) => set.insert(el));
 
       const result: number[] = [];
-      set.forEach(value => result.push(value));
+      set.forEach((value) => result.push(value));
 
       expect(result.length).toBe(elements.length);
       expect(result.sort()).toEqual(elements.sort());
 
       // Test with callback that modifies external state
       let sum = 0;
-      set.forEach(value => sum += value);
+      set.forEach((value) => (sum += value));
       expect(sum).toBe(15);
     });
 
     test('should handle forEach on empty set', () => {
       const result: number[] = [];
-      set.forEach(value => result.push(value));
+      set.forEach((value) => result.push(value));
       expect(result).toEqual([]);
 
       // Test with callback that throws
       expect(() => {
-        set.forEach(() => { throw new Error('Should not be called'); });
+        set.forEach(() => {
+          throw new Error('Should not be called');
+        });
       }).not.toThrow();
     });
   });
@@ -223,7 +225,7 @@ describe('Set', () => {
       expect(reverseSet.find(2)).toBe(true);
 
       const result: number[] = [];
-      reverseSet.forEach(value => result.push(value));
+      reverseSet.forEach((value) => result.push(value));
       expect(result).toEqual([3, 2, 1]); // Should be in reverse order
     });
   });
@@ -239,7 +241,7 @@ describe('Set', () => {
       const set1 = new Set<number>();
       const set2 = new Set<number>();
 
-      [1, 2, 3, 4, 5].forEach(n => {
+      [1, 2, 3, 4, 5].forEach((n) => {
         set1.insert(n);
         set2.insert(n);
       });
@@ -251,8 +253,8 @@ describe('Set', () => {
       const set1 = new Set<number>();
       const set2 = new Set<number>();
 
-      [1, 2, 3].forEach(n => set1.insert(n));
-      [1, 2, 4].forEach(n => set2.insert(n));
+      [1, 2, 3].forEach((n) => set1.insert(n));
+      [1, 2, 4].forEach((n) => set2.insert(n));
 
       expect(set1.equals(set2)).toBe(false);
     });
@@ -261,8 +263,8 @@ describe('Set', () => {
       const set1 = new Set<number>();
       const set2 = new Set<number>();
 
-      [1, 2, 3].forEach(n => set1.insert(n));
-      [1, 2].forEach(n => set2.insert(n));
+      [1, 2, 3].forEach((n) => set1.insert(n));
+      [1, 2].forEach((n) => set2.insert(n));
 
       expect(set1.equals(set2)).toBe(false);
     });
@@ -271,7 +273,7 @@ describe('Set', () => {
       const set1 = new Set<number>((a, b) => a > b);
       const set2 = new Set<number>((a, b) => a > b);
 
-      [1, 2, 3].forEach(n => {
+      [1, 2, 3].forEach((n) => {
         set1.insert(n);
         set2.insert(n);
       });

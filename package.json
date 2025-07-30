@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "format": "prettier --write \"lib/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"lib/**/*.ts\" \"tests/**/*.ts\"",
     "prepare": "npm run build",
     "test": "rm -rf dist && tsc && jest",
     "benchmark": "ts-node benchmarks/run.ts"
@@ -23,10 +23,10 @@
     "url": "https://github.com/baloian/typescript-ds.git"
   },
   "devDependencies": {
-    "ts-node": "^10.9.2",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.21",
     "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
   "keywords": [
@@ -44,5 +44,8 @@
     "set",
     "map",
     "matrix"
-  ]
+  ],
+  "dependencies": {
+    "prettier": "^3.6.2"
+  }
 }

@@ -2,13 +2,11 @@ import { Heap } from './heap';
 import { BaseCollection } from './base-collection';
 import { Comparator } from '../types';
 
-
 export interface PriorityQueue<T> {
   push(element: T, priority: number): void;
   pop(): T | undefined;
   front(): T | undefined;
 }
-
 
 export class PriorityQueue<T> extends BaseCollection<T> implements PriorityQueue<T> {
   private heap: Heap<T>;

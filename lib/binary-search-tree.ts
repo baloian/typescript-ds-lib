@@ -1,7 +1,6 @@
 import { Comparator } from '../types';
 import { BaseCollection } from './base-collection';
 
-
 export interface BinarySearchTree<T> {
   insert(element: T): void;
   remove(element: T): void;
@@ -10,7 +9,6 @@ export interface BinarySearchTree<T> {
   max(): T | undefined;
   forEach(callback: (element: T) => void, traversal?: 'inorder' | 'preorder' | 'postorder'): void;
 }
-
 
 class TreeNode<T> {
   value: T;
@@ -23,7 +21,6 @@ class TreeNode<T> {
     this.right = null;
   }
 }
-
 
 export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySearchTree<T> {
   private root: TreeNode<T> | null;
@@ -161,7 +158,10 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
   /**
    * Executes a callback function for each element in the BST in-order traversal
    */
-  forEach(callback: (element: T) => void, traversal: 'inorder' | 'preorder' | 'postorder' = 'inorder'): void {
+  forEach(
+    callback: (element: T) => void,
+    traversal: 'inorder' | 'preorder' | 'postorder' = 'inorder'
+  ): void {
     switch (traversal) {
       case 'inorder':
         this.inorderTraversal(this.root, callback);
@@ -232,8 +232,10 @@ export class BinarySearchTree<T> extends BaseCollection<T> implements BinarySear
   private areTreesEqual(node1: TreeNode<T> | null, node2: TreeNode<T> | null): boolean {
     if (node1 === null && node2 === null) return true;
     if (node1 === null || node2 === null) return false;
-    return this.isEqual(node1.value, node2.value) &&
-           this.areTreesEqual(node1.left, node2.left) &&
-           this.areTreesEqual(node1.right, node2.right);
+    return (
+      this.isEqual(node1.value, node2.value) &&
+      this.areTreesEqual(node1.left, node2.left) &&
+      this.areTreesEqual(node1.right, node2.right)
+    );
   }
 }

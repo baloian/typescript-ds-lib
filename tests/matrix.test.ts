@@ -46,7 +46,7 @@ describe('Matrix', () => {
       matrix.set(0, 3, 1);
       expect(matrix.toArray()).toEqual([
         [undefined, undefined, undefined],
-        [undefined, undefined, undefined], 
+        [undefined, undefined, undefined],
         [undefined, undefined, undefined]
       ]);
     });
@@ -134,7 +134,9 @@ describe('Matrix', () => {
       const other = new Matrix<number>(2, 3);
       matrix.fill(1);
       other.fill(2);
-      expect(() => matrix.multiply(other)).toThrow('Matrix dimensions must be compatible for multiplication');
+      expect(() => matrix.multiply(other)).toThrow(
+        'Matrix dimensions must be compatible for multiplication'
+      );
     });
 
     it('should multiply by scalar correctly', () => {
@@ -207,7 +209,7 @@ describe('Matrix', () => {
       matrix.fill(1);
       const clone = matrix.clone();
       expect(clone.toArray()).toEqual(matrix.toArray());
-      
+
       // Verify deep copy
       matrix.set(0, 0, 2);
       expect(clone.get(0, 0)).toBe(1);

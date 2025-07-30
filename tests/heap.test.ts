@@ -119,16 +119,16 @@ describe('Heap', () => {
 
     test('should correctly report size after operations', () => {
       expect(heap.size()).toBe(0);
-      
+
       heap.push(1);
       expect(heap.size()).toBe(1);
-      
+
       heap.push(2);
       expect(heap.size()).toBe(2);
-      
+
       heap.pop();
       expect(heap.size()).toBe(1);
-      
+
       heap.clear();
       expect(heap.size()).toBe(0);
     });
@@ -137,7 +137,7 @@ describe('Heap', () => {
   describe('custom comparator', () => {
     test('should work as max heap with custom comparator', () => {
       const maxHeap = new Heap<number>((a, b) => a > b);
-      
+
       maxHeap.push(5);
       maxHeap.push(3);
       maxHeap.push(7);
@@ -154,13 +154,13 @@ describe('Heap', () => {
         name: string;
         age: number;
       }
-      
+
       const personHeap = new Heap<Person>((a, b) => a.age < b.age);
-      
+
       personHeap.push({ name: 'Alice', age: 30 });
       personHeap.push({ name: 'Bob', age: 25 });
       personHeap.push({ name: 'Charlie', age: 35 });
-      
+
       expect(personHeap.pop()?.age).toBe(25);
       expect(personHeap.pop()?.age).toBe(30);
       expect(personHeap.pop()?.age).toBe(35);
@@ -168,11 +168,11 @@ describe('Heap', () => {
 
     test('should handle equal elements with custom comparator', () => {
       const maxHeap = new Heap<number>((a, b) => a > b);
-      
+
       maxHeap.push(5);
       maxHeap.push(5);
       maxHeap.push(5);
-      
+
       expect(maxHeap.size()).toBe(3);
       expect(maxHeap.pop()).toBe(5);
       expect(maxHeap.pop()).toBe(5);
@@ -191,7 +191,7 @@ describe('Heap', () => {
       const heap1 = new Heap<number>();
       const heap2 = new Heap<number>();
 
-      [5, 3, 7, 1].forEach(n => {
+      [5, 3, 7, 1].forEach((n) => {
         heap1.push(n);
         heap2.push(n);
       });
@@ -226,7 +226,7 @@ describe('Heap', () => {
       const heap1 = new Heap<number>((a, b) => a > b);
       const heap2 = new Heap<number>((a, b) => a > b);
 
-      [5, 3, 7, 1].forEach(n => {
+      [5, 3, 7, 1].forEach((n) => {
         heap1.push(n);
         heap2.push(n);
       });

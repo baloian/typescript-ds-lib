@@ -2,7 +2,6 @@ import { Comparator } from '../types';
 import { BaseCollection } from './base-collection';
 import { Utils } from './utils';
 
-
 export interface RedBlackTree<K, V> {
   insert(key: K, value: V): void;
   remove(key: K): void;
@@ -12,12 +11,10 @@ export interface RedBlackTree<K, V> {
   forEach(callback: (key: K, value: V) => void): void;
 }
 
-
 enum Color {
   RED,
   BLACK
 }
-
 
 class RBNode<K, V> {
   key: K;
@@ -36,7 +33,6 @@ class RBNode<K, V> {
     this.parent = null;
   }
 }
-
 
 export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTree<K, V> {
   private root: RBNode<K, V> | null;
@@ -267,8 +263,10 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
           w = x.parent!.right!;
         }
 
-        if ((!w.left || w.left.color === Color.BLACK) &&
-          (!w.right || w.right.color === Color.BLACK)) {
+        if (
+          (!w.left || w.left.color === Color.BLACK) &&
+          (!w.right || w.right.color === Color.BLACK)
+        ) {
           w.color = Color.RED;
           x = x.parent!;
         } else {
@@ -295,8 +293,10 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
           w = x.parent!.left!;
         }
 
-        if ((!w.right || w.right.color === Color.BLACK) &&
-          (!w.left || w.left.color === Color.BLACK)) {
+        if (
+          (!w.right || w.right.color === Color.BLACK) &&
+          (!w.left || w.left.color === Color.BLACK)
+        ) {
           w.color = Color.RED;
           x = x.parent!;
         } else {
@@ -361,8 +361,7 @@ export class RedBlackTree<K, V> extends BaseCollection<V> implements RedBlackTre
   private areTreesEqual(node1: RBNode<K, V> | null, node2: RBNode<K, V> | null): boolean {
     if (node1 === null && node2 === null) return true;
     if (node1 === null || node2 === null) return false;
-    if (!this.isEqual(node1.key, node2.key) ||
-    !Utils.equals(node1.value, node2.value)) return false;
+    if (!this.isEqual(node1.key, node2.key) || !Utils.equals(node1.value, node2.value)) return false;
     return this.areTreesEqual(node1.left, node2.left) && this.areTreesEqual(node1.right, node2.right);
   }
 }

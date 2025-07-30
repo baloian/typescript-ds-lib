@@ -2,13 +2,11 @@ import { Comparator } from '../types';
 import { BaseCollection } from './base-collection';
 import { Utils } from './utils';
 
-
 export interface Heap<T> {
   push(element: T): void;
-  pop(): T | undefined; 
+  pop(): T | undefined;
   top(): T | undefined;
 }
-
 
 export class Heap<T> extends BaseCollection<T> implements Heap<T> {
   private items: T[];
@@ -79,8 +77,7 @@ export class Heap<T> extends BaseCollection<T> implements Heap<T> {
     while (index > 0) {
       const parentIndex: number = Math.floor((index - 1) / 2);
       if (this.comparator(this.items[index], this.items[parentIndex])) {
-        [this.items[index], this.items[parentIndex]] = 
-        [this.items[parentIndex], this.items[index]];
+        [this.items[index], this.items[parentIndex]] = [this.items[parentIndex], this.items[index]];
         index = parentIndex;
       } else {
         break;
@@ -96,19 +93,22 @@ export class Heap<T> extends BaseCollection<T> implements Heap<T> {
       let smallestIndex: number = index;
       const leftChild: number = 2 * index + 1;
       const rightChild: number = 2 * index + 2;
-      if (leftChild < this.items.length && 
-          this.comparator(this.items[leftChild], this.items[smallestIndex])) {
+      if (
+        leftChild < this.items.length &&
+        this.comparator(this.items[leftChild], this.items[smallestIndex])
+      ) {
         smallestIndex = leftChild;
       }
-      if (rightChild < this.items.length && 
-          this.comparator(this.items[rightChild], this.items[smallestIndex])) {
+      if (
+        rightChild < this.items.length &&
+        this.comparator(this.items[rightChild], this.items[smallestIndex])
+      ) {
         smallestIndex = rightChild;
       }
       if (smallestIndex === index) {
         break;
       }
-      [this.items[index], this.items[smallestIndex]] = 
-      [this.items[smallestIndex], this.items[index]];
+      [this.items[index], this.items[smallestIndex]] = [this.items[smallestIndex], this.items[index]];
       index = smallestIndex;
     }
   }

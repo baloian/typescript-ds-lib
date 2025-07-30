@@ -1,7 +1,6 @@
 import { LinkedList } from './linked-list';
 import { BaseCollection } from './base-collection';
 
-
 export interface Deque<T> {
   pushFront(element: T): void;
   pushBack(element: T): void;
@@ -10,7 +9,6 @@ export interface Deque<T> {
   front(): T | undefined;
   back(): T | undefined;
 }
-
 
 export class Deque<T> extends BaseCollection<T> implements Deque<T> {
   private items: LinkedList<T>;

@@ -152,7 +152,7 @@ describe('BinarySearchTree', () => {
       bst.insert(8);
 
       // Remove nodes in specific order to test different cases
-      bst.remove(5);  // Remove node with two children
+      bst.remove(5); // Remove node with two children
       expect(bst.size()).toBe(10);
 
       const result: number[] = [];
@@ -160,9 +160,9 @@ describe('BinarySearchTree', () => {
       expect(result).toEqual([1, 3, 4, 6, 7, 8, 10, 13, 15, 17]);
 
       bst.remove(15); // Remove another node with two children
-      bst.remove(1);  // Remove leaf node
+      bst.remove(1); // Remove leaf node
       bst.remove(17); // Remove node with no left child
-      bst.remove(3);  // Remove node with one child
+      bst.remove(3); // Remove node with one child
 
       const finalResult: number[] = [];
       bst.forEach((value) => finalResult.push(value));
@@ -195,20 +195,22 @@ describe('BinarySearchTree', () => {
     });
 
     test('should handle complex operations with custom comparator', () => {
-      const customBst = new BinarySearchTree<string>((a, b) => a.length < b.length || (a.length === b.length && a < b));
+      const customBst = new BinarySearchTree<string>(
+        (a, b) => a.length < b.length || (a.length === b.length && a < b)
+      );
 
-      customBst.insert("cat");
-      customBst.insert("dog");
-      customBst.insert("elephant");
-      customBst.insert("fox");
-      customBst.insert("butterfly");
+      customBst.insert('cat');
+      customBst.insert('dog');
+      customBst.insert('elephant');
+      customBst.insert('fox');
+      customBst.insert('butterfly');
 
-      expect(customBst.min()).toBe("cat");
-      expect(customBst.max()).toBe("butterfly");
+      expect(customBst.min()).toBe('cat');
+      expect(customBst.max()).toBe('butterfly');
 
       const result: string[] = [];
       customBst.forEach((value) => result.push(value));
-      expect(result).toEqual(["cat", "dog", "fox", "elephant", "butterfly"]);
+      expect(result).toEqual(['cat', 'dog', 'fox', 'elephant', 'butterfly']);
     });
   });
 
@@ -223,7 +225,7 @@ describe('BinarySearchTree', () => {
       const bst1 = new BinarySearchTree<number>();
       const bst2 = new BinarySearchTree<number>();
 
-      [5, 3, 7, 1, 9].forEach(val => {
+      [5, 3, 7, 1, 9].forEach((val) => {
         bst1.insert(val);
         bst2.insert(val);
       });
@@ -264,14 +266,14 @@ describe('BinarySearchTree', () => {
       const bst1 = new BinarySearchTree<string>((a, b) => a.length < b.length);
       const bst2 = new BinarySearchTree<string>((a, b) => a.length < b.length);
 
-      ["cat", "elephant", "dog"].forEach(val => {
+      ['cat', 'elephant', 'dog'].forEach((val) => {
         bst1.insert(val);
         bst2.insert(val);
       });
 
       expect(bst1.equals(bst2)).toBe(true);
 
-      bst2.insert("butterfly");
+      bst2.insert('butterfly');
       expect(bst1.equals(bst2)).toBe(false);
     });
 
@@ -280,7 +282,7 @@ describe('BinarySearchTree', () => {
       const bst2 = new BinarySearchTree<number>();
 
       // Create identical complex structures
-      [10, 5, 15, 3, 7, 13, 17, 1, 4, 6, 8].forEach(val => {
+      [10, 5, 15, 3, 7, 13, 17, 1, 4, 6, 8].forEach((val) => {
         bst1.insert(val);
         bst2.insert(val);
       });

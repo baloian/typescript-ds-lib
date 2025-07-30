@@ -16,8 +16,10 @@ export class Utils {
 
     // Handle special object types
     if (key1 instanceof Date) {
-      return key2 instanceof Date &&
-        (key1.getTime() === key2.getTime() || (isNaN(key1.getTime()) && isNaN(key2.getTime())));
+      return (
+        key2 instanceof Date &&
+        (key1.getTime() === key2.getTime() || (isNaN(key1.getTime()) && isNaN(key2.getTime())))
+      );
     }
 
     if (key1 instanceof RegExp) {
@@ -28,8 +30,10 @@ export class Utils {
     if (typeof key1 === 'object' && typeof key2 === 'object') {
       const keys1 = Object.keys(key1);
       const keys2 = Object.keys(key2);
-      return keys1.length === keys2.length &&
-        keys1.every(k => k in key2 && Utils.equals((key1 as any)[k], (key2 as any)[k]));
+      return (
+        keys1.length === keys2.length &&
+        keys1.every((k) => k in key2 && Utils.equals((key1 as any)[k], (key2 as any)[k]))
+      );
     }
 
     if (Array.isArray(key1)) {

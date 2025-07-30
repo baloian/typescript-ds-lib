@@ -69,7 +69,7 @@ describe('LinkedList', () => {
         list.pushBack(1);
         list.pushBack(2);
         list.pushBack(3);
-        expect(list.removeIf(x => x === 2)).toBe(true);
+        expect(list.removeIf((x) => x === 2)).toBe(true);
         expect(list.size()).toBe(2);
         expect(list.get(0)).toBe(1);
         expect(list.get(1)).toBe(3);
@@ -80,7 +80,7 @@ describe('LinkedList', () => {
         list.pushBack(2);
         list.pushBack(2);
         list.pushBack(3);
-        expect(list.removeIf(x => x === 2)).toBe(true);
+        expect(list.removeIf((x) => x === 2)).toBe(true);
         expect(list.size()).toBe(3);
         expect(list.get(0)).toBe(1);
         expect(list.get(1)).toBe(2);
@@ -91,7 +91,7 @@ describe('LinkedList', () => {
         list.pushBack(1);
         list.pushBack(2);
         list.pushBack(3);
-        expect(list.removeIf(x => x === 1)).toBe(true);
+        expect(list.removeIf((x) => x === 1)).toBe(true);
         expect(list.size()).toBe(2);
         expect(list.get(0)).toBe(2);
         expect(list.get(1)).toBe(3);
@@ -101,7 +101,7 @@ describe('LinkedList', () => {
         list.pushBack(1);
         list.pushBack(2);
         list.pushBack(3);
-        expect(list.removeIf(x => x === 3)).toBe(true);
+        expect(list.removeIf((x) => x === 3)).toBe(true);
         expect(list.size()).toBe(2);
         expect(list.get(0)).toBe(1);
         expect(list.get(1)).toBe(2);
@@ -110,7 +110,7 @@ describe('LinkedList', () => {
       test('should return false if no element satisfies the condition', () => {
         list.pushBack(1);
         list.pushBack(2);
-        expect(list.removeIf(x => x === 3)).toBe(false);
+        expect(list.removeIf((x) => x === 3)).toBe(false);
         expect(list.size()).toBe(2);
       });
     });
@@ -264,7 +264,7 @@ describe('LinkedList', () => {
         list.pushBack(1);
         list.pushBack(3);
         list.pushBack(5);
-        expect(list.insertBefore(2, x => x === 3)).toBe(true);
+        expect(list.insertBefore(2, (x) => x === 3)).toBe(true);
         expect(list.get(0)).toBe(1);
         expect(list.get(1)).toBe(2);
         expect(list.get(2)).toBe(3);
@@ -274,7 +274,7 @@ describe('LinkedList', () => {
       test('should insert before first element when condition matches', () => {
         list.pushBack(1);
         list.pushBack(2);
-        expect(list.insertBefore(0, x => x === 1)).toBe(true);
+        expect(list.insertBefore(0, (x) => x === 1)).toBe(true);
         expect(list.get(0)).toBe(0);
         expect(list.get(1)).toBe(1);
         expect(list.get(2)).toBe(2);
@@ -283,7 +283,7 @@ describe('LinkedList', () => {
       test('should return false when inserting before with no match', () => {
         list.pushBack(1);
         list.pushBack(2);
-        expect(list.insertBefore(3, x => x === 4)).toBe(false);
+        expect(list.insertBefore(3, (x) => x === 4)).toBe(false);
       });
     });
 
@@ -292,7 +292,7 @@ describe('LinkedList', () => {
         list.pushBack(1);
         list.pushBack(3);
         list.pushBack(5);
-        expect(list.insertAfter(4, x => x === 3)).toBe(true);
+        expect(list.insertAfter(4, (x) => x === 3)).toBe(true);
         expect(list.get(0)).toBe(1);
         expect(list.get(1)).toBe(3);
         expect(list.get(2)).toBe(4);
@@ -302,7 +302,7 @@ describe('LinkedList', () => {
       test('should insert after last element when condition matches', () => {
         list.pushBack(1);
         list.pushBack(2);
-        expect(list.insertAfter(3, x => x === 2)).toBe(true);
+        expect(list.insertAfter(3, (x) => x === 2)).toBe(true);
         expect(list.get(0)).toBe(1);
         expect(list.get(1)).toBe(2);
         expect(list.get(2)).toBe(3);
@@ -311,7 +311,7 @@ describe('LinkedList', () => {
       test('should return false when inserting after with no match', () => {
         list.pushBack(1);
         list.pushBack(2);
-        expect(list.insertAfter(3, x => x === 4)).toBe(false);
+        expect(list.insertAfter(3, (x) => x === 4)).toBe(false);
       });
     });
   });
@@ -352,7 +352,7 @@ describe('LinkedList', () => {
       list.pushBack(2);
       list.pushBack(3);
       const elements: number[] = [];
-      list.forEach(x => elements.push(x));
+      list.forEach((x) => elements.push(x));
       expect(elements).toEqual([1, 2, 3]);
     });
 
@@ -377,7 +377,7 @@ describe('LinkedList', () => {
       list.pushBack(2);
       list.pushBack(3);
       const doubled: number[] = [];
-      list.forEach(x => doubled.push(x * 2));
+      list.forEach((x) => doubled.push(x * 2));
       expect(doubled).toEqual([2, 4, 6]);
     });
   });
@@ -393,7 +393,7 @@ describe('LinkedList', () => {
       const list1 = new LinkedList<number>();
       const list2 = new LinkedList<number>();
 
-      [1, 2, 3].forEach(n => {
+      [1, 2, 3].forEach((n) => {
         list1.pushBack(n);
         list2.pushBack(n);
       });

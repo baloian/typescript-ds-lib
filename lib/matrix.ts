@@ -1,6 +1,5 @@
 import { BaseCollection } from './base-collection';
 
-
 export interface Matrix<T> {
   // Basic operations
   get(row: number, col: number): T | undefined;
@@ -49,7 +48,6 @@ export interface Matrix<T> {
   trace(): T;
 }
 
-
 export class Matrix<T> extends BaseCollection<T> implements Matrix<T> {
   private data: T[][];
   private numRows: number;
@@ -59,7 +57,9 @@ export class Matrix<T> extends BaseCollection<T> implements Matrix<T> {
     super();
     this.numRows = rows;
     this.numCols = cols;
-    this.data = Array(rows).fill(null).map(() => Array(cols).fill(undefined));
+    this.data = Array(rows)
+      .fill(null)
+      .map(() => Array(cols).fill(undefined));
   }
 
   /**
@@ -96,14 +96,18 @@ export class Matrix<T> extends BaseCollection<T> implements Matrix<T> {
    * Fills the entire matrix with a value.
    */
   fill(value: T): void {
-    this.data = Array(this.numRows).fill(null).map(() => Array(this.numCols).fill(value));
+    this.data = Array(this.numRows)
+      .fill(null)
+      .map(() => Array(this.numCols).fill(value));
   }
 
   /**
    * Clears the matrix by setting all elements to undefined.
    */
   clear(): void {
-    this.data = Array(this.numRows).fill(null).map(() => Array(this.numCols).fill(undefined));
+    this.data = Array(this.numRows)
+      .fill(null)
+      .map(() => Array(this.numCols).fill(undefined));
   }
 
   /**
@@ -262,7 +266,7 @@ export class Matrix<T> extends BaseCollection<T> implements Matrix<T> {
    * Converts the matrix to a 2D array.
    */
   toArray(): T[][] {
-    return this.data.map(row => [...row]);
+    return this.data.map((row) => [...row]);
   }
 
   /**
@@ -297,7 +301,7 @@ export class Matrix<T> extends BaseCollection<T> implements Matrix<T> {
     if (col < 0 || col >= this.numCols) {
       return [];
     }
-    return this.data.map(row => row[col]);
+    return this.data.map((row) => row[col]);
   }
 
   /**
@@ -408,7 +412,9 @@ export class Matrix<T> extends BaseCollection<T> implements Matrix<T> {
    * Resizes the matrix to new dimensions, preserving existing values where possible.
    */
   resize(rows: number, cols: number): void {
-    const newData: T[][] = Array(rows).fill(null).map(() => Array(cols).fill(undefined));
+    const newData: T[][] = Array(rows)
+      .fill(null)
+      .map(() => Array(cols).fill(undefined));
     const minRows = Math.min(rows, this.numRows);
     const minCols = Math.min(cols, this.numCols);
     for (let i = 0; i < minRows; i++) {

@@ -128,7 +128,7 @@ describe('HashTable', () => {
 
     test('should handle keys with custom hashCode and equals methods', () => {
       class CustomKey {
-        constructor(private id: number) { }
+        constructor(private id: number) {}
 
         hashCode(): number {
           return this.id;
@@ -272,9 +272,11 @@ describe('HashTable', () => {
       const context = { multiplier: 2 };
       const results: number[] = [];
 
-      table.forEach(function(this: typeof context, key: string, value: number) {
-        results.push(value * this.multiplier);
-      }.bind(context));
+      table.forEach(
+        function (this: typeof context, key: string, value: number) {
+          results.push(value * this.multiplier);
+        }.bind(context)
+      );
 
       expect(results).toContain(2); // 1 * 2
       expect(results).toContain(4); // 2 * 2

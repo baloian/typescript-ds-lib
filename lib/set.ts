@@ -2,7 +2,6 @@ import { BaseCollection } from './base-collection';
 import { BinarySearchTree } from './binary-search-tree';
 import { Comparator } from '../types';
 
-
 export interface Set<T> {
   insert(element: T): void;
   insertList(elements: T[]): void;
@@ -11,7 +10,6 @@ export interface Set<T> {
   has(element: T): boolean;
   forEach(callback: (element: T) => void): void;
 }
-
 
 export class Set<T> extends BaseCollection<T> implements Set<T> {
   private tree: BinarySearchTree<T>;

@@ -1,13 +1,11 @@
-import { BaseCollection } from "./base-collection";
-import { LinkedList } from "./linked-list";
-
+import { BaseCollection } from './base-collection';
+import { LinkedList } from './linked-list';
 
 export interface Stack<T> {
   push(element: T): void;
   pop(): T | undefined;
   top(): T | undefined;
 }
-
 
 export class Stack<T> extends BaseCollection<T> implements Stack<T> {
   private llData: LinkedList<T>;

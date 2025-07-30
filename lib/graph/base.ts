@@ -40,9 +40,9 @@ export abstract class BaseGraph<V, W = number> extends BaseCollection<V> {
   removeVertex(vertex: V): void {
     if (this.vertices.has(vertex)) {
       const vertexIndex = this.vertexToIndex.get(vertex)!;
-      
+
       // Remove all edges connected to this vertex
-      this.getVertices().forEach(otherVertex => {
+      this.getVertices().forEach((otherVertex) => {
         if (otherVertex !== vertex) {
           this.removeEdge(vertex, otherVertex);
           this.removeEdge(otherVertex, vertex);

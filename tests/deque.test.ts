@@ -96,7 +96,7 @@ describe('Deque', () => {
       const deque1 = new Deque<number>();
       const deque2 = new Deque<number>();
 
-      [1, 2, 3].forEach(val => {
+      [1, 2, 3].forEach((val) => {
         deque1.pushBack(val);
         deque2.pushBack(val);
       });
@@ -137,7 +137,7 @@ describe('Deque', () => {
       const deque1 = new Deque<string>();
       const deque2 = new Deque<string>();
 
-      ["cat", "dog", "elephant"].forEach(val => {
+      ['cat', 'dog', 'elephant'].forEach((val) => {
         deque1.pushBack(val);
         deque2.pushBack(val);
       });
@@ -145,7 +145,7 @@ describe('Deque', () => {
       expect(deque1.equals(deque2)).toBe(true);
 
       deque2.popBack();
-      deque2.pushBack("lion");
+      deque2.pushBack('lion');
       expect(deque1.equals(deque2)).toBe(false);
     });
   });

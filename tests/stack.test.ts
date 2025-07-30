@@ -25,7 +25,7 @@ describe('Stack', () => {
 
     test('should push multiple elements in correct order', () => {
       const elements = [1, 2, 3, 4, 5];
-      elements.forEach(elem => stack.push(elem));
+      elements.forEach((elem) => stack.push(elem));
 
       for (let i = elements.length - 1; i >= 0; i--) {
         expect(stack.pop()).toBe(elements[i]);
@@ -170,7 +170,7 @@ describe('Stack', () => {
       const stack1 = new Stack<number>();
       const stack2 = new Stack<number>();
 
-      [1, 2, 3].forEach(v => {
+      [1, 2, 3].forEach((v) => {
         stack1.push(v);
         stack2.push(v);
       });

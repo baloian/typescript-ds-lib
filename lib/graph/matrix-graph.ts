@@ -16,43 +16,43 @@ export class MatrixGraph<V, W = number> extends BaseGraph<V, W> {
   protected onVertexAdded(vertex: V): void {
     const newSize = this.vertexCount();
     const newMatrix = new Matrix<W | undefined>(newSize, newSize);
-    
+
     // Copy existing data
     for (let i = 0; i < this.adjacencyMatrix.rows(); i++) {
       for (let j = 0; j < this.adjacencyMatrix.columns(); j++) {
         newMatrix.set(i, j, this.adjacencyMatrix.get(i, j));
       }
     }
-    
+
     this.adjacencyMatrix = newMatrix;
   }
 
   protected onVertexRemoved(vertex: V, vertexIndex: number): void {
     const newSize = this.vertexCount();
     const newMatrix = new Matrix<W | undefined>(newSize, newSize);
-    
+
     // Copy data excluding the removed vertex
     let newRow = 0;
     for (let oldRow = 0; oldRow < this.adjacencyMatrix.rows(); oldRow++) {
       if (oldRow === vertexIndex) continue;
-      
+
       let newCol = 0;
       for (let oldCol = 0; oldCol < this.adjacencyMatrix.columns(); oldCol++) {
         if (oldCol === vertexIndex) continue;
-        
+
         newMatrix.set(newRow, newCol, this.adjacencyMatrix.get(oldRow, oldCol));
         newCol++;
       }
       newRow++;
     }
-    
+
     this.adjacencyMatrix = newMatrix;
   }
 
   protected onEdgeAdded(from: V, to: V, weight: W): void {
     const fromIndex = this.getVertexIndex(from);
     const toIndex = this.getVertexIndex(to);
-    
+
     if (fromIndex !== -1 && toIndex !== -1) {
       this.adjacencyMatrix.set(fromIndex, toIndex, weight);
     }
@@ -61,7 +61,7 @@ export class MatrixGraph<V, W = number> extends BaseGraph<V, W> {
   protected onEdgeRemoved(from: V, to: V): void {
     const fromIndex = this.getVertexIndex(from);
     const toIndex = this.getVertexIndex(to);
-    
+
     if (fromIndex !== -1 && toIndex !== -1) {
       this.adjacencyMatrix.set(fromIndex, toIndex, undefined);
     }
@@ -87,11 +87,11 @@ export class MatrixGraph<V, W = number> extends BaseGraph<V, W> {
   protected onGetEdgeWeight(from: V, to: V): W | undefined {
     const fromIndex = this.getVertexIndex(from);
     const toIndex = this.getVertexIndex(to);
-    
+
     if (fromIndex === -1 || toIndex === -1) {
       return undefined;
     }
-    
+
     return this.adjacencyMatrix.get(fromIndex, toIndex);
   }
 

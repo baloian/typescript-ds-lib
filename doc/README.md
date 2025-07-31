@@ -1,18 +1,18 @@
 # TypeScript Data Structure Library Documentation
 This library provides a collection of commonly used data structures implemented in TypeScript. Each data structure is designed to be type-safe and efficient.
-- [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#binary-search-tree)
-- [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#deque)
-- [Graph](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#graph)
-- [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#hash-table)
-- [Heap](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#heap)
-- [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#linked-list)
-- [Map](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#map)
-- [Matrix](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#matrix)  
-- [Priority Queue](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#priority-queue)
-- [Queue](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#queue)
-- [Red-Black Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#red-black-tree)
-- [Set](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#set)
-- [Stack](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md#stack)
+- [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#binary-search-tree)
+- [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#deque)
+- [Graph](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#graph)
+- [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#hash-table)
+- [Heap](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#heap)
+- [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#linked-list)
+- [Map](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#map)
+- [Matrix](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#matrix)  
+- [Priority Queue](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#priority-queue)
+- [Queue](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#queue)
+- [Red-Black Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#red-black-tree)
+- [Set](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#set)
+- [Stack](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#stack)
 
 # Binary Search Tree
 A binary search tree (BST) implementation in TypeScript that stores values in an ordered tree structure, with smaller values to the left and larger values to the right.

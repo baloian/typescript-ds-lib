@@ -99,6 +99,17 @@ Two types of graphs are supported:
 `removeVertex(vertex: V)` - Removes a vertex from the graph.  
 `addEdge(from: V, to: V, weight: W = 1 as W)` - Adds a new edge between two vertices with the specified weight.  
 `removeEdge(from: V, to: V)` - Removes an edge between two vertices.
+`getNeighbors(vertex: V)` - Gets all neighbors of a vertex. Returns an empty array if the vertex doesn't exist.
+`getEdgeWeight(from: V, to: V)` - Gets the weight of an edge between two vertices. Returns undefined if either vertex doesn't exist or there is no edge.
+`getVertices()` - Gets all vertices in the graph as an array.
+`hasVertex(vertex: V)` - Checks if a vertex exists in the graph.
+`hasEdge(from: V, to: V)` - Checks if an edge exists between two vertices.
+`vertexCount()` - Returns the number of vertices in the graph.
+`edgeCount()` - Returns the number of edges in the graph.
+`clear()` - Clears all vertices and edges from the graph.
+`size()` - Returns the number of vertices in the graph.
+`isEmpty()` - Checks if the graph has no vertices.
+
 
 ### Example Usage
 ```typescript

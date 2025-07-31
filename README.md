@@ -36,7 +36,7 @@ console.log(stack.size());  // 2
 
 
 ## Documentation and Examples
-See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master/doc/DOCUMENTATION.md) for more details and examples.
+See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md) for more details and examples.
 
 
 ## Data Structures

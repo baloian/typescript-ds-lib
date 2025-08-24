@@ -6,6 +6,7 @@
     "allowJs": true,
     "strict": true,
     "noImplicitAny": false,
+    "isolatedModules": true,
     "moduleResolution": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,

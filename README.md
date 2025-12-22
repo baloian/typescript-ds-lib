@@ -1,8 +1,9 @@
 # TypeScript Data Structure Library
 [![NPM](https://img.shields.io/npm/v/typescript-ds-lib?label=npm%20package&color=limegreen)](https://www.npmjs.com/package/typescript-ds-lib)
 
-TypeScript data structure implementations without external dependencies. Why to use this library?  
+TypeScript data structure implementations without external dependencies.
 
+**Why to use this library?**  
 - Fully Tested
 - Fast
 - 0 Dependencies

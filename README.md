@@ -1,7 +1,7 @@
 # TypeScript Data Structure Library
 [![NPM](https://img.shields.io/npm/v/typescript-ds-lib?label=npm%20package&color=limegreen)](https://www.npmjs.com/package/typescript-ds-lib)
 
-TypeScript data structure implementations without external dependencies.
+TypeScript data structure and algorithm implementations without external dependencies.
 
 **Why to use this library?**  
 - Fully Tested
@@ -54,6 +54,9 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 - Red-Black Tree
 - Set
 - Stack
+
+## Algorithms
+- Binary Search
 
 
 ## `Map-Set` vs Native JavaScript `Map-Set`

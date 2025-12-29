@@ -1,5 +1,7 @@
-# TypeScript Data Structure Library Documentation
-This library provides a collection of commonly used data structures implemented in TypeScript. Each data structure is designed to be type-safe and efficient.
+# TypeScript Data Structure and Algorithm Library Documentation
+This library provides a collection of commonly used data structures and algorithms implemented in TypeScript. Each data structure and algorithm is designed to be type-safe and efficient.
+
+## Data Structures
 - [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#binary-search-tree)
 - [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#deque)
 - [Graph](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#graph)
@@ -13,6 +15,10 @@ This library provides a collection of commonly used data structures implemented 
 - [Red-Black Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#red-black-tree)
 - [Set](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#set)
 - [Stack](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#stack)
+
+## Algorithms
+- [Binary Search](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#binary-search)
+
 
 # Binary Search Tree
 A binary search tree (BST) implementation in TypeScript that stores values in an ordered tree structure, with smaller values to the left and larger values to the right.
@@ -491,4 +497,38 @@ console.log(matrix.size());     // { rows: 3, cols: 3 }
 
 const transposed = matrix.transpose();
 console.log(transposed.get(0, 0));  // 1
+```
+
+
+
+# Binary Search
+A binary search implementation in TypeScript that performs a binary search on a sorted array to locate a target element.
+
+## Function Signature
+`binarySearch<T>(arr: T[], target: T, compare?: (a: T, b: T) => number): number`
+
+## Returns
+The index of the target element if it is found in the array; otherwise, returns `-1`.
+
+## Example Usage
+```typescript
+import { binarySearch } from 'typescript-ds-lib';
+
+const arr = [1, 3, 5, 7, 9];
+console.log(binarySearch(arr, 5)); // 2
+
+// With custom comparator for descending order
+const descArr = [9, 7, 5, 3, 1];
+const compareDesc = (a: number, b: number) => b - a;
+console.log(binarySearch(descArr, 5, compareDesc)); // 2
+
+// With custom objects
+interface Person { name: string; age: number; }
+const people: Person[] = [
+  { name: 'Alice', age: 20 },
+  { name: 'Bob', age: 25 },
+  { name: 'Charlie', age: 30 },
+];
+const personCompare = (a: Person, b: Person) => a.age - b.age;
+console.log(binarySearch(people, { name: 'Unknown', age: 25 }, personCompare)); // 1
 ```

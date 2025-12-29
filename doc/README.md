@@ -17,7 +17,7 @@ This library provides a collection of commonly used data structures and algorith
 - [Stack](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#stack)
 
 ## Algorithms
-- [Binary Search](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#binary-search)
+- [Binary Search](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#binary-search)
 
 
 # Binary Search Tree

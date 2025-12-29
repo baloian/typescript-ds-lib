@@ -1,6 +1,6 @@
 {
   "name": "typescript-ds-lib",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "A collection of TypeScript data structure implementations",
   "author": "Artiom Baloian <artiom.baloian@gmail.com>",
   "license": "MIT",
@@ -24,10 +24,10 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.15.21",
+    "@types/node": "^25.0.3",
     "ts-jest": "^29.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "keywords": [
     "typescript",

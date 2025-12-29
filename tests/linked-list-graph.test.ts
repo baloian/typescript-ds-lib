@@ -88,9 +88,9 @@ describe('LinkedListGraph', () => {
       graph.addEdge('A', 'B');
       graph.addEdge('B', 'C');
       graph.addEdge('C', 'A');
-      
+
       graph.removeVertex('B');
-      
+
       expect(graph.hasEdge('A', 'B')).toBe(false);
       expect(graph.hasEdge('B', 'C')).toBe(false);
       expect(graph.hasEdge('C', 'A')).toBe(true);
@@ -100,7 +100,7 @@ describe('LinkedListGraph', () => {
       graph.addEdge('A', 'B', 1);
       graph.addEdge('B', 'C', 2);
       graph.addEdge('C', 'A', 3);
-      
+
       expect(graph.getEdgeWeight('A', 'B')).toBe(1);
       expect(graph.getEdgeWeight('B', 'C')).toBe(2);
       expect(graph.getEdgeWeight('C', 'A')).toBe(3);

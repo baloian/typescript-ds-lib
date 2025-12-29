@@ -57,7 +57,7 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 
 ## Algorithms
 - Binary Search (with custom comparator)
-- Shuffle
+- Shuffle (shuffles the array in-place)
 
 ## `Map-Set` vs Native JavaScript `Map-Set`
 The library's `Map` and `Set` data structures are implemented as Red-Black Tree and Binary Search Tree respectively.

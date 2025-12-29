@@ -18,6 +18,7 @@ This library provides a collection of commonly used data structures and algorith
 
 ## Algorithms
 - [Binary Search](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#binary-search)
+- [Shuffle](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#shuffle)
 
 
 # Binary Search Tree
@@ -532,3 +533,19 @@ const people: Person[] = [
 const personCompare = (a: Person, b: Person) => a.age - b.age;
 console.log(binarySearch(people, { name: 'Unknown', age: 25 }, personCompare)); // 1
 ```
+
+
+# Shuffle
+A shuffle implementation in TypeScript that shuffles an array using the Fisher-Yates shuffle algorithm.
+Note that it shuffles the array in-place.
+
+## Function Signature
+`shuffle<T>(array: T[]): void`
+
+## Example Usage
+```typescript
+import { shuffle } from 'typescript-ds-lib';
+
+const arr = [1, 2, 3, 4, 5];
+shuffle(arr);
+console.log(arr); // [3, 1, 5, 2, 4] (random order)

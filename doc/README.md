@@ -18,7 +18,7 @@ This library provides a collection of commonly used data structures and algorith
 
 ## Algorithms
 - [Binary Search](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#binary-search)
-- [Levenshtein Distance](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#levenshtein-distance)
+- [Levenshtein Distance](https://github.com/baloian/typescript-ds-lib/tree/master/doc#levenshtein-distance)
 - [Shuffle](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#shuffle)
 
 

@@ -18,6 +18,7 @@ This library provides a collection of commonly used data structures and algorith
 
 ## Algorithms
 - [Binary Search](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#binary-search)
+- [Levenshtein Distance](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#levenshtein-distance)
 - [Shuffle](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#shuffle)
 
 
@@ -532,6 +533,54 @@ const people: Person[] = [
 ];
 const personCompare = (a: Person, b: Person) => a.age - b.age;
 console.log(binarySearch(people, { name: 'Unknown', age: 25 }, personCompare)); // 1
+```
+
+
+# Levenshtein Distance
+A Levenshtein distance implementation in TypeScript that calculates the minimum number of single-character edits (insertions, deletions, or substitutions) required to transform one string into another.
+
+## Function Signature
+`levenshteinDistance(str1: string, str2: string): number`
+
+## Returns
+The Levenshtein distance between the two strings (a non-negative integer). A distance of 0 means the strings are identical.
+
+## Example Usage
+```typescript
+import { levenshteinDistance } from 'typescript-ds-lib';
+
+// Example 1: Transforming "kitten" to "sitting"
+// Operations: k→s (substitution), e→i (substitution), add g (insertion)
+console.log(levenshteinDistance('kitten', 'sitting')); // 3
+
+// Example 2: Identical strings have distance 0
+console.log(levenshteinDistance('hello', 'hello')); // 0
+
+// Example 3: Empty string to non-empty string
+console.log(levenshteinDistance('', 'abc')); // 3 (3 insertions needed)
+
+// Example 4: Non-empty string to empty string
+console.log(levenshteinDistance('abc', '')); // 3 (3 deletions needed)
+
+// Example 5: Common use case - spell checking or fuzzy matching
+const userInput = 'helo';
+const correctWord = 'hello';
+const distance = levenshteinDistance(userInput, correctWord);
+console.log(distance); // 1 (one insertion: 'l')
+
+// Example 6: Finding similar words
+const words = ['cat', 'dog', 'bat', 'rat', 'hat'];
+const target = 'cat';
+words.forEach(word => {
+  const dist = levenshteinDistance(target, word);
+  console.log(`${word}: ${dist}`); 
+  // cat: 0, dog: 3, bat: 1, rat: 1, hat: 1
+});
+
+// Example 7: DNA sequence comparison
+const seq1 = 'ACGTACGT';
+const seq2 = 'ACGTACGG';
+console.log(levenshteinDistance(seq1, seq2)); // 1 (one substitution: T→G)
 ```
 
 

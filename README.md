@@ -1,7 +1,7 @@
-# TypeScript Data Structure Library
+# TypeScript Data Structure & Algorithm Library
 [![NPM](https://img.shields.io/npm/v/typescript-ds-lib?label=npm%20package&color=limegreen)](https://www.npmjs.com/package/typescript-ds-lib)
 
-TypeScript data structure and algorithm implementations without external dependencies.
+TypeScript data structure and algorithm implementations with no external dependencies.
 
 **Why to use this library?**  
 - Fully Tested
@@ -57,6 +57,7 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 
 ## Algorithms
 - Binary Search (with custom comparator)
+- Levenshtein Distance (calculates the edit distance between two strings)
 - Shuffle (shuffles the array in-place)
 
 ## `Map-Set` vs Native JavaScript `Map-Set`

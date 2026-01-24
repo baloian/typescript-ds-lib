@@ -14,4 +14,5 @@ export { RedBlackTree } from './lib/red-black-tree';
 export { Set } from './lib/set';
 export { Stack } from './lib/stack';
 export { binarySearch } from './algorithms/binary-search';
+export { levenshteinDistance } from './algorithms/levenshtein-distance';
 export { shuffle } from './algorithms/shuffle';

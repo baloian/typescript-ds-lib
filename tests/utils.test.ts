@@ -1,5 +1,5 @@
-import { HashUtils } from '../lib/hash-utils';
-import { Utils } from '../lib/utils';
+import { HashUtils } from '../data-structures/hash-utils';
+import { Utils } from '../data-structures/utils';
 
 describe('Utils', () => {
   describe('equals', () => {

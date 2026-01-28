@@ -1,4 +1,4 @@
-import { BinarySearchTree } from '../lib/binary-search-tree';
+import { BinarySearchTree } from '../data-structures/binary-search-tree';
 
 describe('BinarySearchTree', () => {
   let bst: BinarySearchTree<number>;

@@ -1,4 +1,4 @@
-import { Heap } from '../lib/heap';
+import { Heap } from '../data-structures/heap';
 
 describe('Heap', () => {
   let heap: Heap<number>;

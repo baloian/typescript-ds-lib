@@ -1,4 +1,4 @@
-import { HashTable } from '../lib/hash-table';
+import { HashTable } from '../data-structures/hash-table';
 
 describe('HashTable', () => {
   let hashTable: HashTable<string, number>;

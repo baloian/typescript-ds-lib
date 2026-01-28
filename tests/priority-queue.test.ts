@@ -1,4 +1,4 @@
-import { PriorityQueue } from '../lib/priority-queue';
+import { PriorityQueue } from '../data-structures/priority-queue';
 
 describe('PriorityQueue', () => {
   let pq: PriorityQueue<string>;

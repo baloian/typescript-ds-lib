@@ -1,4 +1,4 @@
-import { Set } from '../lib/set';
+import { Set } from '../data-structures/set';
 
 describe('Set', () => {
   let set: Set<number>;

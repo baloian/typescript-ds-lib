@@ -1,4 +1,4 @@
-import { RedBlackTree } from '../lib/red-black-tree';
+import { RedBlackTree } from '../data-structures/red-black-tree';
 
 describe('RedBlackTree', () => {
   let tree: RedBlackTree<number, number>;

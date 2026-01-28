@@ -1,4 +1,4 @@
-import { HashUtils } from '../lib/hash-utils';
+import { HashUtils } from '../data-structures/hash-utils';
 
 describe('HashUtils', () => {
   describe('hash', () => {

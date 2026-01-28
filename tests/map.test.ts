@@ -1,4 +1,4 @@
-import { Map } from '../lib/map';
+import { Map } from '../data-structures/map';
 
 describe('Map', () => {
   let map: Map<string, number>;

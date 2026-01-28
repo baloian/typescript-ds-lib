@@ -1,4 +1,4 @@
-import { Matrix } from '../lib/matrix';
+import { Matrix } from '../data-structures/matrix';
 
 describe('Matrix', () => {
   let matrix: Matrix<number>;

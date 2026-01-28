@@ -1,4 +1,4 @@
-import { LinkedListGraph } from '../lib/graph/linked-list-graph';
+import { LinkedListGraph } from '../data-structures/graph/linked-list-graph';
 
 describe('LinkedListGraph', () => {
   let graph: LinkedListGraph<string>;

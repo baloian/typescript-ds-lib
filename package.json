@@ -23,10 +23,10 @@
     "url": "https://github.com/baloian/typescript-ds.git"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.14",
-    "@types/node": "^25.0.3",
-    "prettier": "^3.6.2",
-    "ts-jest": "^29.4.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.2",
+    "prettier": "^3.8.1",
+    "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   },

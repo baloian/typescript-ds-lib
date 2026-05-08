@@ -13,6 +13,7 @@ export { Queue } from './data-structures/queue';
 export { RedBlackTree } from './data-structures/red-black-tree';
 export { Set } from './data-structures/set';
 export { Stack } from './data-structures/stack';
+export { Trie } from './data-structures/trie';
 export { binarySearch } from './algorithms/binary-search';
 export { levenshteinDistance } from './algorithms/levenshtein-distance';
 export { shuffle } from './algorithms/shuffle';

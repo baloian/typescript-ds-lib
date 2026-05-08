@@ -54,6 +54,7 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 - Red-Black Tree
 - Set
 - Stack
+- Trie
 
 ## Algorithms
 - Binary Search (with custom comparator)

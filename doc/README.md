@@ -15,6 +15,7 @@ This library provides a collection of commonly used data structures and algorith
 - [Red-Black Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#red-black-tree)
 - [Set](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#set)
 - [Stack](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#stack)
+- [Trie](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#trie)
 
 ## Algorithms
 - [Binary Search](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#binary-search)
@@ -441,6 +442,64 @@ console.log(stack.size());  // 3
 
 stack.pop();              // stack: [1,2]
 console.log(stack.top()); // 2
+```
+
+
+# Trie
+A trie (prefix tree) implementation in TypeScript optimized for prefix-based lookups, key membership checks, and grouped retrieval by key prefix.
+
+## Constructor
+`constructor(options: TrieOptions<K, TToken> = {})` - Creates a new trie.
+
+By default, string keys are tokenized by character.  
+For non-string keys, provide:
+- `tokenize: (key: K) => ReadonlyArray<TToken>`
+- `detokenize: (tokens: ReadonlyArray<TToken>) => K`
+
+## Methods
+`insert(key: K, value: V)` - Inserts or updates a key-value pair in the trie.  
+`find(key: K)` - Retrieves the value associated with the key, or undefined if not found.  
+`has(key: K)` - Checks whether the key exists in the trie.  
+`remove(key: K)` - Removes a key from the trie and returns true if it existed.  
+`hasPrefix(prefix: K)` - Checks whether the trie contains at least one key with the given prefix.  
+`valuesWithPrefix(prefix: K)` - Returns all values for keys matching the prefix.  
+`entriesWithPrefix(prefix: K)` - Returns key-value entries for keys matching the prefix.  
+`forEach(callback: (key: K, value: V) => void)` - Executes a callback for each key-value pair.  
+`isEmpty()` - Checks if the trie is empty.  
+`clear()` - Removes all entries from the trie.  
+`size()` - Returns the number of key-value pairs in the trie.  
+`equals(other: Trie<K, V, TToken>): boolean` - Checks if this trie is equal to another trie.  
+
+### Example Usage
+```typescript
+import { Trie } from 'typescript-ds-lib';
+
+const trie: Trie<string, number> = new Trie<string, number>();
+
+trie.insert('app', 1);
+trie.insert('apple', 2);
+trie.insert('application', 3);
+
+console.log(trie.find('apple'));           // 2
+console.log(trie.has('app'));              // true
+console.log(trie.hasPrefix('appl'));       // true
+console.log(trie.valuesWithPrefix('app')); // [1, 2, 3]
+```
+
+### Example with Custom Tokenization
+```typescript
+import { Trie } from 'typescript-ds-lib';
+
+const numericTrie = new Trie<number[], string, number>({
+  tokenize: (key) => key,
+  detokenize: (tokens) => [...tokens]
+});
+
+numericTrie.insert([1, 2, 3], 'alpha');
+numericTrie.insert([1, 2, 4], 'beta');
+
+console.log(numericTrie.hasPrefix([1, 2])); // true
+console.log(numericTrie.find([1, 2, 4]));   // "beta"
 ```
 
 

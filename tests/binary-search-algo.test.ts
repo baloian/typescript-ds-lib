@@ -120,7 +120,7 @@ describe('binarySearch', () => {
         { name: 'Alice', age: 20 },
         { name: 'Bob', age: 25 },
         { name: 'Charlie', age: 30 },
-        { name: 'David', age: 35 },
+        { name: 'David', age: 35 }
       ];
       const compare = (a: Person, b: Person) => a.age - b.age;
       expect(binarySearch(arr, { name: 'Bob', age: 25 }, compare)).toBe(1);
@@ -200,4 +200,3 @@ describe('binarySearch', () => {
     });
   });
 });
-

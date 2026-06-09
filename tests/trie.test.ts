@@ -72,9 +72,7 @@ describe('Trie', () => {
     });
 
     test('should return entries for matching prefix', () => {
-      const entries = trie
-        .entriesWithPrefix('app')
-        .sort(([a], [b]) => a.localeCompare(b));
+      const entries = trie.entriesWithPrefix('app').sort(([a], [b]) => a.localeCompare(b));
 
       expect(entries).toEqual([
         ['app', 1],

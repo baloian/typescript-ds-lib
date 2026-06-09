@@ -2,8 +2,12 @@ import { LRUCache } from '../data-structures/lru-cache';
 
 describe('LRUCache', () => {
   test('should reject non-positive capacity', () => {
-    expect(() => new LRUCache<string, number>(0)).toThrow('LRU cache capacity must be greater than 0');
-    expect(() => new LRUCache<string, number>(-1)).toThrow('LRU cache capacity must be greater than 0');
+    expect(() => new LRUCache<string, number>(0)).toThrow(
+      'LRU cache capacity must be greater than 0'
+    );
+    expect(() => new LRUCache<string, number>(-1)).toThrow(
+      'LRU cache capacity must be greater than 0'
+    );
   });
 
   test('should insert and retrieve values', () => {

@@ -4,10 +4,12 @@ This library provides a collection of commonly used data structures and algorith
 ## Data Structures
 - [Binary Search Tree](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#binary-search-tree)
 - [Deque](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#deque)
+- [Doubly Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#doubly-linked-list)
 - [Graph](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#graph)
 - [Hash Table](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#hash-table)
 - [Heap](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#heap)
 - [Linked List](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#linked-list)
+- [LRU Cache](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#lru-cache)
 - [Map](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#map)
 - [Matrix](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#matrix)  
 - [Priority Queue](https://github.com/baloian/typescript-ds-lib/blob/master/doc/README.md#priority-queue)
@@ -91,6 +93,48 @@ console.log(deque.size());   // 3
 
 deque.popFront();     // deque: [1,3]
 deque.popBack();      // deque: [1]
+```
+
+
+# Doubly Linked List
+A doubly linked list implementation in TypeScript that stores elements in a sequence of nodes, where each node has pointers to both the previous and next nodes. This enables O(1) removal and repositioning of arbitrary nodes when a node reference is available.
+
+Unlike the singly linked `LinkedList`, `DoublyLinkedList` is well suited for algorithms that need to move or remove elements in the middle of the list without traversing from the head.
+
+## Constructor
+`constructor()` - Creates a new doubly linked list.
+
+## Methods
+`pushBack(element: T)` - Adds a new element to the end of the list. Returns the created node.  
+`pushFront(element: T)` - Adds a new element to the beginning of the list. Returns the created node.  
+`popBack()` - Removes and returns the last element from the list.  
+`popFront()` - Removes and returns the first element from the list.  
+`removeNode(node: DoublyLinkedListNode<T>)` - Removes the given node from the list in O(1).  
+`moveToFront(node: DoublyLinkedListNode<T>)` - Moves the given node to the front of the list in O(1).  
+`front()` - Returns the first element without removing it.  
+`back()` - Returns the last element without removing it.  
+`forEach(callback: (element: T) => void)` - Applies a function to each element of the list.  
+`isEmpty()` - Checks if the list is empty.  
+`clear()` - Removes all elements from the list.  
+`size()` - Returns the total number of elements in the list.  
+`equals(other: DoublyLinkedList<T>): boolean` - Checks if this list is equal to another list.  
+
+### Example Usage
+```typescript
+import { DoublyLinkedList } from 'typescript-ds-lib';
+
+const list: DoublyLinkedList<number> = new DoublyLinkedList<number>();
+
+list.pushBack(1);     // list: [1]
+list.pushBack(2);     // list: [1,2]
+const middle = list.pushBack(3); // list: [1,2,3]
+
+list.moveToFront(middle);        // list: [3,1,2]
+console.log(list.front());       // 3
+console.log(list.back());        // 2
+
+list.removeNode(middle);         // list: [1,2]
+console.log(list.size());        // 2
 ```
 
 
@@ -226,6 +270,50 @@ console.log(list.size());      // 3
 
 list.removeAt(0);   // list: [1,2]
 list.removeAt(1);   // list: [1]
+```
+
+
+# LRU Cache
+A least recently used (LRU) cache implementation in TypeScript that stores a fixed number of key-value pairs and evicts the least recently accessed entry when capacity is exceeded.
+
+The cache is built from a `HashTable` for O(1) key lookup and a `DoublyLinkedList` for O(1) recency tracking. All core operations run in O(1) average time.
+
+## Constructor
+`constructor(capacity: number)` - Creates a new LRU cache with the given maximum number of entries. Capacity must be greater than 0.
+
+## Methods
+`get(key: K)` - Retrieves the value for a key and marks it as most recently used. Returns undefined if the key is not present.  
+`put(key: K, value: V)` - Inserts or updates a key-value pair and marks it as most recently used. Evicts the least recently used entry when capacity is exceeded.  
+`has(key: K)` - Checks whether a key exists in the cache without changing recency order.  
+`peek(key: K)` - Returns the value for a key without changing recency order.  
+`remove(key: K)` - Removes a key-value pair from the cache. Returns true if the key existed.  
+`capacity()` - Returns the maximum number of entries the cache can hold.  
+`forEach(callback: (key: K, value: V) => void)` - Executes a callback for each key-value pair in recency order (most recent first).  
+`isEmpty()` - Checks if the cache is empty.  
+`clear()` - Removes all entries from the cache.  
+`size()` - Returns the current number of entries in the cache.  
+`equals(other: LRUCache<K, V>): boolean` - Checks if this cache is equal to another cache with the same capacity and entries.  
+
+### Example Usage
+```typescript
+import { LRUCache } from 'typescript-ds-lib';
+
+const cache: LRUCache<string, number> = new LRUCache<string, number>(2);
+
+cache.put('a', 1);    // cache: { a: 1 }
+cache.put('b', 2);    // cache: { a: 1, b: 2 }
+cache.get('a');       // 1, cache: { b: 2, a: 1 } ('a' is now most recent)
+cache.put('c', 3);    // evicts 'b', cache: { a: 1, c: 3 }
+
+console.log(cache.has('b'));  // false
+console.log(cache.get('a'));  // 1
+console.log(cache.get('c'));  // 3
+console.log(cache.size());    // 2
+console.log(cache.capacity()); // 2
+
+cache.peek('a');              // 1 (does not change recency)
+cache.put('d', 4);            // evicts 'a' because 'c' was accessed more recently via get()
+console.log(cache.has('a'));  // false
 ```
 
 

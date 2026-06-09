@@ -43,10 +43,12 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 ## Data Structures
 - Binary Search Tree
 - Deque
+- Doubly Linked List
 - Graph
 - Hash Table (unordered map)
 - Heap
 - Linked List
+- LRU Cache
 - Map
 - Matrix
 - Priority Queue
@@ -80,4 +82,4 @@ to this repository.
 
 ## License
 This source code is available to everyone under the standard
-[MIT LICENSE](https://github.com/baloian/marcal/blob/master/LICENSE).
+[MIT LICENSE](https://github.com/baloian/typescript-ds-lib/blob/master/LICENSE).

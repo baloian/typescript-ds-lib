@@ -1,11 +1,13 @@
 export * from './types';
 export { BinarySearchTree } from './data-structures/binary-search-tree';
 export { Deque } from './data-structures/deque';
+export { DoublyLinkedList, DoublyLinkedListNode } from './data-structures/doubly-linked-list';
 export { MatrixGraph } from './data-structures/graph/matrix-graph';
 export { LinkedListGraph } from './data-structures/graph/linked-list-graph';
 export { HashTable } from './data-structures/hash-table';
 export { Heap } from './data-structures/heap';
 export { LinkedList } from './data-structures/linked-list';
+export { LRUCache } from './data-structures/lru-cache';
 export { Map } from './data-structures/map';
 export { Matrix } from './data-structures/matrix';
 export { PriorityQueue } from './data-structures/priority-queue';

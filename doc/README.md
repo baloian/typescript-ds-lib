@@ -748,15 +748,15 @@ This is a different question from Levenshtein distance: Levenshtein counts edits
 ```typescript
 import { longestCommonSubsequence, longestCommonSubsequenceLength } from 'typescript-ds-lib';
 
-console.log(longestCommonSubsequenceLength('ABCDGH', 'AEDFHR')); // 3
-console.log(longestCommonSubsequence('ABCDGH', 'AEDFHR'));       // "ADH"
+console.log(longestCommonSubsequenceLength('ABCDGH', 'AEDFHR'));   // 3
+console.log(longestCommonSubsequence('ABCDGH', 'AEDFHR'));         // "ADH"
 
-console.log(longestCommonSubsequenceLength('AGGTAB', 'GXTXAYB')); // 4
-console.log(longestCommonSubsequence('AGGTAB', 'GXTXAYB'));       // "GTAB"
+console.log(longestCommonSubsequenceLength('AGGTAB', 'GXTXAYB'));  // 4
+console.log(longestCommonSubsequence('AGGTAB', 'GXTXAYB'));        // "GTAB"
 
-console.log(longestCommonSubsequence('abcde', 'ace')); // "ace"
-console.log(longestCommonSubsequence('hello', 'hello')); // "hello"
-console.log(longestCommonSubsequence('', 'abc')); // ""
+console.log(longestCommonSubsequence('abcde', 'ace'));             // "ace"
+console.log(longestCommonSubsequence('hello', 'hello'));           // "hello"
+console.log(longestCommonSubsequence('', 'abc'));                  // ""
 ```
 
 

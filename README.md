@@ -60,7 +60,9 @@ See the [documentation](https://github.com/baloian/typescript-ds-lib/blob/master
 
 ## Algorithms
 - Binary Search (with custom comparator)
+- Jaro–Winkler Similarity (fuzzy string matching for names and short strings)
 - Levenshtein Distance (calculates the edit distance between two strings)
+- Longest Common Subsequence (shared characters in order, not necessarily contiguous)
 - Shuffle (shuffles the array in-place)
 
 ## `Map-Set` vs Native JavaScript `Map-Set`

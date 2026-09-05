@@ -17,5 +17,10 @@ export { Set } from './data-structures/set';
 export { Stack } from './data-structures/stack';
 export { Trie } from './data-structures/trie';
 export { binarySearch } from './algorithms/binary-search';
+export { jaroWinklerSimilarity } from './algorithms/jaro-winkler';
 export { levenshteinDistance } from './algorithms/levenshtein-distance';
+export {
+  longestCommonSubsequence,
+  longestCommonSubsequenceLength,
+} from './algorithms/longest-common-subsequence';
 export { shuffle } from './algorithms/shuffle';

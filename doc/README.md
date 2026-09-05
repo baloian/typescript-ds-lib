@@ -21,7 +21,9 @@ This library provides a collection of commonly used data structures and algorith
 
 ## Algorithms
 - [Binary Search](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#binary-search)
+- [Jaro–Winkler Similarity](https://github.com/baloian/typescript-ds-lib/tree/master/doc#jaro-winkler-similarity)
 - [Levenshtein Distance](https://github.com/baloian/typescript-ds-lib/tree/master/doc#levenshtein-distance)
+- [Longest Common Subsequence](https://github.com/baloian/typescript-ds-lib/tree/master/doc#longest-common-subsequence)
 - [Shuffle](https://github.com/baloian/typescript-ds-lib/tree/algo/doc#shuffle)
 
 
@@ -726,6 +728,68 @@ words.forEach(word => {
 const seq1 = 'ACGTACGT';
 const seq2 = 'ACGTACGG';
 console.log(levenshteinDistance(seq1, seq2)); // 1 (one substitution: T→G)
+```
+
+
+# Longest Common Subsequence
+A longest common subsequence (LCS) implementation in TypeScript. An LCS is a longest sequence of characters that appears in both strings in the same order, not necessarily contiguously.
+
+This is a different question from Levenshtein distance: Levenshtein counts edits, LCS measures what the two strings share.
+
+## Function Signatures
+`longestCommonSubsequenceLength(str1: string, str2: string): number`  
+`longestCommonSubsequence(str1: string, str2: string): string`
+
+## Returns
+`longestCommonSubsequenceLength` returns the length of a longest common subsequence.  
+`longestCommonSubsequence` returns one such subsequence (an empty string if the inputs share no characters). When several subsequences have the same maximum length, one of them is returned.
+
+## Example Usage
+```typescript
+import { longestCommonSubsequence, longestCommonSubsequenceLength } from 'typescript-ds-lib';
+
+console.log(longestCommonSubsequenceLength('ABCDGH', 'AEDFHR')); // 3
+console.log(longestCommonSubsequence('ABCDGH', 'AEDFHR'));       // "ADH"
+
+console.log(longestCommonSubsequenceLength('AGGTAB', 'GXTXAYB')); // 4
+console.log(longestCommonSubsequence('AGGTAB', 'GXTXAYB'));       // "GTAB"
+
+console.log(longestCommonSubsequence('abcde', 'ace')); // "ace"
+console.log(longestCommonSubsequence('hello', 'hello')); // "hello"
+console.log(longestCommonSubsequence('', 'abc')); // ""
+```
+
+
+# Jaro–Winkler Similarity
+A Jaro–Winkler similarity implementation in TypeScript for fuzzy matching of names and other short strings. Unlike Levenshtein distance, a higher score means the strings are more similar.
+
+The score starts from Jaro similarity (matching characters within a window, penalized for transpositions), then adds a bonus when the strings share a common prefix of up to 4 characters. The prefix bonus is applied only when the Jaro score is at least 0.7.
+
+JavaScript has no built-in equivalent.
+
+## Function Signature
+`jaroWinklerSimilarity(str1: string, str2: string, prefixScale?: number): number`
+
+`prefixScale` defaults to `0.1`. Values are clamped to `[0, 0.25]` so the result cannot exceed 1. Pass `0` to get plain Jaro similarity.
+
+## Returns
+A similarity score in `[0, 1]`. `1` means the strings are identical.
+
+## Example Usage
+```typescript
+import { jaroWinklerSimilarity } from 'typescript-ds-lib';
+
+console.log(jaroWinklerSimilarity('MARTHA', 'MARHTA')); // ~0.961
+console.log(jaroWinklerSimilarity('DWAYNE', 'DUANE'));   // ~0.840
+console.log(jaroWinklerSimilarity('hello', 'hello'));    // 1
+console.log(jaroWinklerSimilarity('', 'abc'));           // 0
+
+// Rank "did you mean?" suggestions
+const query = 'Jonathon';
+const names = ['Jonathan', 'Michael', 'John'];
+names
+  .map((name) => ({ name, score: jaroWinklerSimilarity(query, name) }))
+  .sort((a, b) => b.score - a.score);
 ```
 
 
